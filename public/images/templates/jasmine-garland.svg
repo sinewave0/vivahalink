@@ -1,41 +1,41 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Jasmine Garland template thumbnail">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#fdfaf4"/>
-      <stop offset="1" stop-color="#f5ecd5"/>
+      <stop offset="0" stop-color="#fffdf7"/>
+      <stop offset="1" stop-color="#edf3e8"/>
     </linearGradient>
     <pattern id="kdots" width="24" height="24" patternUnits="userSpaceOnUse">
-      <circle cx="12" cy="12" r="1.4" fill="#389244" opacity="0.14"/>
+      <circle cx="12" cy="12" r="1.4" fill="#587b58" opacity="0.14"/>
     </pattern>
   </defs>
   <rect width="600" height="400" fill="url(#bg)"/>
   <rect width="600" height="400" fill="url(#kdots)"/>
   <!-- garland arc -->
-  <path id="arc" d="M40 150 Q300 330 560 150" fill="none" stroke="#389244" stroke-width="3" opacity="0.5"/>
+  <path id="arc" d="M40 150 Q300 330 560 150" fill="none" stroke="#587b58" stroke-width="3" opacity="0.52"/>
   <g>
     <!-- jasmine flowers along the arc -->
     <g>
-      <circle cx="40" cy="150" r="11" fill="#ffffff" stroke="#e8dfd5"/>
-      <circle cx="40" cy="150" r="3.5" fill="#e5c02a"/>
-      <circle cx="100" cy="203" r="11" fill="#ffffff" stroke="#e8dfd5"/>
-      <circle cx="100" cy="203" r="3.5" fill="#e5c02a"/>
-      <circle cx="170" cy="248" r="11" fill="#ffffff" stroke="#e8dfd5"/>
-      <circle cx="170" cy="248" r="3.5" fill="#e5c02a"/>
-      <circle cx="240" cy="277" r="11" fill="#ffffff" stroke="#e8dfd5"/>
-      <circle cx="240" cy="277" r="3.5" fill="#e5c02a"/>
-      <circle cx="300" cy="286" r="12" fill="#ffffff" stroke="#e8dfd5"/>
-      <circle cx="300" cy="286" r="4" fill="#e5c02a"/>
-      <circle cx="360" cy="277" r="11" fill="#ffffff" stroke="#e8dfd5"/>
-      <circle cx="360" cy="277" r="3.5" fill="#e5c02a"/>
-      <circle cx="430" cy="248" r="11" fill="#ffffff" stroke="#e8dfd5"/>
-      <circle cx="430" cy="248" r="3.5" fill="#e5c02a"/>
-      <circle cx="500" cy="203" r="11" fill="#ffffff" stroke="#e8dfd5"/>
-      <circle cx="500" cy="203" r="3.5" fill="#e5c02a"/>
-      <circle cx="560" cy="150" r="11" fill="#ffffff" stroke="#e8dfd5"/>
-      <circle cx="560" cy="150" r="3.5" fill="#e5c02a"/>
+      <circle cx="40" cy="150" r="11" fill="#fffefb" stroke="#dbe8d4"/>
+      <circle cx="40" cy="150" r="3.5" fill="#c49a4d"/>
+      <circle cx="100" cy="203" r="11" fill="#fffefb" stroke="#dbe8d4"/>
+      <circle cx="100" cy="203" r="3.5" fill="#c49a4d"/>
+      <circle cx="170" cy="248" r="11" fill="#fffefb" stroke="#dbe8d4"/>
+      <circle cx="170" cy="248" r="3.5" fill="#c49a4d"/>
+      <circle cx="240" cy="277" r="11" fill="#fffefb" stroke="#dbe8d4"/>
+      <circle cx="240" cy="277" r="3.5" fill="#c49a4d"/>
+      <circle cx="300" cy="286" r="12" fill="#fffefb" stroke="#dbe8d4"/>
+      <circle cx="300" cy="286" r="4" fill="#c49a4d"/>
+      <circle cx="360" cy="277" r="11" fill="#fffefb" stroke="#dbe8d4"/>
+      <circle cx="360" cy="277" r="3.5" fill="#c49a4d"/>
+      <circle cx="430" cy="248" r="11" fill="#fffefb" stroke="#dbe8d4"/>
+      <circle cx="430" cy="248" r="3.5" fill="#c49a4d"/>
+      <circle cx="500" cy="203" r="11" fill="#fffefb" stroke="#dbe8d4"/>
+      <circle cx="500" cy="203" r="3.5" fill="#c49a4d"/>
+      <circle cx="560" cy="150" r="11" fill="#fffefb" stroke="#dbe8d4"/>
+      <circle cx="560" cy="150" r="3.5" fill="#c49a4d"/>
     </g>
     <!-- leaves -->
-    <g fill="#389244" opacity="0.8">
+    <g fill="#587b58" opacity="0.86">
       <ellipse cx="70" cy="176" rx="14" ry="6" transform="rotate(38 70 176)"/>
       <ellipse cx="135" cy="226" rx="14" ry="6" transform="rotate(40 135 226)"/>
       <ellipse cx="205" cy="262" rx="14" ry="6" transform="rotate(36 205 262)"/>
@@ -46,7 +46,7 @@
     </g>
   </g>
   <!-- couple monogram -->
-  <text x="300" y="105" text-anchor="middle" font-family="Georgia, serif" font-size="74" fill="#389244" opacity="0.85">A &amp; V</text>
-  <text x="300" y="135" text-anchor="middle" font-family="Georgia, serif" font-size="15" letter-spacing="6" fill="#8c6a55"> SAVE THE JASMINE EVENING </text>
-  <rect x="10" y="10" width="580" height="380" rx="18" fill="none" stroke="#389244" stroke-width="2" opacity="0.35"/>
+  <text x="300" y="105" text-anchor="middle" font-family="Georgia, serif" font-size="74" fill="#244d3a" opacity="0.9">A &amp; V</text>
+  <text x="300" y="135" text-anchor="middle" font-family="Georgia, serif" font-size="15" letter-spacing="6" fill="#607666"> SAVE THE JASMINE EVENING </text>
+  <rect x="10" y="10" width="580" height="380" rx="18" fill="none" stroke="#587b58" stroke-width="2" opacity="0.42"/>
 </svg>

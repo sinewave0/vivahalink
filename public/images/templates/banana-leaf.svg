@@ -1,25 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Banana Leaf template thumbnail">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#faf5e8"/>
-      <stop offset="1" stop-color="#f0f9f1"/>
+      <stop offset="0" stop-color="#fff6df"/>
+      <stop offset="1" stop-color="#edf4df"/>
     </linearGradient>
     <linearGradient id="leafl" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#215d2b"/>
-      <stop offset="0.55" stop-color="#389244"/>
-      <stop offset="1" stop-color="#5aad65"/>
+      <stop offset="0" stop-color="#1a4c31"/>
+      <stop offset="0.55" stop-color="#287446"/>
+      <stop offset="1" stop-color="#5ca363"/>
     </linearGradient>
   </defs>
   <rect width="600" height="400" fill="url(#bg)"/>
   <!-- sun disc -->
-  <circle cx="470" cy="86" r="46" fill="#eed556" opacity="0.9"/>
-  <circle cx="470" cy="86" r="60" fill="#eed556" opacity="0.25"/>
+  <circle cx="470" cy="86" r="46" fill="#dfae35" opacity="0.9"/>
+  <circle cx="470" cy="86" r="60" fill="#dfae35" opacity="0.22"/>
   <!-- banana leaf -->
   <g transform="rotate(-14 210 220)">
     <path d="M210 78 C 120 130 96 250 130 330 C 170 350 250 350 290 330 C 324 250 300 130 210 78 Z" fill="url(#leafl)"/>
-    <path d="M210 84 L210 336" stroke="#215d2b" stroke-width="7" stroke-linecap="round"/>
+    <path d="M210 84 L210 336" stroke="#194a31" stroke-width="7" stroke-linecap="round"/>
     <!-- leaflets -->
-    <g fill="#5aad65" opacity="0.65">
+    <g fill="#8bc477" opacity="0.62">
       <path d="M207 110 L150 138 L205 126 Z"/>
       <path d="M213 110 L270 138 L215 126 Z"/>
       <path d="M206 146 L134 186 L204 166 Z"/>
@@ -33,11 +33,11 @@
     </g>
   </g>
   <!-- kolam dots -->
-  <g fill="#a5731a" opacity="0.4">
+  <g fill="#b47928" opacity="0.48">
     <circle cx="430" cy="240" r="4"/><circle cx="458" cy="240" r="4"/><circle cx="486" cy="240" r="4"/>
     <circle cx="444" cy="268" r="4"/><circle cx="472" cy="268" r="4"/>
     <circle cx="430" cy="296" r="4"/><circle cx="458" cy="296" r="4"/><circle cx="486" cy="296" r="4"/>
   </g>
-  <text x="300" y="49" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#215d2b" opacity="0.75" letter-spacing="10">DALA · MANGALA</text>
-  <rect x="10" y="10" width="580" height="380" rx="18" fill="none" stroke="#389244" stroke-width="2" opacity="0.35"/>
+  <text x="300" y="49" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#225a3b" opacity="0.82" letter-spacing="10">DALA · MANGALA</text>
+  <rect x="10" y="10" width="580" height="380" rx="18" fill="none" stroke="#5ca363" stroke-width="2" opacity="0.42"/>
 </svg>

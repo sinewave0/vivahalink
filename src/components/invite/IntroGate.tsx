@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { MailOpen } from "lucide-react";
 import type { InvitationData, Template } from "@/lib/types";
 import { GATE_LABELS } from "@/lib/constants";
+import { getInvitationTheme } from "@/lib/invitation-theme";
 import { formatDate } from "@/lib/utils";
 import Ornament from "./Ornament";
 import RosePetals from "./RosePetals";
@@ -17,7 +18,6 @@ interface IntroGateProps {
 
 type Phase = "sealed" | "opening" | "ready";
 
-const GOLD = "#e5c02a";
 const EASE_OUT_EXPO: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const EASE_FLAP: [number, number, number, number] = [0.65, 0, 0.35, 1];
 
@@ -33,8 +33,9 @@ export default function IntroGate({ invitation, template, onOpen }: IntroGatePro
   const reduced = !!useReducedMotion();
   const [phase, setPhase] = useState<Phase>("sealed");
 
-  const main = template.palette[0]?.hex ?? "#7a1636";
-  const gold = GOLD;
+  const theme = getInvitationTheme(template);
+  const main = theme.main;
+  const gold = theme.accent;
   const initials = `${invitation.coupleName1[0]}&${invitation.coupleName2[0]}`;
   const names = `${invitation.coupleName1} & ${invitation.coupleName2}`;
 
@@ -80,7 +81,7 @@ export default function IntroGate({ invitation, template, onOpen }: IntroGatePro
       {/* Soft vignette + kolam texture + drifting petals */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/55" />
       <div className="absolute inset-0 kolam-pattern opacity-15" />
-      <RosePetals count={11} />
+      <RosePetals count={11} colors={theme.petalColors} />
 
       {/* Brand ribbon */}
       <motion.p
@@ -132,12 +133,21 @@ export default function IntroGate({ invitation, template, onOpen }: IntroGatePro
             style={{ pointerEvents: phase === "ready" ? "none" : "auto" }}
           >
             {/* Envelope back panel */}
-            <div className="absolute inset-0 z-10 rounded-2xl bg-[#f3e7d0] shadow-[0_30px_80px_rgba(16,2,8,0.55)]" />
-            <div className="absolute inset-[6px] z-10 rounded-[0.9rem] border border-gold-600/25" />
+            <div
+              className="absolute inset-0 z-10 rounded-2xl shadow-[0_30px_80px_rgba(16,2,8,0.55)]"
+              style={{ backgroundColor: theme.surfaceAlt }}
+            />
+            <div className="absolute inset-[6px] z-10 rounded-[0.9rem] border" style={{ borderColor: `${gold}40` }} />
 
             {/* Envelope front pocket (covers the resting card) */}
-            <div className="absolute inset-0 z-30 overflow-hidden rounded-2xl bg-gradient-to-b from-[#fcf4e4] to-[#f1e3c8]">
-              <div className="absolute inset-x-[6px] top-[6px] bottom-[6px] rounded-[0.9rem] border border-gold-600/20" />
+            <div
+              className="absolute inset-0 z-30 overflow-hidden rounded-2xl"
+              style={{ background: `linear-gradient(to bottom, ${theme.surface}, ${theme.surfaceAlt})` }}
+            >
+              <div
+                className="absolute inset-x-[6px] top-[6px] bottom-[6px] rounded-[0.9rem] border"
+                style={{ borderColor: `${gold}33` }}
+              />
               <div className="absolute inset-0 kolam-pattern-dense opacity-[0.08]" />
               {/* Slot shadow at the top edge the card emerges from */}
               <div className="absolute inset-x-3 top-0 h-8 rounded-b-3xl bg-gradient-to-b from-black/10 to-transparent" />
@@ -165,14 +175,14 @@ export default function IntroGate({ invitation, template, onOpen }: IntroGatePro
             >
               <defs>
                 <linearGradient id="gateFlapFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#fbf2df" />
-                  <stop offset="100%" stopColor="#eeddbd" />
+                  <stop offset="0%" stopColor={theme.surface} />
+                  <stop offset="100%" stopColor={theme.surfaceAlt} />
                 </linearGradient>
               </defs>
               <path
                 d="M0 0 L100 0 Q98.5 34 50 100 Q1.5 34 0 0 Z"
                 fill="url(#gateFlapFill)"
-                stroke="#c99a1d"
+                stroke={gold}
                 strokeWidth="0.8"
               />
             </motion.svg>
@@ -181,7 +191,11 @@ export default function IntroGate({ invitation, template, onOpen }: IntroGatePro
           {/* ── The invitation card (hidden inside until the seal breaks) ── */}
           <motion.div
             aria-hidden={phase === "sealed"}
-            className="absolute left-1/2 top-1/2 z-20 flex aspect-[3/4] w-[76%] flex-col items-center rounded-xl border border-gold-500/50 bg-gradient-to-b from-ivory-50 via-ivory-50 to-ivory-200 px-[7%] py-[7%] text-center shadow-[0_24px_60px_rgba(30,4,12,0.45)]"
+            className="absolute left-1/2 top-1/2 z-20 flex aspect-[3/4] w-[76%] flex-col items-center rounded-xl border px-[7%] py-[7%] text-center shadow-[0_24px_60px_rgba(30,4,12,0.45)]"
+            style={{
+              background: `linear-gradient(to bottom, ${theme.surface}, ${theme.surfaceAlt})`,
+              borderColor: `${gold}80`,
+            }}
             initial={false}
             animate={{
               x: "-50%",
@@ -200,21 +214,24 @@ export default function IntroGate({ invitation, template, onOpen }: IntroGatePro
               },
             }}
           >
-            <p className="text-[8px] uppercase tracking-[0.32em] text-gold-700 sm:text-[10px]">
+            <p className="text-[8px] uppercase tracking-[0.32em] sm:text-[10px]" style={{ color: gold }}>
               {GATE_LABELS[template.category]}
             </p>
-            <h2 className="mt-[4%] font-serif text-[clamp(1.3rem,5.4vw,1.9rem)] font-semibold leading-[1.18] text-maroon-900">
+            <h2
+              className="mt-[4%] font-serif text-[clamp(1.3rem,5.4vw,1.9rem)] font-semibold leading-[1.18]"
+              style={{ color: theme.ink }}
+            >
               {invitation.coupleName1}
-              <span className="block text-[0.72em] italic leading-none" style={{ color: "#a5731a" }}>
+              <span className="block text-[0.72em] italic leading-none" style={{ color: gold }}>
                 &amp;
               </span>
               {invitation.coupleName2}
             </h2>
             <Ornament className="mt-[5%] scale-90" tone={gold} />
-            <p className="mt-[4%] text-[10px] italic leading-relaxed text-temple-600 sm:text-xs">
+            <p className="mt-[4%] text-[10px] italic leading-relaxed sm:text-xs" style={{ color: theme.muted }}>
               {invitation.tagline}
             </p>
-            <p className="mt-[3.5%] text-[8px] uppercase tracking-[0.22em] text-temple-500 sm:text-[10px]">
+            <p className="mt-[3.5%] text-[8px] uppercase tracking-[0.22em] sm:text-[10px]" style={{ color: theme.muted }}>
               {formatDate(invitation.weddingDate)}
             </p>
 
@@ -235,7 +252,7 @@ export default function IntroGate({ invitation, template, onOpen }: IntroGatePro
                 onClick={openInvitation}
                 disabled={phase !== "ready"}
                 className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full px-7 py-3.5 text-sm font-semibold tracking-wide shadow-lg outline-none disabled:cursor-default"
-                style={{ backgroundColor: gold, color: "#3a0617" }}
+                style={{ backgroundColor: gold, color: theme.ink }}
               >
                 <MailOpen size={16} />
                 Open Invitation
@@ -268,9 +285,8 @@ export default function IntroGate({ invitation, template, onOpen }: IntroGatePro
               disabled={phase !== "sealed"}
               className="flex h-20 w-20 items-center justify-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-gold-300"
               style={{
-                background:
-                  "radial-gradient(circle at 32% 26%, #a3304f 0%, #7a1636 52%, #4c0c22 100%)",
-                border: "1px solid rgba(229,192,42,0.5)",
+                background: `radial-gradient(circle at 32% 26%, color-mix(in srgb, ${main}, white 18%) 0%, ${main} 52%, color-mix(in srgb, ${main}, black 30%) 100%)`,
+                border: `1px solid ${gold}80`,
                 boxShadow:
                   "0 12px 28px rgba(16,2,8,0.55), inset 0 2px 6px rgba(255,236,200,0.22), inset 0 -8px 16px rgba(0,0,0,0.38)",
                 cursor: phase === "sealed" ? "pointer" : "default",
@@ -279,10 +295,10 @@ export default function IntroGate({ invitation, template, onOpen }: IntroGatePro
               title="Tap the wax seal to open"
             >
               <span
-                className="flex h-[76%] w-[76%] items-center justify-center rounded-full border border-[#e5c02a]/45"
-                style={{ boxShadow: "inset 0 3px 10px rgba(0,0,0,0.4)" }}
+                className="flex h-[76%] w-[76%] items-center justify-center rounded-full border"
+                style={{ borderColor: `${gold}73`, boxShadow: "inset 0 3px 10px rgba(0,0,0,0.4)" }}
               >
-                <span className="font-serif text-lg italic tracking-wide text-gold-300 sm:text-xl">
+                <span className="font-serif text-lg italic tracking-wide sm:text-xl" style={{ color: gold }}>
                   {initials}
                 </span>
               </span>

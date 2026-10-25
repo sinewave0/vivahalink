@@ -8,6 +8,21 @@ export interface PaletteColor {
   hex: string;
 }
 
+/**
+ * Semantic colours used by the invitation experience. Keeping these roles
+ * separate from the display palette prevents a light swatch from accidentally
+ * becoming a full-bleed hero background.
+ */
+export interface InvitationTheme {
+  main: string;
+  accent: string;
+  surface: string;
+  surfaceAlt: string;
+  ink: string;
+  muted: string;
+  petalColors: string[];
+}
+
 export interface Template {
   id: string;
   slug: string;
@@ -20,6 +35,7 @@ export interface Template {
   thumbnail: string;
   demoSlug: string;
   palette: PaletteColor[];
+  theme?: InvitationTheme;
 }
 
 export interface EventCeremony {

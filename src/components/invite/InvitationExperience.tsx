@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Heart, Share2 } from "lucide-react";
 import type { InvitationData, Template } from "@/lib/types";
 import { GATE_LABELS } from "@/lib/constants";
+import { getInvitationTheme } from "@/lib/invitation-theme";
 import { formatDate } from "@/lib/utils";
 import IntroGate from "./IntroGate";
 import CountdownTimer from "./CountdownTimer";
@@ -39,8 +40,8 @@ export default function InvitationExperience({
   const [shareOpen, setShareOpen] = useState(false);
 
   const coupleNames = `${invitation.coupleName1} & ${invitation.coupleName2}`;
-  const main = template.palette[0]?.hex ?? "#7a1636";
-  const accent = template.palette[1]?.hex ?? "#e5c02a";
+  const theme = getInvitationTheme(template);
+  const { main, accent } = theme;
 
   return (
     <div className="relative min-h-screen bg-ivory-50">
@@ -61,7 +62,7 @@ export default function InvitationExperience({
             <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/45" />
             <div className="absolute inset-0 kolam-pattern opacity-20" />
             {/* floating rose petals */}
-            <RosePetals count={12} />
+            <RosePetals count={12} colors={theme.petalColors} />
             {/* soft radial accent glow */}
             <div
               className="absolute inset-0"
@@ -85,7 +86,8 @@ export default function InvitationExperience({
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45, duration: 0.7 }}
-                className="mt-6 font-serif text-5xl sm:text-6xl md:text-7xl font-medium leading-[1.05] text-ivory-100"
+                className="mt-6 font-serif text-5xl sm:text-6xl md:text-7xl font-medium leading-[1.05]"
+                style={{ color: theme.surface }}
               >
                 {invitation.coupleName1}{" "}
                 <span className="mx-3 inline-block italic" style={{ color: accent }}>
@@ -99,11 +101,14 @@ export default function InvitationExperience({
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.75, duration: 0.6 }}
               >
-                <p className="mt-6 text-sm md:text-base text-ivory-300/85 italic">
+                <p className="mt-6 text-sm md:text-base italic" style={{ color: `${theme.surface}d9` }}>
                   {invitation.tagline}
                 </p>
                 <Ornament className="mt-8" tone={accent} />
-                <p className="mt-8 text-xs sm:text-sm uppercase tracking-[0.3em] text-ivory-200/90">
+                <p
+                  className="mt-8 text-xs sm:text-sm uppercase tracking-[0.3em]"
+                  style={{ color: `${theme.surface}e6` }}
+                >
                   {formatDate(invitation.weddingDate)}
                 </p>
               </motion.div>
@@ -114,7 +119,12 @@ export default function InvitationExperience({
                 transition={{ delay: 1.0, duration: 0.7 }}
                 className="mt-10"
               >
-                <CountdownTimer targetDate={invitation.weddingDate} />
+                <CountdownTimer
+                  targetDate={invitation.weddingDate}
+                  accent={accent}
+                  panel={theme.main}
+                  lightText={theme.surface}
+                />
               </motion.div>
 
               {(invitation.family1 || invitation.family2) && (
@@ -125,10 +135,10 @@ export default function InvitationExperience({
                   className="mt-10 space-y-1"
                 >
                   {invitation.family1 && (
-                    <p className="text-xs text-ivory-300/70">{invitation.family1}</p>
+                    <p className="text-xs" style={{ color: `${theme.surface}b3` }}>{invitation.family1}</p>
                   )}
                   {invitation.family2 && (
-                    <p className="text-xs text-ivory-300/70">{invitation.family2}</p>
+                    <p className="text-xs" style={{ color: `${theme.surface}b3` }}>{invitation.family2}</p>
                   )}
                 </motion.div>
               )}
@@ -141,7 +151,8 @@ export default function InvitationExperience({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8 }}
-              className="absolute bottom-6 left-1/2 -translate-x-1/2 text-ivory-300/70 transition-colors hover:text-gold-400"
+              className="absolute bottom-6 left-1/2 -translate-x-1/2 transition-opacity hover:opacity-80"
+              style={{ color: `${theme.surface}b3` }}
             >
               <ChevronDown size={26} className="animate-bounce" />
             </motion.a>
@@ -156,7 +167,7 @@ export default function InvitationExperience({
           {/* ── RSVP band ── */}
           <section className="relative overflow-hidden" style={{ backgroundColor: main }}>
             <div className="absolute inset-0 kolam-pattern opacity-10" />
-            <RosePetals count={8} />
+            <RosePetals count={8} colors={theme.petalColors} />
             <div className="container-width relative py-16 md:py-20 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -165,12 +176,12 @@ export default function InvitationExperience({
                 transition={{ duration: 0.6 }}
               >
                 <Ornament tone={accent} />
-                <h2 className="mt-5 font-serif text-3xl md:text-4xl text-ivory-100">
+                <h2 className="mt-5 font-serif text-3xl md:text-4xl" style={{ color: theme.surface }}>
                   {template.category === "housewarming"
                     ? "Come bless the new beginning"
                     : "We would love to celebrate with you"}
                 </h2>
-                <p className="mx-auto mt-3 max-w-md text-sm text-ivory-300/80">
+                <p className="mx-auto mt-3 max-w-md text-sm" style={{ color: `${theme.surface}cc` }}>
                   Let {coupleNames} know you&apos;re coming — responses go straight to their
                   WhatsApp.
                 </p>
@@ -188,14 +199,15 @@ export default function InvitationExperience({
           </section>
 
           {/* ── Credit footer ── */}
-          <footer className="bg-maroon-950 py-8 text-center">
-            <p className="flex items-center justify-center gap-1.5 text-xs text-ivory-300/60">
-              Made with <Heart size={12} className="text-maroon-400 fill-maroon-400" /> for{" "}
+          <footer className="py-8 text-center" style={{ backgroundColor: theme.ink }}>
+            <p className="flex items-center justify-center gap-1.5 text-xs" style={{ color: `${theme.surface}99` }}>
+              Made with <Heart size={12} className="fill-current" style={{ color: accent }} /> for{" "}
               {coupleNames}
             </p>
             <Link
               href="/"
-              className="mt-2 inline-flex items-center gap-1.5 text-xs text-gold-400/80 transition-colors hover:text-gold-300"
+              className="mt-2 inline-flex items-center gap-1.5 text-xs transition-opacity hover:opacity-80"
+              style={{ color: `${accent}d9` }}
             >
               Crafted on <span className="font-serif font-semibold">VivahaLink</span> — make yours →
             </Link>
@@ -203,14 +215,20 @@ export default function InvitationExperience({
 
           {/* ── Floating action rail ── */}
           <div className="fixed bottom-5 right-4 z-40 flex flex-col items-center gap-3 sm:gap-3.5">
-            <InvitationMusic invitation={invitation} />
+            <InvitationMusic
+              invitation={invitation}
+              accent={accent}
+              main={main}
+              surface={theme.surface}
+            />
             <div className="relative">
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setShareOpen(true)}
                 aria-label="Share invitation"
                 title="Share"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-gold-200 bg-white/90 text-maroon-800 shadow-lg backdrop-blur transition-colors hover:bg-white"
+                className="flex h-12 w-12 items-center justify-center rounded-full border bg-white/90 shadow-lg backdrop-blur transition-opacity hover:opacity-100"
+                style={{ borderColor: `${accent}80`, color: theme.ink }}
               >
                 <Share2 size={18} />
               </motion.button>

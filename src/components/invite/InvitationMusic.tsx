@@ -14,7 +14,17 @@ import type { InvitationData } from "@/lib/types";
  *   while still honouring autoplay policies (only ever starts on the
  *   guest's own tap).
  */
-export default function InvitationMusic({ invitation }: { invitation: InvitationData }) {
+export default function InvitationMusic({
+  invitation,
+  accent = "#e5c02a",
+  main = "#7a1636",
+  surface = "#fdfaf4",
+}: {
+  invitation: InvitationData;
+  accent?: string;
+  main?: string;
+  surface?: string;
+}) {
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const ctxRef = useRef<AudioContext | null>(null);
@@ -108,11 +118,12 @@ export default function InvitationMusic({ invitation }: { invitation: Invitation
       whileTap={{ scale: 0.9 }}
       aria-label={playing ? "Turn music off" : "Turn music on"}
       title={playing ? "Sound off" : "Sound on — soft tanpura"}
-      className={`flex h-12 w-12 items-center justify-center rounded-full border shadow-lg transition-colors ${
+      className="flex h-12 w-12 items-center justify-center rounded-full border shadow-lg transition-opacity backdrop-blur"
+      style={
         playing
-          ? "border-gold-500 bg-maroon-800 text-gold-300"
-          : "border-gold-200 bg-white/90 text-maroon-800 backdrop-blur"
-      }`}
+          ? { borderColor: accent, backgroundColor: main, color: accent }
+          : { borderColor: `${accent}80`, backgroundColor: `${surface}e6`, color: main }
+      }
     >
       {playing ? (
         <span className="flex items-end gap-[3px]" aria-hidden="true">
