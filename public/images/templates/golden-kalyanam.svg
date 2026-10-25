@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Golden Kalyanam template thumbnail">
+  <defs>
+    <radialGradient id="bg" cx="0.5" cy="0.42" r="0.85">
+      <stop offset="0" stop-color="#714b1c"/>
+      <stop offset="0.55" stop-color="#5c1129"/>
+      <stop offset="1" stop-color="#3a0617"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5e68f"/>
+      <stop offset="0.5" stop-color="#eed556"/>
+      <stop offset="1" stop-color="#c99a1d"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#bg)"/>
+  <!-- interlocking rings -->
+  <circle cx="262" cy="212" r="74" fill="none" stroke="url(#ring)" stroke-width="12"/>
+  <circle cx="338" cy="212" r="74" fill="none" stroke="#f5e68f" stroke-width="12" opacity="0.85"/>
+  <circle cx="262" cy="212" r="74" fill="none" stroke="#42280b" stroke-width="2" opacity="0.3"/>
+  <!-- 25 monogram -->
+  <text x="300" y="235" text-anchor="middle" font-family="Georgia, serif" font-size="64" font-weight="bold" fill="#f5e68f">25</text>
+  <!-- sparkles -->
+  <g fill="#eed556">
+    <path d="M150 96l4 12 12 4-12 4-4 12-4-12-12-4 12-4z"/>
+    <path d="M452 300l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/>
+    <path d="M430 88l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/>
+    <circle cx="120" cy="290" r="3"/>
+    <circle cx="500" cy="180" r="3"/>
+  </g>
+  <!-- gold hairline frame -->
+  <rect x="18" y="18" width="564" height="364" rx="14" fill="none" stroke="#e5c02a" stroke-width="1.5" opacity="0.55"/>
+  <rect x="26" y="26" width="548" height="348" rx="10" fill="none" stroke="#e5c02a" stroke-width="0.75" opacity="0.35"/>
+</svg>

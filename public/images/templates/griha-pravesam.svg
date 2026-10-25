@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Griha Pravesam template thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f0eb"/>
+      <stop offset="1" stop-color="#e8dfd5"/>
+    </linearGradient>
+    <radialGradient id="door" cx="0.5" cy="0.75" r="0.75">
+      <stop offset="0" stop-color="#e5c02a" stop-opacity="0.85"/>
+      <stop offset="0.7" stop-color="#cb2a5b" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#cb2a5b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#bg)"/>
+  <!-- house silhouette -->
+  <g fill="#60493e">
+    <path d="M110 210 L300 96 L490 210 v140 h-380z"/>
+  </g>
+  <g fill="#745849">
+    <path d="M140 226 h320 v124 h-320z"/>
+    <path d="M120 210 L300 106 L480 210 l-10 16 H130z"/>
+  </g>
+  <!-- door with warm glow -->
+  <rect x="272" y="238" width="56" height="112" rx="26" fill="#42280b"/>
+  <rect x="276" y="242" width="48" height="108" rx="22" fill="url(#door)"/>
+  <circle cx="312" cy="296" r="3.4" fill="#e5c02a"/>
+  <!-- windows -->
+  <g fill="#42280b" opacity="0.85">
+    <rect x="172" y="252" width="44" height="52" rx="6"/>
+    <rect x="384" y="252" width="44" height="52" rx="6"/>
+  </g>
+  <g stroke="#e5c02a" stroke-width="2" opacity="0.5">
+    <path d="M172 278 h44"/><path d="M194 252 v52"/>
+    <path d="M384 278 h44"/><path d="M406 252 v52"/>
+  </g>
+  <!-- threshold kolam: dot grid diamond -->
+  <g fill="#a51d47" opacity="0.8">
+    <circle cx="258" cy="372" r="4"/><circle cx="286" cy="372" r="4"/><circle cx="314" cy="372" r="4"/><circle cx="342" cy="372" r="4"/>
+    <circle cx="272" cy="388" r="4"/><circle cx="300" cy="388" r="4"/><circle cx="328" cy="388" r="4"/>
+    <circle cx="286" cy="356" r="4"/><circle cx="314" cy="356" r="4"/>
+    <circle cx="300" cy="340" r="4"/>
+  </g>
+  <!-- vilakku lamps -->
+  <g fill="#a5731a">
+    <path d="M132 372c0-14 12-18 12-18s12 4 12 18c0 8-6 14-12 14s-12-6-12-14z"/>
+    <rect x="140" y="388" width="8" height="6"/>
+    <path d="M444 372c0-14 12-18 12-18s12 4 12 18c0 8-6 14-12 14s-12-6-12-14z"/>
+    <rect x="452" y="388" width="8" height="6"/>
+  </g>
+  <g fill="#f5e68f">
+    <ellipse cx="144" cy="360" rx="3" ry="6"/>
+    <ellipse cx="456" cy="360" rx="3" ry="6"/>
+  </g>
+  <rect x="10" y="10" width="580" height="380" rx="18" fill="none" stroke="#b4977c" stroke-width="2" opacity="0.6"/>
+</svg>

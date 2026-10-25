@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* ── Maroon (Primary) ── */
+  --color-maroon-50: #fdf2f4;
+  --color-maroon-100: #fce7eb;
+  --color-maroon-200: #f9d0d9;
+  --color-maroon-300: #f4a8ba;
+  --color-maroon-400: #ec7696;
+  --color-maroon-500: #df4a74;
+  --color-maroon-600: #cb2a5b;
+  --color-maroon-700: #a51d47;
+  --color-maroon-800: #7a1636;
+  --color-maroon-900: #5c1129;
+  --color-maroon-950: #3a0617;
+
+  /* ── Gold (Accent) ── */
+  --color-gold-50: #fefdf4;
+  --color-gold-100: #fdfae3;
+  --color-gold-200: #faf2c1;
+  --color-gold-300: #f5e68f;
+  --color-gold-400: #eed556;
+  --color-gold-500: #e5c02a;
+  --color-gold-600: #c99a1d;
+  --color-gold-700: #a5731a;
+  --color-gold-800: #885b1c;
+  --color-gold-900: #714b1c;
+  --color-gold-950: #42280b;
+
+  /* ── Ivory (Background) ── */
+  --color-ivory-50: #fefdfb;
+  --color-ivory-100: #fdfaf4;
+  --color-ivory-200: #faf5e8;
+  --color-ivory-300: #f5ecd5;
+  --color-ivory-400: #eddebb;
+  --color-ivory-500: #e2cc9a;
+  --color-ivory-600: #d4b377;
+  --color-ivory-700: #c2955b;
+  --color-ivory-800: #a07745;
+  --color-ivory-900: #83623b;
+  --color-ivory-950: #46311d;
+
+  /* ── Temple Stone ── */
+  --color-temple-50: #faf8f6;
+  --color-temple-100: #f4f0eb;
+  --color-temple-200: #e8dfd5;
+  --color-temple-300: #d8cab8;
+  --color-temple-400: #c4ae96;
+  --color-temple-500: #b4977c;
+  --color-temple-600: #a78268;
+  --color-temple-700: #8c6a55;
+  --color-temple-800: #745849;
+  --color-temple-900: #60493e;
+  --color-temple-950: #332520;
+
+  /* ── Green ── */
+  --color-green-50: #f0f9f1;
+  --color-green-100: #dbf0dd;
+  --color-green-200: #b9e1be;
+  --color-green-300: #8bca93;
+  --color-green-400: #5aad65;
+  --color-green-500: #389244;
+  --color-green-600: #287534;
+  --color-green-700: #215d2b;
+  --color-green-800: #1d4a25;
+  --color-green-900: #193d20;
+  --color-green-950: #0a2110;
+
+  /* ── Typography ── */
+  --font-serif: "Playfair Display", "Georgia", serif;
+  --font-sans: "DM Sans", "Inter", system-ui, sans-serif;
+}
+
+/* ── Base Styles ── */
+:root {
+  --background: #fefdfb;
+  --foreground: #332520;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* ── Selection ── */
+::selection {
+  background-color: #faf2c1;
+  color: #7a1636;
+}
+
+/* ── Smooth Scroll ── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf5e8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4ae96;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a78268;
+}
+
+/* ── Decorative Kolam pattern (CSS-only) ── */
+.kolam-pattern {
+  background-image: radial-gradient(circle, #e5c02a15 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.kolam-pattern-dense {
+  background-image: radial-gradient(circle, #e5c02a20 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+/* ── Gold shimmer effect ── */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    #a5731a 0%,
+    #e5c02a 25%,
+    #f5e68f 50%,
+    #e5c02a 75%,
+    #a5731a 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ── Subtle entrance for sections ── */
+.section-padding {
+  @apply py-16 md:py-24 lg:py-32;
+}
+
+.container-width {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}

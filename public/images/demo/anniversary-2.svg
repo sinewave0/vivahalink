@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Photo placeholder — festival lamps">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a0617"/>
+      <stop offset="1" stop-color="#885b1c"/>
+    </linearGradient>
+    <pattern id="kd" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1.1" fill="#f5e68f" opacity="0.25"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <rect width="400" height="300" fill="url(#kd)"/>
+  <!-- row of diyas -->
+  <g>
+    <g transform="translate(90 210)">
+      <path d="M-26 14 C -26 28 26 28 26 14 C 26 8 -26 8 -26 14 Z" fill="#a5731a"/>
+      <ellipse cx="0" cy="12" rx="23" ry="6" fill="#42280b"/>
+      <path d="M0 12 C -3 2 -6 -6 0 -18 C 6 -6 3 2 0 12 Z" fill="#f5e68f"/>
+      <circle cx="0" cy="0" r="12" fill="#e5c02a" opacity="0.18"/>
+    </g>
+    <g transform="translate(200 190)">
+      <path d="M-32 16 C -32 33 32 33 32 16 C 32 9 -32 9 -32 16 Z" fill="#c99a1d"/>
+      <ellipse cx="0" cy="15" rx="28" ry="7" fill="#42280b"/>
+      <path d="M0 15 C -4 3 -7 -7 0 -22 C 7 -7 4 3 0 15 Z" fill="#f5e68f"/>
+      <circle cx="0" cy="0" r="14" fill="#e5c02a" opacity="0.2"/>
+    </g>
+    <g transform="translate(310 210)">
+      <path d="M-26 14 C -26 28 26 28 26 14 C 26 8 -26 8 -26 14 Z" fill="#a5731a"/>
+      <ellipse cx="0" cy="12" rx="23" ry="6" fill="#42280b"/>
+      <path d="M0 12 C -3 2 -6 -6 0 -18 C 6 -6 3 2 0 12 Z" fill="#f5e68f"/>
+      <circle cx="0" cy="0" r="12" fill="#e5c02a" opacity="0.18"/>
+    </g>
+  </g>
+  <!-- glow line -->
+  <path d="M40 258 H360" stroke="#e5c02a" stroke-width="1.6" opacity="0.5" stroke-dasharray="2 6"/>
+  <rect x="12" y="12" width="376" height="276" rx="14" fill="none" stroke="#f5e68f" stroke-width="1.5" opacity="0.4"/>
+</svg>

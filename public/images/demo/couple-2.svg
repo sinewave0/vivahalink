@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Photo placeholder — jasmine evening">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a2110"/>
+      <stop offset="0.55" stop-color="#215d2b"/>
+      <stop offset="1" stop-color="#8bca93"/>
+    </linearGradient>
+    <pattern id="kd" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1.1" fill="#fdfaf4" opacity="0.22"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="300" fill="url(#sky)"/>
+  <rect width="400" height="300" fill="url(#kd)"/>
+  <!-- crescent moon -->
+  <path d="M296 66a38 38 0 1 0 22 66 30 30 0 1 1-22-66z" fill="#fdfaf4" opacity="0.9"/>
+  <g fill="#fdfaf4" opacity="0.8">
+    <circle cx="118" cy="80" r="2"/><circle cx="152" cy="60" r="1.6"/><circle cx="86" cy="110" r="1.6"/>
+  </g>
+  <!-- jasmine string -->
+  <path d="M40 236 Q200 190 360 236" fill="none" stroke="#fdfaf4" stroke-width="2" opacity="0.55"/>
+  <g fill="#fdfaf4">
+    <circle cx="40" cy="236" r="7"/><circle cx="80" cy="226" r="7"/><circle cx="120" cy="219" r="7"/>
+    <circle cx="160" cy="215" r="7"/><circle cx="200" cy="213" r="7.5"/><circle cx="240" cy="215" r="7"/>
+    <circle cx="280" cy="219" r="7"/><circle cx="320" cy="226" r="7"/><circle cx="360" cy="236" r="7"/>
+  </g>
+  <g fill="#e5c02a" opacity="0.9">
+    <circle cx="60" cy="230" r="2.4"/><circle cx="140" cy="216" r="2.4"/><circle cx="220" cy="213" r="2.6"/><circle cx="300" cy="221" r="2.4"/>
+  </g>
+  <rect x="12" y="12" width="376" height="276" rx="14" fill="none" stroke="#fdfaf4" stroke-width="1.5" opacity="0.35"/>
+</svg>

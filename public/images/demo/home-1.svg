@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Photo placeholder — new home illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0f9f1"/>
+      <stop offset="1" stop-color="#faf5e8"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <pattern id="kd" width="22" height="22" patternUnits="userSpaceOnUse">
+    <circle cx="11" cy="11" r="1.1" fill="#287534" opacity="0.28"/>
+  </pattern>
+  <rect width="400" height="300" fill="url(#kd)"/>
+  <circle cx="322" cy="70" r="30" fill="#eed556" opacity="0.85"/>
+  <!-- house -->
+  <g>
+    <path d="M96 150 L200 84 L304 150 v112 H96 Z" fill="#389244"/>
+    <path d="M88 154 L200 78 L312 154 l-12 14 H100 Z" fill="#215d2b"/>
+    <rect x="172" y="182" width="56" height="80" rx="24" fill="#faf5e8"/>
+    <rect x="176" y="186" width="48" height="76" rx="20" fill="#e5c02a" opacity="0.35"/>
+    <g fill="#1d4a25" opacity="0.85">
+      <rect x="118" y="176" width="36" height="40" rx="5"/>
+      <rect x="246" y="176" width="36" height="40" rx="5"/>
+    </g>
+  </g>
+  <!-- tulsi pot -->
+  <g transform="translate(96 268)">
+    <path d="M-12 -24 h24 v38 h-24z" fill="#a5731a" opacity="0.9"/>
+    <ellipse cx="0" cy="12" rx="16" ry="4" fill="#885b1c"/>
+    <g fill="#287534">
+      <ellipse cx="0" cy="-30" rx="14" ry="10"/>
+      <ellipse cx="-8" cy="-24" rx="6" ry="9"/>
+      <ellipse cx="8" cy="-24" rx="6" ry="9"/>
+    </g>
+  </g>
+  <!-- mango leaves toran -->
+  <g fill="#5aad65">
+    <path d="M148 96 q6 14 0 22 q-6 -8 0 -22z"/>
+    <path d="M178 92 q6 14 0 22 q-6 -8 0 -22z"/>
+    <path d="M208 90 q6 14 0 22 q-6 -8 0 -22z"/>
+    <path d="M238 92 q6 14 0 22 q-6 -8 0 -22z"/>
+    <path d="M262 96 q6 14 0 22 q-6 -8 0 -22z"/>
+  </g>
+  <rect x="12" y="12" width="376" height="276" rx="14" fill="none" stroke="#287534" stroke-width="1.5" opacity="0.4"/>
+</svg>

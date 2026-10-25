@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Silk and Gold template thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a0617"/>
+      <stop offset="0.6" stop-color="#4a1942"/>
+      <stop offset="1" stop-color="#5c1129"/>
+    </linearGradient>
+    <linearGradient id="silk1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7a1636"/>
+      <stop offset="1" stop-color="#cb2a5b" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="zari" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a5731a"/>
+      <stop offset="0.5" stop-color="#f5e68f"/>
+      <stop offset="1" stop-color="#a5731a"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#bg)"/>
+  <!-- flowing silk bands -->
+  <g opacity="0.9">
+    <path d="M0 300 C 150 240 250 360 430 300 C 520 270 570 290 600 280 V400 H0 Z" fill="url(#silk1)"/>
+    <path d="M0 250 C 180 200 260 320 450 250 C 540 220 580 240 600 232" fill="none" stroke="url(#zari)" stroke-width="4"/>
+    <path d="M0 140 C 200 100 320 210 600 120" fill="none" stroke="url(#zari)" stroke-width="3" opacity="0.7"/>
+    <path d="M0 96 C 210 60 340 160 600 74" fill="none" stroke="#e5c02a" stroke-width="1.4" opacity="0.5"/>
+    <path d="M0 186 C 210 150 330 250 600 168" fill="none" stroke="#e5c02a" stroke-width="1.4" opacity="0.4"/>
+  </g>
+  <!-- zari dot motif -->
+  <g fill="#f5e68f" opacity="0.9">
+    <path d="M300 62l5 14 14 5-14 5-5 14-5-14-14-5 14-5z"/>
+    <circle cx="96" cy="120" r="2.4"/>
+    <circle cx="500" cy="96" r="2.4"/>
+    <circle cx="180" cy="180" r="2"/>
+    <circle cx="420" cy="180" r="2"/>
+  </g>
+  <!-- monogram -->
+  <text x="300" y="330" text-anchor="middle" font-family="Georgia, serif" font-size="56" fill="#f5e68f" opacity="0.95">S &amp; R</text>
+  <text x="300" y="360" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="6" fill="#e5c02a" opacity="0.8">KANJIVARAM · AUG 2027</text>
+  <rect x="10" y="10" width="580" height="380" rx="18" fill="none" stroke="#e5c02a" stroke-width="2" opacity="0.6"/>
+</svg>

@@ -1,0 +1,129 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { Volume2 } from "lucide-react";
+import type { InvitationData } from "@/lib/types";
+
+/**
+ * Background music toggle for the invitation.
+ *
+ * - If `invitation.musicUrl` is set, plays that audio in a loop.
+ * - Otherwise, synthesises a gentle tanpura-style drone with the Web
+ *   Audio API — no audio files needed, so demos work fully offline
+ *   while still honouring autoplay policies (only ever starts on the
+ *   guest's own tap).
+ */
+export default function InvitationMusic({ invitation }: { invitation: InvitationData }) {
+  const [playing, setPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const ctxRef = useRef<AudioContext | null>(null);
+  const masterRef = useRef<GainNode | null>(null);
+  const builtRef = useRef(false);
+
+  const ensureContext = () => {
+    // Must run synchronously inside the user's click for iOS.
+    let ctx = ctxRef.current;
+    if (!ctx) {
+      ctx = ctxRef.current = new AudioContext();
+    }
+    if (ctx.state === "suspended") void ctx.resume();
+    return ctx;
+  };
+
+  useEffect(() => {
+    // Handle <audio> source path
+    const audio = audioRef.current;
+    if (invitation.musicUrl && audio) {
+      if (playing) audio.play().catch(() => setPlaying(false));
+      else audio.pause();
+      return;
+    }
+
+    // Web Audio tanpura path
+    const ctx = ctxRef.current;
+    const master = masterRef.current;
+    if (!ctx || !master) return;
+
+    if (playing) {
+      // Build the drone oscillator bank once, on the first play
+      if (!builtRef.current) {
+        builtRef.current = true;
+        const oscSpecs: Array<[number, number, OscillatorType]> = [
+          [65.41, 0.06, "sine"], // C2  (the drum frame)
+          [130.81, 0.10, "sine"], // C3  — Sa
+          [131.0, 0.045, "sine"], // Sa, slightly detuned shimmer
+          [196.0, 0.07, "triangle"], // G3 — Pa
+          [392.0, 0.02, "sine"], // C5 overtone
+        ];
+        oscSpecs.forEach(([freq, gainNode, type]) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = type;
+          osc.frequency.value = freq;
+          osc.detune.value = (Math.random() - 0.5) * 6;
+          gain.gain.value = gainNode;
+          osc.connect(gain).connect(master);
+          osc.start();
+        });
+
+        // Slow breathing LFO so the drone never feels static
+        const lfo = ctx.createOscillator();
+        const lfoGain = ctx.createGain();
+        lfo.frequency.value = 0.13;
+        lfoGain.gain.value = 0.015;
+        lfo.connect(lfoGain).connect(master.gain);
+        lfo.start();
+      }
+      master.gain.cancelScheduledValues(ctx.currentTime);
+      master.gain.setTargetAtTime(0.055, ctx.currentTime, 0.8);
+    } else {
+      master.gain.cancelScheduledValues(ctx.currentTime);
+      master.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.35);
+    }
+  }, [playing, invitation.musicUrl]);
+
+  // Tear down on unmount
+  useEffect(() => {
+    return () => {
+      ctxRef.current?.close().catch(() => {});
+      ctxRef.current = null;
+    };
+  }, []);
+
+  const toggle = () => {
+    if (!invitation.musicUrl) ensureContext();
+    setPlaying((p) => !p);
+  };
+
+  return (
+    <motion.button
+      onClick={toggle}
+      whileTap={{ scale: 0.9 }}
+      aria-label={playing ? "Turn music off" : "Turn music on"}
+      title={playing ? "Sound off" : "Sound on — soft tanpura"}
+      className={`flex h-12 w-12 items-center justify-center rounded-full border shadow-lg transition-colors ${
+        playing
+          ? "border-gold-500 bg-maroon-800 text-gold-300"
+          : "border-gold-200 bg-white/90 text-maroon-800 backdrop-blur"
+      }`}
+    >
+      {playing ? (
+        <span className="flex items-end gap-[3px]" aria-hidden="true">
+          {[0, 1, 2].map((i) => (
+            <motion.span
+              key={i}
+              className="w-[3px] rounded-full bg-current"
+              animate={{ height: ["30%", "100%", "45%", "80%", "30%"] }}
+              transition={{ duration: 1.1, repeat: Infinity, delay: i * 0.18, ease: "easeInOut" }}
+              style={{ height: "60%" }}
+            />
+          ))}
+        </span>
+      ) : (
+        <Volume2 size={18} />
+      )}
+      {invitation.musicUrl && <audio ref={audioRef} src={invitation.musicUrl} loop preload="none" />}
+    </motion.button>
+  );
+}

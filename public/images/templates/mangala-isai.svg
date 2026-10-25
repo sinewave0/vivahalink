@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Mangala Isai template thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5c1129"/>
+      <stop offset="1" stop-color="#3a0617"/>
+    </linearGradient>
+    <pattern id="kolam" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="13" cy="13" r="1.6" fill="#e5c02a" opacity="0.28"/>
+    </pattern>
+    <radialGradient id="glow" cx="0.5" cy="0.95" r="0.9">
+      <stop offset="0" stop-color="#e5c02a" stop-opacity="0.32"/>
+      <stop offset="0.6" stop-color="#e5c02a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#bg)"/>
+  <rect width="600" height="400" fill="url(#kolam)"/>
+  <rect width="600" height="400" fill="url(#glow)"/>
+  <!-- temple gopuram silhouette -->
+  <g fill="#2a0410">
+    <path d="M300 148l38 0-6 26h-64z"/>
+    <path d="M256 174h88v34h-88z"/>
+    <rect x="234" y="208" width="132" height="44" rx="2"/>
+    <rect x="204" y="252" width="192" height="40" rx="2"/>
+    <rect x="168" y="292" width="264" height="38" rx="2"/>
+    <rect x="0" y="330" width="600" height="70"/>
+  </g>
+  <!-- golden finial & details -->
+  <g fill="#e5c02a">
+    <circle cx="300" cy="140" r="4"/>
+    <circle cx="300" cy="128" r="2.4"/>
+    <rect x="296" y="112" width="8" height="16" rx="4"/>
+    <path d="M194 306h212" stroke="#e5c02a" stroke-width="2" opacity="0.5"/>
+    <path d="M232 226h136" stroke="#e5c02a" stroke-width="2" opacity="0.5"/>
+  </g>
+  <!-- doorway -->
+  <path d="M282 292h36v38h-36z" fill="#7a1636"/>
+  <path d="M300 292c8 0 10 10 10 14v24h-20v-24c0-4 2-14 10-14z" fill="#e5c02a" opacity="0.35"/>
+  <!-- frame border -->
+  <rect x="10" y="10" width="580" height="380" rx="18" fill="none" stroke="#e5c02a" stroke-width="2" opacity="0.55"/>
+</svg>
