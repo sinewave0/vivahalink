@@ -35,7 +35,7 @@ export default function TestimonialsSection() {
                 &ldquo;{t.quote}&rdquo;
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gold-500 flex items-center justify-center">
+                <div className="w-10 h-10 shrink-0 rounded-xl bg-gold-500 flex items-center justify-center">
                   <span className="text-maroon-900 font-serif text-sm font-bold">
                     {t.name[0]}
                   </span>

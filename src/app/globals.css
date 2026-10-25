@@ -72,6 +72,11 @@
 
   /* ── Motion ── */
   --ease-brand: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* ── Shadows (tinted toward maroon-950, never pure black) ── */
+  --shadow-card: 0 14px 35px rgba(58, 6, 23, 0.08);
+  --shadow-card-hover: 0 22px 45px rgba(58, 6, 23, 0.14);
+  --shadow-frame: 0 28px 65px rgba(58, 6, 23, 0.25);
 }
 
 /* ── Base Styles ── */

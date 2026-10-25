@@ -41,7 +41,7 @@ export default function TemplatesContent() {
           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
           className="flex items-center justify-center gap-2 mb-12 flex-wrap"
         >
-          <Filter size={16} className="text-temple-500 mr-1" />
+          <Filter size={16} className="text-temple-500 mr-1" aria-hidden="true" />
           {categories.map((cat) => (
             <button
               key={cat.value}
@@ -75,7 +75,7 @@ export default function TemplatesContent() {
                     transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1], delay: i * 0.05 }}
                     className="group"
                   >
-                    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gold-200/30 hover:shadow-xl hover:shadow-maroon-800/5 transition-all duration-500 ease-brand h-full flex flex-col">
+                    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-maroon-800/5 transition-all duration-500 ease-brand h-full flex flex-col">
                       {/* Keep the artwork unobstructed; its own colour story does the selling. */}
                       <div className="relative h-52 md:h-60 overflow-hidden">
                         <Image
@@ -89,7 +89,7 @@ export default function TemplatesContent() {
 
                         {/* Tier badge */}
                         <span
-                          className={`absolute top-3 right-3 text-xs font-semibold px-3 py-1 rounded-full border ${
+                          className={`absolute top-3 right-3 text-xs font-semibold px-3 py-1 rounded-md border ${
                             tierColors[template.tier]
                           }`}
                           style={
@@ -106,7 +106,7 @@ export default function TemplatesContent() {
                         </span>
 
                         {/* Category badge */}
-                        <span className="absolute top-3 left-3 text-xs font-medium px-3 py-1 rounded-full bg-white/85 text-temple-700 backdrop-blur-sm">
+                        <span className="absolute top-3 left-3 text-xs font-medium px-3 py-1 rounded-md bg-white/85 text-temple-700 backdrop-blur-sm">
                           {template.category.charAt(0).toUpperCase() +
                             template.category.slice(1)}
                         </span>

@@ -76,14 +76,14 @@ export default function HeroSection() {
             Starting at ₹899 · one-time payment
           </p>
 
-          {/* Trust chips — no fabricated stats, honest promises */}
-          <div className="mt-10 flex flex-wrap gap-2.5">
+          {/* Trust promises — no fabricated stats, honest claims */}
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2.5">
             {trustChips.map((chip) => (
               <span
                 key={chip.label}
-                className="inline-flex items-center gap-2 rounded-full border border-gold-300/50 bg-white/80 px-3.5 py-2 text-xs font-medium text-temple-700 shadow-sm"
+                className="inline-flex items-center gap-2 text-sm text-temple-700"
               >
-                <chip.icon size={14} className="text-gold-700" />
+                <chip.icon size={16} className="text-gold-700" />
                 {chip.label}
               </span>
             ))}
@@ -103,8 +103,8 @@ export default function HeroSection() {
             animate={{ rotate: 360 }}
             transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
           />
-          <div className="absolute -inset-3 -rotate-3 rounded-[2.5rem] bg-white/60" />
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2.25rem] border-8 border-white bg-ivory-300 shadow-[0_28px_65px_rgba(58,6,23,.25)]">
+          <div className="absolute -inset-3 -rotate-3 rounded-4xl bg-white/60" />
+          <div className="relative aspect-[4/5] overflow-hidden rounded-4xl border-8 border-white bg-ivory-300 shadow-frame">
             <Image
               src="/images/hero/invitation-editorial.png"
               alt="A styled collection of original digital wedding invitation cards"
@@ -121,7 +121,7 @@ export default function HeroSection() {
             </p>
             <p className="font-serif text-xl">Your story, in every detail</p>
           </div>
-          <div className="absolute -right-4 top-12 rounded-full bg-gold-400 px-4 py-2 text-xs font-bold text-maroon-950 shadow-md">
+          <div className="absolute -right-4 top-12 rounded-xl bg-gold-400 px-4 py-2 text-xs font-bold text-maroon-950 shadow-md">
             100% mobile friendly
           </div>
         </motion.div>

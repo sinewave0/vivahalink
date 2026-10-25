@@ -54,7 +54,7 @@ export default function FeaturedTemplates() {
               >
                 <Link
                   href={`/events/${template.demoSlug}`}
-                  className={`block overflow-hidden rounded-3xl border border-gold-200/50 bg-white p-3 shadow-[0_14px_35px_rgba(58,6,23,.08)] transition-all duration-700 ease-brand hover:-translate-y-2 hover:shadow-[0_22px_45px_rgba(58,6,23,.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 active:scale-[0.99] ${
+                  className={`block overflow-hidden rounded-3xl bg-white p-3 shadow-card transition-all duration-700 ease-brand hover:-translate-y-2 hover:shadow-card-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 active:scale-[0.99] ${
                     isFeature ? "md:flex md:h-full md:flex-col" : ""
                   }`}
                 >
@@ -73,7 +73,7 @@ export default function FeaturedTemplates() {
                       className="object-cover transition-transform duration-700 ease-brand group-hover:scale-105"
                     />
                     <span
-                      className="absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur-sm"
+                      className="absolute left-3 top-3 rounded-md px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur-sm"
                       style={{ backgroundColor: `${theme.main}e8`, color: theme.surface }}
                     >
                       {template.category}
