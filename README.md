@@ -58,7 +58,7 @@ src/
 │   ├── layout/            # Navbar, Footer, sticky WhatsApp bar
 │   └── ui/                # shared primitives (SectionHeading, AnimatedCard)
 ├── data/
-│   ├── templates.ts       # the 6 launch templates (categories, tiers, pricing, palettes)
+│   ├── templates.ts       # the 8 launch templates (categories, tiers, pricing, palettes)
 │   └── demo-events.ts     # one fictional demo invitation per template
 └── lib/
     ├── constants.ts       # brand, WhatsApp number & message builders, colour tokens

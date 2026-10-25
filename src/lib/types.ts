@@ -36,6 +36,9 @@ export interface Template {
   demoSlug: string;
   palette: PaletteColor[];
   theme?: InvitationTheme;
+  /** Optional atmospheric artwork used by editorial, image-led invitations. */
+  heroImage?: string;
+  heroTextTone?: "light" | "dark";
 }
 
 export interface EventCeremony {

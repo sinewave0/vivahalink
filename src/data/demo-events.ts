@@ -273,6 +273,42 @@ export const demoEvents: InvitationData[] = [
       },
     ],
   },
+  {
+    slug: "rosewater-palace-demo",
+    templateId: "tpl-007",
+    coupleName1: "Aarav",
+    coupleName2: "Meera",
+    tagline: "A little Jaipur, a little Udaipur, and a whole lifetime of us.",
+    weddingDate: "2027-02-15T12:15:00+05:30",
+    story:
+      "Aarav and Meera met on a rain-soaked evening in Jaipur, arguing over the last gulab jamun at a friend's dinner. A thousand train rides, voice notes, and shared sunsets later, they are gathering the people they love beside Lake Pichola to begin their next chapter.",
+    photos: ["/images/demo/couple-1.svg", "/images/demo/couple-2.svg", "/images/demo/couple-3.svg"],
+    family1: "With the blessings of the Rathore family",
+    family2: "And the love of the Singhania family",
+    ceremonies: [
+      { name: "Mehfil by the Lake", date: "2027-02-14", time: "7:00 PM", venue: "The Courtyard at Pichola", address: "Haridasji Ki Magri, Udaipur, Rajasthan", mapUrl: "https://maps.google.com/?q=Lake+Pichola+Udaipur", description: "An evening of music, candlelight and old stories" },
+      { name: "Varmala & The Pheras", date: "2027-02-15", time: "12:15 PM", venue: "The Palace Gardens", address: "Lake Pichola, Udaipur, Rajasthan", mapUrl: "https://maps.google.com/?q=Lake+Pichola+Udaipur", description: "A sacred promise beneath the winter sun" },
+      { name: "A Moonlit Reception", date: "2027-02-15", time: "7:30 PM", venue: "The Palace Gardens", address: "Lake Pichola, Udaipur, Rajasthan", mapUrl: "https://maps.google.com/?q=Lake+Pichola+Udaipur", description: "Dinner, dancing and one more toast together" },
+    ],
+  },
+  {
+    slug: "moonlit-jharokha-demo",
+    templateId: "tpl-008",
+    coupleName1: "Ishaan",
+    coupleName2: "Tara",
+    tagline: "Under a thousand stars, one promise shines brightest.",
+    weddingDate: "2027-11-21T18:30:00+05:30",
+    story:
+      "Tara first photographed Ishaan beneath the old jharokhas of Bundi. He returned the next morning with two cups of chai and a question about the light. Four years later, they are bringing their families to Udaipur for a celebration filled with moonlight, music and the same easy wonder.",
+    photos: ["/images/demo/couple-3.svg", "/images/demo/couple-2.svg", "/images/demo/couple-1.svg"],
+    family1: "The Khanna family warmly invites you",
+    family2: "Together with the Iyer family",
+    ceremonies: [
+      { name: "Welcome & Sangeet", date: "2027-11-20", time: "6:30 PM", venue: "Jharokha Courtyard", address: "Ambamata, Udaipur, Rajasthan", mapUrl: "https://maps.google.com/?q=Ambamata+Udaipur", description: "A moonlit welcome with music and dinner" },
+      { name: "Haldi & Blessings", date: "2027-11-21", time: "9:00 AM", venue: "The Garden Pavilion", address: "Lake Pichola, Udaipur, Rajasthan", mapUrl: "https://maps.google.com/?q=Lake+Pichola+Udaipur", description: "A bright morning with blessings from both families" },
+      { name: "Wedding & Reception", date: "2027-11-21", time: "6:30 PM", venue: "The Palace Gardens", address: "Lake Pichola, Udaipur, Rajasthan", mapUrl: "https://maps.google.com/?q=Lake+Pichola+Udaipur", description: "The wedding ceremony followed by an evening reception" },
+    ],
+  },
 ];
 
 export function getDemoEvent(slug: string): InvitationData | undefined {

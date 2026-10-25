@@ -57,10 +57,19 @@ export default function InvitationExperience({
           {/* ── Hero ── */}
           <section
             className="relative flex min-h-[92dvh] flex-col items-center justify-center overflow-hidden text-center"
-            style={{ backgroundColor: main }}
+            style={{
+              backgroundColor: main,
+              ...(template.heroImage
+                ? {
+                    backgroundImage: `linear-gradient(180deg, ${template.heroTextTone === "dark" ? "rgba(255,247,241,.08)" : "rgba(29,10,25,.22)"} 0%, ${template.heroTextTone === "dark" ? "rgba(255,247,241,.46)" : "rgba(29,10,25,.68)"} 100%), url("${template.heroImage}")`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center 58%",
+                  }
+                : {}),
+            }}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/45" />
-            <div className="absolute inset-0 kolam-pattern opacity-20" />
+            {!template.heroImage && <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/45" />}
+            {!template.heroImage && <div className="absolute inset-0 kolam-pattern opacity-20" />}
             {/* floating rose petals */}
             <RosePetals count={12} colors={theme.petalColors} />
             {/* soft radial accent glow */}
@@ -77,7 +86,7 @@ export default function InvitationExperience({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.6 }}
                 className="text-[11px] sm:text-xs uppercase tracking-[0.4em]"
-                style={{ color: `${accent}cc` }}
+                style={{ color: template.heroTextTone === "dark" ? theme.ink : `${accent}cc` }}
               >
                 {GATE_LABELS[template.category]}
               </motion.p>
@@ -86,8 +95,8 @@ export default function InvitationExperience({
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45, duration: 0.7 }}
-                className="mt-6 font-serif text-5xl sm:text-6xl md:text-7xl font-medium leading-[1.05]"
-                style={{ color: theme.surface }}
+                className={`mt-6 font-serif font-medium leading-[1.05] ${template.heroImage ? "text-5xl tracking-[0.04em] uppercase sm:text-6xl md:text-7xl" : "text-5xl sm:text-6xl md:text-7xl"}`}
+                style={{ color: template.heroTextTone === "dark" ? theme.ink : theme.surface, textShadow: template.heroTextTone === "dark" ? "0 1px 18px rgba(255,248,242,.45)" : undefined }}
               >
                 {invitation.coupleName1}{" "}
                 <span className="mx-3 inline-block italic" style={{ color: accent }}>
@@ -101,13 +110,13 @@ export default function InvitationExperience({
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.75, duration: 0.6 }}
               >
-                <p className="mt-6 text-sm md:text-base italic" style={{ color: `${theme.surface}d9` }}>
+                <p className="mt-6 text-sm md:text-base italic" style={{ color: template.heroTextTone === "dark" ? `${theme.ink}dd` : `${theme.surface}d9` }}>
                   {invitation.tagline}
                 </p>
                 <Ornament className="mt-8" tone={accent} />
                 <p
                   className="mt-8 text-xs sm:text-sm uppercase tracking-[0.3em]"
-                  style={{ color: `${theme.surface}e6` }}
+                  style={{ color: template.heroTextTone === "dark" ? `${theme.ink}e6` : `${theme.surface}e6` }}
                 >
                   {formatDate(invitation.weddingDate)}
                 </p>
@@ -135,10 +144,10 @@ export default function InvitationExperience({
                   className="mt-10 space-y-1"
                 >
                   {invitation.family1 && (
-                    <p className="text-xs" style={{ color: `${theme.surface}b3` }}>{invitation.family1}</p>
+                    <p className="text-xs" style={{ color: template.heroTextTone === "dark" ? `${theme.ink}c8` : `${theme.surface}b3` }}>{invitation.family1}</p>
                   )}
                   {invitation.family2 && (
-                    <p className="text-xs" style={{ color: `${theme.surface}b3` }}>{invitation.family2}</p>
+                    <p className="text-xs" style={{ color: template.heroTextTone === "dark" ? `${theme.ink}c8` : `${theme.surface}b3` }}>{invitation.family2}</p>
                   )}
                 </motion.div>
               )}
@@ -152,7 +161,7 @@ export default function InvitationExperience({
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8 }}
               className="absolute bottom-6 left-1/2 -translate-x-1/2 transition-opacity hover:opacity-80"
-              style={{ color: `${theme.surface}b3` }}
+              style={{ color: template.heroTextTone === "dark" ? `${theme.ink}b3` : `${theme.surface}b3` }}
             >
               <ChevronDown size={26} className="animate-bounce" />
             </motion.a>

@@ -74,7 +74,16 @@ export default function IntroGate({ invitation, template, onOpen }: IntroGatePro
     <motion.div
       key="intro-gate"
       className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
-      style={{ backgroundColor: main }}
+      style={{
+        backgroundColor: main,
+        ...(template.heroImage
+          ? {
+              backgroundImage: `linear-gradient(180deg, rgba(30,10,26,.38), rgba(30,10,26,.6)), url("${template.heroImage}")`,
+              backgroundSize: "cover",
+              backgroundPosition: "center 58%",
+            }
+          : {}),
+      }}
       exit={{ opacity: 0, y: "-12%", scale: 1.03 }}
       transition={{ duration: dur(0.7), ease: EASE_OUT_EXPO }}
     >
