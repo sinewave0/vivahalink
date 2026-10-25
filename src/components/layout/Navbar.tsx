@@ -12,7 +12,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-gold-300/40 bg-ivory-50/85 backdrop-blur-md">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#dfd4c6]/80 bg-[#faf8f4]/90 backdrop-blur-xl">
       <div className="container-width">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -20,10 +20,10 @@ export default function Navbar() {
             href="/"
             className="flex items-center gap-2 group rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50"
           >
-            <div className="w-8 h-8 rounded-full bg-maroon-800 flex items-center justify-center shadow-sm">
-              <span className="text-gold-300 font-serif text-sm font-bold">V</span>
+            <div className="grid h-9 w-9 place-items-center rounded-full border border-[#b99c77] bg-[#39251f] shadow-sm">
+              <span className="font-serif text-lg italic text-[#e8d3b1]">v</span>
             </div>
-            <span className="font-serif text-xl md:text-2xl font-bold text-maroon-900 group-hover:text-gold-700 transition-colors duration-300 ease-brand">
+            <span className="font-serif text-xl font-semibold tracking-[-.035em] text-[#39251f] transition-colors duration-300 ease-brand group-hover:text-[#986b49] md:text-2xl">
               VivahaLink
             </span>
           </Link>
@@ -52,7 +52,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/templates"
-              className="bg-maroon-800 text-ivory-100 px-5 py-2 rounded-full text-sm font-medium hover:bg-maroon-700 active:scale-[0.98] transition-all duration-300 ease-brand shadow-lg shadow-maroon-800/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50"
+              className="rounded-full bg-[#39251f] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 ease-brand hover:bg-[#50362b] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b99c77] focus-visible:ring-offset-2"
             >
               View templates
             </Link>

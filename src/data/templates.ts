@@ -4,10 +4,10 @@ export const templates: Template[] = [
   {
     id: "tpl-001",
     slug: "mangala-isai",
-    title: "Saffron Hour",
+    title: "The Saffron Suite",
     category: "wedding",
     tier: "Premium",
-    price: 1899,
+    price: 2499,
     description:
       "A grand temple-inspired design with intricate kolam borders, deep maroon and gold tones, and a majestic nadaswaram-style reveal animation.",
     features: [
@@ -30,10 +30,10 @@ export const templates: Template[] = [
   {
     id: "tpl-002",
     slug: "jasmine-garland",
-    title: "Mogra Note",
+    title: "Jasmine Reverie",
     category: "wedding",
     tier: "Luxury",
-    price: 2499,
+    price: 3499,
     description:
       "An elegant, modern design weaving jasmine motifs with contemporary typography. Soft ivory backgrounds with rich green and gold accents.",
     features: [
@@ -66,10 +66,10 @@ export const templates: Template[] = [
   {
     id: "tpl-003",
     slug: "banana-leaf",
-    title: "Sunlit Feast",
+    title: "The Marigold Edit",
     category: "wedding",
     tier: "Basic",
-    price: 999,
+    price: 1499,
     description:
       "A vibrant celebration of Tamil Nadu's banana leaf tradition. Warm greens, cheerful yellows, and a clean, joyful layout.",
     features: [
@@ -100,10 +100,10 @@ export const templates: Template[] = [
   {
     id: "tpl-004",
     slug: "golden-kalyanam",
-    title: "Afterglow",
+    title: "Golden Hour",
     category: "anniversary",
     tier: "Premium",
-    price: 1599,
+    price: 2499,
     description:
       "Celebrate decades of togetherness with this regal gold-themed design. Perfect for silver and golden wedding anniversaries.",
     features: [
@@ -126,10 +126,10 @@ export const templates: Template[] = [
   {
     id: "tpl-005",
     slug: "griha-pravesam",
-    title: "New Doorway",
+    title: "Auspicious Beginnings",
     category: "housewarming",
     tier: "Basic",
-    price: 899,
+    price: 1499,
     description:
       "A warm, welcoming design for housewarming ceremonies. Earthy temple stone tones with auspicious kolam motifs at the threshold.",
     features: [
@@ -151,10 +151,10 @@ export const templates: Template[] = [
   {
     id: "tpl-006",
     slug: "silk-and-gold",
-    title: "Heirloom Silk",
+    title: "Heirloom in Silk",
     category: "wedding",
     tier: "Luxury",
-    price: 2999,
+    price: 3499,
     description:
       "Inspired by the luxurious Kanjivaram silk saree. Rich silk textures, intricate zari-gold borders, and an opulent, immersive experience.",
     features: [
