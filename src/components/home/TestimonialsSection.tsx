@@ -12,12 +12,13 @@ export default function TestimonialsSection() {
 
       <div className="container-width relative">
         <SectionHeading
-          title="Loved by Families"
+          title="Loved by families"
           subtitle="Hear from couples who made their celebrations unforgettable"
           light
+          centered={false}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 md:items-start">
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
@@ -25,7 +26,9 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: i * 0.1 }}
-              className="relative bg-maroon-800/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-maroon-700/30"
+              className={`relative bg-maroon-800/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-maroon-700/30 ${
+                i === 1 ? "md:mt-10" : i === 2 ? "md:mt-20" : ""
+              }`}
             >
               <Quote size={24} className="text-gold-500/40 mb-4" />
               <p className="text-ivory-200/90 text-sm leading-relaxed mb-6">

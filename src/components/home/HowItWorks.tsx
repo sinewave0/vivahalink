@@ -16,8 +16,9 @@ export default function HowItWorks() {
     <section id="how-it-works" className="section-padding bg-ivory-50">
       <div className="container-width">
         <SectionHeading
-          title="How It Works"
+          title="How it works"
           subtitle="Three simple steps to your perfect digital invitation"
+          centered={false}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -28,13 +29,10 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: i * 0.15 }}
-              className="relative text-center group"
+              className={`relative text-center group ${
+                i === 1 ? "md:mt-12" : i === 2 ? "md:mt-24" : ""
+              }`}
             >
-              {/* Connector line (desktop only) */}
-              {i < howItWorks.length - 1 && (
-                <div className="hidden md:block absolute top-10 left-[60%] w-[80%] h-px bg-gold-500/40" />
-              )}
-
               {/* Step number + icon */}
               <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-maroon-800 text-gold-400 mb-6 shadow-lg shadow-maroon-800/20 group-hover:shadow-xl group-hover:shadow-maroon-800/30 transition-shadow duration-500 ease-brand">
                 {iconMap[step.icon]}
