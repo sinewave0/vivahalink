@@ -16,11 +16,14 @@ export default function Navbar() {
       <div className="container-width">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link
+            href="/"
+            className="flex items-center gap-2 group rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50"
+          >
             <div className="w-8 h-8 rounded-full bg-maroon-800 flex items-center justify-center shadow-sm">
               <span className="text-gold-300 font-serif text-sm font-bold">V</span>
             </div>
-            <span className="font-serif text-xl md:text-2xl font-bold text-maroon-900 group-hover:text-gold-700 transition-colors">
+            <span className="font-serif text-xl md:text-2xl font-bold text-maroon-900 group-hover:text-gold-700 transition-colors duration-300 ease-brand">
               VivahaLink
             </span>
           </Link>
@@ -31,7 +34,8 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors relative ${
+                aria-current={pathname === link.href ? "page" : undefined}
+                className={`text-sm font-medium transition-colors duration-300 ease-brand relative rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 ${
                   pathname === link.href
                     ? "text-maroon-900"
                     : "text-temple-600 hover:text-maroon-800"
@@ -48,7 +52,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/templates"
-              className="bg-maroon-800 text-ivory-100 px-5 py-2 rounded-full text-sm font-medium hover:bg-maroon-700 transition-colors shadow-lg shadow-maroon-800/20"
+              className="bg-maroon-800 text-ivory-100 px-5 py-2 rounded-full text-sm font-medium hover:bg-maroon-700 active:scale-[0.98] transition-all duration-300 ease-brand shadow-lg shadow-maroon-800/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50"
             >
               View Templates
             </Link>
@@ -57,8 +61,10 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-maroon-800"
+            className="md:hidden p-2 text-maroon-800 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50"
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -75,13 +81,14 @@ export default function Navbar() {
             transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             className="md:hidden bg-ivory-50/95 backdrop-blur-md border-b border-gold-300/40 overflow-hidden"
           >
-            <div className="px-4 py-4 space-y-3">
+            <div id="mobile-menu" className="px-4 py-4 space-y-3">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block py-2 px-3 rounded-lg text-base font-medium transition-colors ${
+                  aria-current={pathname === link.href ? "page" : undefined}
+                  className={`block py-2 px-3 rounded-lg text-base font-medium transition-colors duration-300 ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 ${
                     pathname === link.href
                       ? "bg-maroon-800/10 text-maroon-800"
                       : "text-temple-700 hover:bg-gold-100/50"
@@ -90,11 +97,11 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="/templates"
-                onClick={() => setIsOpen(false)}
-                className="block text-center bg-maroon-800 text-ivory-100 px-5 py-3 rounded-full text-sm font-medium hover:bg-maroon-700 transition-colors mt-2"
-              >
+            <Link
+              href="/templates"
+              onClick={() => setIsOpen(false)}
+              className="block text-center bg-maroon-800 text-ivory-100 px-5 py-3 rounded-full text-sm font-medium hover:bg-maroon-700 active:scale-[0.98] transition-all duration-300 ease-brand mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50"
+            >
                 View Templates
               </Link>
             </div>

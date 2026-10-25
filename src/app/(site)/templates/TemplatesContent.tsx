@@ -46,7 +46,8 @@ export default function TemplatesContent() {
             <button
               key={cat.value}
               onClick={() => setActiveCategory(cat.value)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+              aria-pressed={activeCategory === cat.value}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 ${
                 activeCategory === cat.value
                   ? "bg-maroon-800 text-ivory-100 shadow-lg shadow-maroon-800/20"
                   : "bg-white text-temple-700 border border-gold-200/50 hover:bg-ivory-100"
@@ -158,7 +159,7 @@ export default function TemplatesContent() {
                         <div className="flex gap-3 mt-auto">
                           <Link
                             href={`/events/${template.demoSlug}`}
-                            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-300 ease-brand hover:opacity-90 active:scale-[0.98]"
+                            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-300 ease-brand hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-temple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                             style={{ backgroundColor: theme.main, color: theme.surface }}
                           >
                             <ExternalLink size={14} />
@@ -168,7 +169,7 @@ export default function TemplatesContent() {
                             href={waLink(waMessages.order(template.title))}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-xl text-sm font-medium transition-colors duration-300 ease-brand hover:bg-green-500 active:scale-[0.98]"
+                            className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-xl text-sm font-medium transition-colors duration-300 ease-brand hover:bg-green-500 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-temple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                           >
                             <MessageCircle size={14} />
                             Order

@@ -29,7 +29,10 @@ export default function FAQSection() {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-ivory-50/50 transition-colors duration-300 ease-brand"
+                aria-expanded={openIndex === i}
+                aria-controls={`faq-answer-${i}`}
+                id={`faq-question-${i}`}
+                className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-ivory-50/50 transition-colors duration-300 ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-inset"
               >
                 <span className="font-medium text-maroon-800 text-sm md:text-base">
                   {faq.question}
@@ -44,6 +47,9 @@ export default function FAQSection() {
               <AnimatePresence initial={false}>
                 {openIndex === i && (
                   <motion.div
+                    id={`faq-answer-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-question-${i}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}

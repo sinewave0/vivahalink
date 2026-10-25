@@ -33,7 +33,7 @@ export default function FeaturedTemplates() {
           </div>
           <Link
             href="/templates"
-            className="inline-flex items-center gap-2 self-start rounded-full border border-maroon-800/15 bg-white px-5 py-3 text-sm font-bold text-maroon-800 transition-all duration-300 ease-brand hover:bg-maroon-800 hover:text-ivory-100 active:scale-[0.98] md:self-auto"
+            className="inline-flex items-center gap-2 self-start rounded-full border border-maroon-800/15 bg-white px-5 py-3 text-sm font-bold text-maroon-800 transition-all duration-300 ease-brand hover:bg-maroon-800 hover:text-ivory-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 active:scale-[0.98] md:self-auto"
           >
             See all designs <ArrowRight size={16} />
           </Link>
@@ -53,7 +53,7 @@ export default function FeaturedTemplates() {
               >
                 <Link
                   href={`/events/${template.demoSlug}`}
-                  className="block overflow-hidden rounded-3xl border border-gold-200/50 bg-white p-3 shadow-[0_14px_35px_rgba(58,6,23,.08)] transition-all duration-700 ease-brand hover:-translate-y-2 hover:shadow-[0_22px_45px_rgba(58,6,23,.14)] active:scale-[0.99]"
+                  className="block overflow-hidden rounded-3xl border border-gold-200/50 bg-white p-3 shadow-[0_14px_35px_rgba(58,6,23,.08)] transition-all duration-700 ease-brand hover:-translate-y-2 hover:shadow-[0_22px_45px_rgba(58,6,23,.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 active:scale-[0.99]"
                 >
                   <div
                     className="relative aspect-[4/4.6] overflow-hidden rounded-2xl"
