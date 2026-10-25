@@ -27,7 +27,7 @@ export default function HowItWorks() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
+              transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: i * 0.15 }}
               className="relative text-center group"
             >
               {/* Connector line (desktop only) */}
@@ -36,7 +36,7 @@ export default function HowItWorks() {
               )}
 
               {/* Step number + icon */}
-              <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-maroon-800 to-maroon-700 text-gold-400 mb-6 shadow-lg shadow-maroon-800/20 group-hover:shadow-xl group-hover:shadow-maroon-800/30 transition-shadow">
+              <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-maroon-800 to-maroon-700 text-gold-400 mb-6 shadow-lg shadow-maroon-800/20 group-hover:shadow-xl group-hover:shadow-maroon-800/30 transition-shadow duration-500 ease-brand">
                 {iconMap[step.icon]}
                 <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-gold-500 text-maroon-900 text-xs font-bold flex items-center justify-center shadow-md">
                   {step.number}

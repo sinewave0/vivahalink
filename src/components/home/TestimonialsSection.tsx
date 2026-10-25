@@ -22,10 +22,10 @@ export default function TestimonialsSection() {
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: i * 0.1 }}
               className="relative bg-maroon-800/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-maroon-700/30"
             >
               <Quote size={24} className="text-gold-500/40 mb-4" />

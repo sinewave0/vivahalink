@@ -21,22 +21,22 @@ export default function FAQSection() {
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20px" }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
+              transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1], delay: i * 0.05 }}
               className="bg-white rounded-xl border border-gold-200/30 overflow-hidden"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-ivory-50/50 transition-colors"
+                className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-ivory-50/50 transition-colors duration-300 ease-brand"
               >
                 <span className="font-medium text-maroon-800 text-sm md:text-base">
                   {faq.question}
                 </span>
                 <ChevronDown
                   size={18}
-                  className={`text-temple-500 flex-shrink-0 transition-transform duration-300 ${
+                  className={`text-temple-500 flex-shrink-0 transition-transform duration-300 ease-brand ${
                     openIndex === i ? "rotate-180" : ""
                   }`}
                 />
@@ -47,7 +47,7 @@ export default function FAQSection() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
                     className="overflow-hidden"
                   >
                     <p className="px-5 pb-5 text-sm text-temple-600 leading-relaxed">

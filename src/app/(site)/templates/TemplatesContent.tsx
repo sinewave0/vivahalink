@@ -36,9 +36,9 @@ export default function TemplatesContent() {
       <div className="container-width">
         {/* Filter tabs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
           className="flex items-center justify-center gap-2 mb-12 flex-wrap"
         >
           <Filter size={16} className="text-temple-500 mr-1" />
@@ -68,13 +68,13 @@ export default function TemplatesContent() {
                   <motion.div
                     key={template.id}
                     layout
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: 0.96 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3, delay: i * 0.05 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1], delay: i * 0.05 }}
                     className="group"
                   >
-                    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gold-200/30 hover:shadow-xl hover:shadow-maroon-800/5 transition-all duration-300 h-full flex flex-col">
+                    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gold-200/30 hover:shadow-xl hover:shadow-maroon-800/5 transition-all duration-500 ease-brand h-full flex flex-col">
                       {/* Keep the artwork unobstructed; its own colour story does the selling. */}
                       <div className="relative h-52 md:h-60 overflow-hidden">
                         <Image
@@ -83,7 +83,7 @@ export default function TemplatesContent() {
                           fill
                           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                           loading={i === 0 ? "eager" : undefined}
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="object-cover transition-transform duration-700 ease-brand group-hover:scale-105"
                         />
                         <div
                           className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
@@ -164,7 +164,7 @@ export default function TemplatesContent() {
                         <div className="flex gap-3 mt-auto">
                           <Link
                             href={`/events/${template.demoSlug}`}
-                            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-opacity hover:opacity-90"
+                            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-300 ease-brand hover:opacity-90 active:scale-[0.98]"
                             style={{ backgroundColor: theme.main, color: theme.surface }}
                           >
                             <ExternalLink size={14} />
@@ -174,7 +174,7 @@ export default function TemplatesContent() {
                             href={waLink(waMessages.order(template.title))}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-xl text-sm font-medium hover:bg-green-500 transition-colors"
+                            className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-xl text-sm font-medium transition-colors duration-300 ease-brand hover:bg-green-500 active:scale-[0.98]"
                           >
                             <MessageCircle size={14} />
                             Order

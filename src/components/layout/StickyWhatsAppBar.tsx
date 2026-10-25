@@ -8,7 +8,7 @@ export default function StickyWhatsAppBar() {
     <motion.div
       initial={{ y: 100 }}
       animate={{ y: 0 }}
-      transition={{ delay: 1, duration: 0.5, ease: "easeOut" }}
+      transition={{ delay: 1, duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
       className="fixed bottom-0 left-0 right-0 z-40 bg-green-600 text-white shadow-[0_-4px_20px_rgba(0,0,0,0.15)] md:hidden"
     >
       <a

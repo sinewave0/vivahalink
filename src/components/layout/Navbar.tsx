@@ -72,7 +72,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             className="md:hidden bg-ivory-50/95 backdrop-blur-md border-b border-gold-300/40 overflow-hidden"
           >
             <div className="px-4 py-4 space-y-3">
