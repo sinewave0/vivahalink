@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-gold-500 flex items-center justify-center">
                 <span className="text-maroon-900 font-serif text-sm font-bold">V</span>
               </div>
               <span className="font-serif text-xl font-bold text-ivory-100">

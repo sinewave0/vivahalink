@@ -32,11 +32,11 @@ export default function HowItWorks() {
             >
               {/* Connector line (desktop only) */}
               {i < howItWorks.length - 1 && (
-                <div className="hidden md:block absolute top-10 left-[60%] w-[80%] h-px bg-gradient-to-r from-gold-400/50 to-transparent" />
+                <div className="hidden md:block absolute top-10 left-[60%] w-[80%] h-px bg-gold-500/40" />
               )}
 
               {/* Step number + icon */}
-              <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-maroon-800 to-maroon-700 text-gold-400 mb-6 shadow-lg shadow-maroon-800/20 group-hover:shadow-xl group-hover:shadow-maroon-800/30 transition-shadow duration-500 ease-brand">
+              <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-maroon-800 text-gold-400 mb-6 shadow-lg shadow-maroon-800/20 group-hover:shadow-xl group-hover:shadow-maroon-800/30 transition-shadow duration-500 ease-brand">
                 {iconMap[step.icon]}
                 <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-gold-500 text-maroon-900 text-xs font-bold flex items-center justify-center shadow-md">
                   {step.number}

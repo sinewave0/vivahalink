@@ -8,8 +8,7 @@ import { testimonials } from "@/data/content";
 export default function TestimonialsSection() {
   return (
     <section className="section-padding bg-maroon-900 relative overflow-hidden">
-      {/* Decorative pattern */}
-      <div className="absolute inset-0 kolam-pattern opacity-5" />
+      <div className="absolute inset-0 kolam-pattern" />
 
       <div className="container-width relative">
         <SectionHeading
@@ -33,7 +32,7 @@ export default function TestimonialsSection() {
                 &ldquo;{t.quote}&rdquo;
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-gold-500 flex items-center justify-center">
                   <span className="text-maroon-900 font-serif text-sm font-bold">
                     {t.name[0]}
                   </span>

@@ -85,12 +85,6 @@ export default function TemplatesContent() {
                           loading={i === 0 ? "eager" : undefined}
                           className="object-cover transition-transform duration-700 ease-brand group-hover:scale-105"
                         />
-                        <div
-                          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
-                          style={{
-                            background: `linear-gradient(to top, ${theme.main}20, transparent)`,
-                          }}
-                        />
 
                         {/* Tier badge */}
                         <span

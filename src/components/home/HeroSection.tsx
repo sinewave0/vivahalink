@@ -24,11 +24,9 @@ const trustChips = [
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-ivory-200 via-ivory-100 to-ivory-50">
-      {/* Ambient colour + kolam texture + drifting petals */}
-      <div className="absolute -left-24 top-24 h-64 w-64 rounded-full bg-gold-300/25 blur-3xl" />
-      <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-maroon-300/20 blur-3xl" />
-      <div className="absolute inset-0 kolam-pattern opacity-40" />
+    <section className="relative overflow-hidden bg-ivory-100">
+      {/* Kolam texture + drifting petals */}
+      <div className="absolute inset-0 kolam-pattern" />
       <RosePetals count={9} />
 
       <div className="container-width relative grid min-h-[640px] items-center gap-14 py-16 md:grid-cols-[1.05fr_.95fr] md:py-24 lg:min-h-[720px]">

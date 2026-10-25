@@ -7,10 +7,9 @@ import { waLink, waMessages } from "@/lib/constants";
 
 export default function CTASection() {
   return (
-    <section className="section-padding bg-gradient-to-br from-maroon-800 via-maroon-900 to-maroon-950 relative overflow-hidden">
-      {/* Decorative blurs */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-maroon-500/20 rounded-full blur-3xl" />
+    <section className="section-padding bg-maroon-900 relative overflow-hidden">
+      {/* Kolam texture */}
+      <div className="absolute inset-0 kolam-pattern" />
 
       <div className="container-width relative text-center">
         <motion.div

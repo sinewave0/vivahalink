@@ -12,8 +12,8 @@ export default function TemplatesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-maroon-900 to-maroon-800 relative overflow-hidden">
-        <div className="absolute inset-0 kolam-pattern opacity-5" />
+      <section className="bg-maroon-900 relative overflow-hidden">
+        <div className="absolute inset-0 kolam-pattern" />
         <div className="container-width py-16 md:py-24 relative">
           <div className="text-center">
             <h1 className="font-serif text-3xl md:text-5xl font-bold text-ivory-100">
