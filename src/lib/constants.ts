@@ -4,8 +4,8 @@
  * Public configuration is baked into the static site at build time. Copy
  * `.env.example` to `.env.local` before deploying and set the real values.
  */
-export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "919876543210";
-export const WHATSAPP_DISPLAY = process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? "+91 98765 43210";
+export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "919597886489";
+export const WHATSAPP_DISPLAY = process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? "+91 95978 86489";
 
 export const SITE = {
   name: "VivahaLink",
