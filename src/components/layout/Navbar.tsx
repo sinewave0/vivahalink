@@ -54,7 +54,7 @@ export default function Navbar() {
               href="/templates"
               className="bg-maroon-800 text-ivory-100 px-5 py-2 rounded-full text-sm font-medium hover:bg-maroon-700 active:scale-[0.98] transition-all duration-300 ease-brand shadow-lg shadow-maroon-800/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50"
             >
-              View Templates
+              View templates
             </Link>
           </div>
 
@@ -102,7 +102,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
               className="block text-center bg-maroon-800 text-ivory-100 px-5 py-3 rounded-full text-sm font-medium hover:bg-maroon-700 active:scale-[0.98] transition-all duration-300 ease-brand mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50"
             >
-                View Templates
+                View templates
               </Link>
             </div>
           </motion.div>

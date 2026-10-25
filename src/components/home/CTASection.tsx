@@ -19,11 +19,11 @@ export default function CTASection() {
           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
         >
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-ivory-100 leading-tight">
-            Ready to Create Something{" "}
-            <span className="gold-shimmer">Beautiful</span>?
+            Ready to create something{" "}
+            <span className="gold-shimmer">beautiful</span>?
           </h2>
           <p className="mt-4 text-ivory-300/80 text-lg max-w-xl mx-auto">
-            Let your invitation set the tone for a celebration your guests will never forget.
+            Choose a template, share your details over WhatsApp, and send guests one elegant link within 48 hours.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

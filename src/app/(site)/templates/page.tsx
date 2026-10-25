@@ -17,7 +17,7 @@ export default function TemplatesPage() {
         <div className="container-width py-16 md:py-24 relative">
           <div className="text-center">
             <h1 className="font-serif text-3xl md:text-5xl font-bold text-ivory-100">
-              Our Template Collection
+              Our template collection
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-balance text-ivory-300/80 text-lg">
               Each template is a complete invitation experience — designed with Tamil cultural aesthetics and modern luxury.

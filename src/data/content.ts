@@ -3,7 +3,7 @@ import { FAQItem, Step } from "@/lib/types";
 export const howItWorks: Step[] = [
   {
     number: 1,
-    title: "Choose Your Template",
+    title: "Choose your template",
     description:
       "Browse our collection of beautifully crafted Tamil wedding invitation templates. Each one is designed with cultural authenticity and modern elegance.",
     icon: "Layout",
@@ -17,7 +17,7 @@ export const howItWorks: Step[] = [
   },
   {
     number: 3,
-    title: "Share Your Invitation",
+    title: "Share your invitation",
     description:
       "Receive your live invitation link within 24–48 hours. Share it with family and friends via WhatsApp, SMS, or any platform. It's that simple.",
     icon: "Share2",
@@ -43,7 +43,7 @@ export const faqs: FAQItem[] = [
   {
     question: "Can I make changes after ordering?",
     answer:
-      "Yes! We offer one round of revisions included in the price. Additional changes can be discussed over WhatsApp.",
+      "Yes. One round of revisions is included in the price, and additional changes can be discussed over WhatsApp.",
   },
   {
     question: "What payment methods do you accept?",
@@ -58,12 +58,12 @@ export const faqs: FAQItem[] = [
   {
     question: "Can I use this for events outside Tamil Nadu?",
     answer:
-      "Absolutely! Our invitations work everywhere. Whether your family is in Chennai, Singapore, London, or Toronto — a link works everywhere.",
+      "Absolutely. Our invitations work everywhere — Chennai, Singapore, London, or Toronto. Anywhere a link opens, a guest can attend.",
   },
   {
     question: "Do you offer custom designs?",
     answer:
-      "Yes, we do! If none of our templates fit your vision, reach out via WhatsApp and we'll discuss a custom design tailored just for you.",
+      "Yes, we do. If none of our templates fit your vision, reach out via WhatsApp and we will design one tailored just for you.",
   },
 ];
 

@@ -190,7 +190,7 @@ export default function TemplatesContent() {
             animate={{ opacity: 1 }}
             className="text-center text-temple-500 py-12"
           >
-            No templates found in this category. More designs coming soon!
+            No templates found in this category. More designs coming soon.
           </motion.p>
         )}
       </div>

@@ -41,12 +41,14 @@ export const metadata: Metadata = {
     title: "VivahaLink — Beautiful Digital Invitation Websites for Tamil Weddings",
     description:
       "Choose a template, customise it over WhatsApp, and share one elegant link — schedules, maps, live countdown and RSVP included. No app needed.",
+    images: ["/images/hero/invitation-editorial.png"],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "VivahaLink — Digital Invitation Websites for Tamil Weddings",
     description:
       "Premium invitation microsites with countdown, maps, and WhatsApp RSVP. One link, every guest.",
+    images: ["/images/hero/invitation-editorial.png"],
   },
 };
 
