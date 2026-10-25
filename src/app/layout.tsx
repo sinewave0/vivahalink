@@ -1,20 +1,57 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Aboreto,
+  Manrope,
+  Tiro_Devanagari_Hindi,
+  Tiro_Tamil,
+} from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/constants";
 
-const playfair = Playfair_Display({
-  variable: "--font-serif",
+/**
+ * The type stack mirrors a hand-set wedding card:
+ *  - Cormorant Garamond  → display serif (names, headlines)
+ *  - Aboreto             → engraved small-cap labels
+ *  - Manrope             → quiet body text
+ *  - Tiro Devanagari     → shloka flourishes
+ *  - Tiro Tamil          → Tamil flourishes
+ */
+const display = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-sans",
+const label = Aboreto({
+  variable: "--font-aboreto",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const body = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
+});
+
+const deva = Tiro_Devanagari_Hindi({
+  variable: "--font-devanagari",
+  subsets: ["devanagari", "latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const tamil = Tiro_Tamil({
+  variable: "--font-tiro-tamil",
+  subsets: ["tamil", "latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +61,7 @@ export const metadata: Metadata = {
     template: "%s | VivahaLink",
   },
   description:
-    "Premium, culturally rooted digital invitation websites for Tamil weddings, anniversaries, and housewarmings. Choose a template, customize via WhatsApp, and share your invitation link.",
+    "Premium, culturally rooted digital invitation microsites for Tamil weddings, anniversaries, and housewarmings. Choose a template, customize via WhatsApp, and share your invitation link.",
   keywords: [
     "Tamil wedding invitation",
     "digital invitation",
@@ -53,26 +90,26 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#7a1636",
+  themeColor: "#f6e4dc",
+  viewportFit: "cover",
 };
 
 /**
  * Root layout — deliberately minimal (fonts + global styles only).
  *
- * Marketing pages live inside the (site) route group and get the Navbar /
- * Footer / WhatsApp bar from (site)/layout.tsx. Invitation microsites
- * (/events/*, /invite/*) are rendered full-bleed: guests arrive through
- * shared links and should experience the invitation, not the storefront.
+ * Marketing pages live inside the (site) route group and get the floating
+ * pill navbar, court footer and WhatsApp pill from (site)/layout.tsx.
+ * Invitation microsites (/events/*, /invite/*) are rendered full-bleed:
+ * guests arrive through shared links and should experience the invitation,
+ * not the storefront.
  */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${display.variable} ${label.variable} ${body.variable} ${deva.variable} ${tamil.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-ivory-50 text-temple-950">
-        {children}
-      </body>
+      <body className="font-body">{children}</body>
     </html>
   );
 }

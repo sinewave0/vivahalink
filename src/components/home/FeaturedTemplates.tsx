@@ -1,103 +1,166 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { templates } from "@/data/templates";
 import { getInvitationTheme } from "@/lib/invitation-theme";
 import { formatPrice } from "@/lib/utils";
+import { waLink, waMessages } from "@/lib/constants";
+import { useReveal } from "@/components/ui/ScrollFX";
 
 const featured = templates.slice(0, 3);
+const TINTS = ["#f7dce4", "#fbe3cf", "#dfe8d6"];
 
-export default function FeaturedTemplates() {
+/** Card-paper introduction, echoing the invitation's opening spread. */
+function PaperIntro() {
   return (
-    <section className="overflow-hidden bg-[#faf8f4] py-20 md:py-28">
-      <div className="container-width">
-        <motion.div
-          initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-          className="flex flex-col justify-between gap-6 md:flex-row md:items-end"
-        >
-          <div className="max-w-2xl">
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[.2em] text-[#98744f]">
-              The collection
-            </p>
-            <h2 className="text-balance font-serif text-4xl font-medium leading-none tracking-[-.04em] text-[#30241f] md:text-6xl">
-              Find the feeling.
-              <br />
-              Make it yours.
-            </h2>
-          </div>
-          <Link
-            href="/templates"
-            className="inline-flex items-center gap-2 self-start rounded-full border border-[#cfc0ae] bg-white px-5 py-3 text-sm font-semibold text-[#39251f] transition-all duration-300 ease-brand hover:bg-[#39251f] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b99c77] focus-visible:ring-offset-2 active:scale-[0.98] md:self-auto"
+    <section className="paper invocation" aria-label="What is VivahaLink">
+      <div className="wrap">
+        <svg className="mandala rv" viewBox="0 0 200 200" aria-hidden="true">
+          <g className="spin" fill="none" stroke="currentColor" strokeWidth={1.1}>
+            {Array.from({ length: 16 }, (_, i) => i * 22.5).map((a) => (
+              <g key={a} transform={`rotate(${a} 100 100)`}>
+                <ellipse cx={100} cy={34} rx={7} ry={20} />
+                <circle cx={100} cy={10} r={2.2} fill="currentColor" stroke="none" />
+              </g>
+            ))}
+          </g>
+          <circle cx={100} cy={100} r={46} fill="none" stroke="currentColor" strokeWidth={1.2} />
+          <circle cx={100} cy={100} r={40} fill="none" stroke="currentColor" strokeWidth={0.6} />
+          <text
+            x={100}
+            y={120}
+            textAnchor="middle"
+            fontSize={54}
+            fill="#a3242f"
+            style={{ fontFamily: "var(--font-tamil)" }}
           >
-            See all designs <ArrowRight size={16} />
-          </Link>
-        </motion.div>
-        <div className="mt-12 grid gap-5 md:grid-cols-3 md:gap-7">
-          {featured.map((template, i) => {
-            const theme = getInvitationTheme(template);
-            return (
-              <motion.div
-                key={template.id}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: i * 0.12 }}
-                className="group"
-              >
-                <Link
-                  href={`/events/${template.demoSlug}`}
-                  className="block overflow-hidden rounded-[1.35rem] border border-[#eee7dd] bg-white p-2.5 shadow-[0_12px_40px_rgba(56,38,27,.07)] transition-all duration-700 ease-brand hover:-translate-y-1.5 hover:shadow-[0_22px_50px_rgba(56,38,27,.13)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#986b49] focus-visible:ring-offset-2 active:scale-[0.99]"
-                >
-                  <div
-                    className="relative aspect-[4/4.6] overflow-hidden rounded-2xl"
-                    style={{ backgroundColor: theme.surface }}
-                  >
-                    <Image
-                      src={template.thumbnail}
-                      alt={`${template.title} digital invitation`}
-                      fill
-                      sizes="(min-width: 768px) 33vw, 100vw"
-                      loading={i === 0 ? "eager" : undefined}
-                      className="object-cover transition-transform duration-700 ease-brand group-hover:scale-105"
-                    />
-                    <span
-                      className="absolute left-3 top-3 rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[.14em] backdrop-blur-sm"
-                      style={{ backgroundColor: `${theme.main}e8`, color: theme.surface }}
-                    >
-                      {template.category}
-                    </span>
-                  </div>
-                  <div className="flex items-start justify-between gap-3 px-2 pb-2 pt-5">
-                    <div>
-                      <h3
-                        className="font-serif text-2xl font-semibold"
-                        style={{ color: theme.ink }}
-                      >
-                        {template.title}
-                      </h3>
-                      <p className="mt-1 text-sm" style={{ color: theme.muted }}>
-                        {template.tier} invitation · website
-                      </p>
-                    </div>
-                    <span
-                      className="whitespace-nowrap text-sm font-bold"
-                      style={{ color: theme.accent }}
-                    >
-                      {formatPrice(template.price)}
-                    </span>
-                  </div>
-                </Link>
-              </motion.div>
-            );
-          })}
+            ஸ்ரீ
+          </text>
+        </svg>
+
+        <p className="small rv" style={{ "--d": ".04s" } as React.CSSProperties}>
+          With the blessings of family, tradition &amp; a little technology
+        </p>
+        <p className="hostline rv" style={{ "--d": ".08s" } as React.CSSProperties}>
+          VivahaLink presents
+        </p>
+        <p className="small rv" style={{ "--d": ".1s" } as React.CSSProperties}>
+          living digital invitations for
+        </p>
+
+        <div className="person rv" style={{ "--d": ".12s" } as React.CSSProperties}>
+          <h2>Your Celebration</h2>
+          <p className="rel">
+            Every ceremony, map, countdown and RSVP — woven into one scroll your
+            guests will actually want to open.
+          </p>
         </div>
+        <div className="amp rv" style={{ "--d": ".14s" } as React.CSSProperties}>
+          &amp;
+        </div>
+        <div className="person rv" style={{ "--d": ".16s" } as React.CSSProperties}>
+          <h2>Your People</h2>
+          <p className="rel">
+            No app to install, no login to forget. One link that opens
+            beautifully on every phone, everywhere.
+          </p>
+        </div>
+
+        <p className="small following rv" style={{ "--d": ".18s" } as React.CSSProperties}>
+          Begin with a design from the collection
+        </p>
       </div>
     </section>
+  );
+}
+
+/** Featured templates presented as arch panels along a gold thread. */
+export default function FeaturedTemplates() {
+  useReveal();
+
+  return (
+    <>
+      <PaperIntro />
+
+      <section className="gthread" id="collection" aria-label="Featured templates">
+        <div className="wrap head-block">
+          <h2 className="rv">
+            <span className="tamil">மங்கல வடிவமைப்பு</span>
+            The Collection
+          </h2>
+          <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
+            Three of our most-loved designs — each one a complete little world.
+          </p>
+        </div>
+
+        <div className="wrap" style={{ position: "relative", zIndex: 2 }}>
+          <div className="day" style={{ paddingBottom: "clamp(30px,6vh,60px)" }}>
+            {featured.map((template, i) => {
+              const theme = getInvitationTheme(template);
+              return (
+                <article
+                  key={template.id}
+                  className="panel compact"
+                  style={{ minHeight: 0, paddingBlock: "clamp(26px,5vh,48px)" }}
+                >
+                  <div
+                    className="arch"
+                    style={{ "--tint": TINTS[i % TINTS.length] } as React.CSSProperties}
+                  >
+                    <div className="arch-in">
+                      <Link
+                        href={`/events/${template.demoSlug}`}
+                        aria-label={`Preview the ${template.title} invitation`}
+                        className="arch_media"
+                        style={{ display: "block" }}
+                      >
+                        <Image
+                          src={template.thumbnail}
+                          alt={`${template.title} invitation artwork`}
+                          fill
+                          sizes="(min-width: 880px) 400px, 88vw"
+                          className="object-cover"
+                        />
+                      </Link>
+                      <h3>{template.title}</h3>
+                      <p className="dd">
+                        {template.category} · {template.tier}
+                      </p>
+                      <p className="tm">{formatPrice(template.price)}</p>
+                      <p className="vn">{template.description.split(".")[0]}.</p>
+                      <div className="btns">
+                        <Link
+                          href={`/events/${template.demoSlug}`}
+                          target="_blank"
+                          rel="noopener"
+                          className="btn solid"
+                        >
+                          Live preview
+                        </Link>
+                        <a
+                          href={waLink(waMessages.order(template.title))}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn"
+                        >
+                          Order this design
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="btns" style={{ justifyContent: "center", paddingBottom: "clamp(20px,4vh,40px)" }}>
+            <Link href="/templates" className="btn">
+              See all {templates.length} designs
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

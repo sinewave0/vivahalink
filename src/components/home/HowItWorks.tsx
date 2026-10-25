@@ -1,53 +1,56 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Layout, MessageCircle, Share2 } from "lucide-react";
-import SectionHeading from "@/components/ui/SectionHeading";
 import { howItWorks } from "@/data/content";
+import { useReveal } from "@/components/ui/ScrollFX";
 
 const iconMap: Record<string, React.ReactNode> = {
-  Layout: <Layout size={28} />,
-  MessageCircle: <MessageCircle size={28} />,
-  Share2: <Share2 size={28} />,
+  Layout: <Layout size={26} strokeWidth={1.4} />,
+  MessageCircle: <MessageCircle size={26} strokeWidth={1.4} />,
+  Share2: <Share2 size={26} strokeWidth={1.4} />,
 };
 
+const TINTS = ["#f7dce4", "#fbe3cf", "#e3dbf3"];
+
+/**
+ * Three steps, told as arch panels along the gold thread — the same
+ * shape language as the invitation's ceremony cards.
+ */
 export default function HowItWorks() {
+  useReveal();
+
   return (
-    <section id="how-it-works" className="section-padding bg-ivory-50">
-      <div className="container-width">
-        <SectionHeading
-          title="How it works"
-          subtitle="Three simple steps to your perfect digital invitation"
-          centered={false}
-        />
+    <section className="gthread gthread-plain" id="how-it-works" aria-label="How it works">
+      <div className="wrap head-block">
+        <h2 className="rv">
+          <span className="tamil">எப்படி வேலை செய்யும்</span>
+          How It Works
+        </h2>
+        <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
+          From "we're getting married" to a link your whole family loves — in a day or two.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+      <div className="wrap" style={{ position: "relative", zIndex: 2, paddingBottom: "clamp(30px,6vh,60px)" }}>
+        <div className="day">
           {howItWorks.map((step, i) => (
-            <motion.div
+            <article
               key={step.number}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: i * 0.15 }}
-              className={`relative text-center group ${
-                i === 1 ? "md:mt-12" : i === 2 ? "md:mt-24" : ""
-              }`}
+              className="panel"
+              style={{ minHeight: 0, paddingBlock: "clamp(26px,5vh,48px)" }}
             >
-              {/* Step number + icon */}
-              <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-maroon-800 text-gold-400 mb-6 shadow-lg shadow-maroon-800/20 group-hover:shadow-xl group-hover:shadow-maroon-800/30 transition-shadow duration-500 ease-brand">
-                {iconMap[step.icon]}
-                <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-gold-500 text-maroon-900 text-xs font-bold flex items-center justify-center shadow-md">
-                  {step.number}
-                </span>
+              <div
+                className="arch"
+                style={{ "--tint": TINTS[i % TINTS.length] } as React.CSSProperties}
+              >
+                <div className="arch-in">
+                  <div className="ic">{iconMap[step.icon]}</div>
+                  <h3>{step.title}</h3>
+                  <p className="dd">Step {String(step.number).padStart(2, "0")}</p>
+                  <p className="vn" style={{ marginTop: 14 }}>{step.description}</p>
+                </div>
               </div>
-
-              <h3 className="font-serif text-xl font-bold text-maroon-800 mb-3">
-                {step.title}
-              </h3>
-              <p className="text-sm text-temple-600 leading-relaxed max-w-xs mx-auto">
-                {step.description}
-              </p>
-            </motion.div>
+            </article>
           ))}
         </div>
       </div>
