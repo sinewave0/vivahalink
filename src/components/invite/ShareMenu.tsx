@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Copy, Share2, X } from "lucide-react";
 import { waLink, waMessages } from "@/lib/constants";
@@ -33,6 +33,17 @@ export default function ShareMenu({ open, onClose, shareUrl, title }: ShareMenuP
     setCopied(false);
     onClose();
   };
+
+  // Close on Escape
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   const copy = async () => {
     try {

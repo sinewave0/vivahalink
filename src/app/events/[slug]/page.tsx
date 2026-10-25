@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { demoEvents, getInvitationWithTemplate } from "@/data/demo-events";
 import { SITE } from "@/lib/constants";
 import { formatDate } from "@/lib/utils";
 import InvitationExperience from "@/components/invite/InvitationExperience";
+import InvitationLoading from "@/components/invite/InvitationLoading";
 
 /**
  * Invitation demo / shared wedding microsite.
@@ -33,11 +35,36 @@ export async function generateMetadata({
   return {
     title: `${names} — ${template.title} Invitation`,
     description: `${invitation.tagline} · ${formatDate(invitation.weddingDate)} · An elegant digital invitation on VivahaLink.`,
+    alternates: { canonical: `/events/${slug}` },
+    openGraph: {
+      type: "website",
+      locale: "en_IN",
+      siteName: "VivahaLink",
+      url: `${SITE.url}/events/${slug}`,
+      title: `${names} — ${template.title} Invitation`,
+      description: `${invitation.tagline} · ${formatDate(invitation.weddingDate)}`,
+    },
+    twitter: {
+      card: "summary",
+      title: `${names} — Invitation`,
+      description: `${invitation.tagline} · ${formatDate(invitation.weddingDate)}`,
+    },
   };
 }
 
-export default async function InvitationPage(props: PageProps<"/events/[slug]">) {
-  const { slug } = await props.params;
+/**
+ * The slug-dependent work lives behind <Suspense> so the route's static
+ * shell stays URL-independent and client navigations stay instant
+ * (Next.js instant-navigation validation).
+ */
+async function InvitationRoute({
+  params,
+  shareUrlBase,
+}: {
+  params: Promise<{ slug: string }>;
+  shareUrlBase: string;
+}) {
+  const { slug } = await params;
   const data = getInvitationWithTemplate(slug);
   if (!data) notFound();
 
@@ -47,7 +74,15 @@ export default async function InvitationPage(props: PageProps<"/events/[slug]">)
     <InvitationExperience
       invitation={invitation}
       template={template}
-      shareUrl={`${SITE.url}/events/${slug}`}
+      shareUrl={`${shareUrlBase}/${slug}`}
     />
+  );
+}
+
+export default function InvitationPage(props: PageProps<"/events/[slug]">) {
+  return (
+    <Suspense fallback={<InvitationLoading />}>
+      <InvitationRoute params={props.params} shareUrlBase={`${SITE.url}/events`} />
+    </Suspense>
   );
 }

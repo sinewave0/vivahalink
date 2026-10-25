@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { demoEvents, getInvitationWithTemplate } from "@/data/demo-events";
 import { SITE } from "@/lib/constants";
 import { formatDate } from "@/lib/utils";
 import InvitationExperience from "@/components/invite/InvitationExperience";
+import InvitationLoading from "@/components/invite/InvitationLoading";
 
 /**
  * The short, shareable invitation link promised to customers:
@@ -33,11 +35,36 @@ export async function generateMetadata({
   return {
     title: `${names}'s Invitation`,
     description: `${invitation.tagline} · ${formatDate(invitation.weddingDate)}`,
+    alternates: { canonical: `/invite/${slug}` },
+    openGraph: {
+      type: "website",
+      locale: "en_IN",
+      siteName: "VivahaLink",
+      url: `${SITE.url}/invite/${slug}`,
+      title: `${names}'s Invitation`,
+      description: `${invitation.tagline} · ${formatDate(invitation.weddingDate)}`,
+    },
+    twitter: {
+      card: "summary",
+      title: `${names}'s Invitation`,
+      description: `${invitation.tagline} · ${formatDate(invitation.weddingDate)}`,
+    },
   };
 }
 
-export default async function InvitePage(props: PageProps<"/invite/[slug]">) {
-  const { slug } = await props.params;
+/**
+ * The slug-dependent work lives behind <Suspense> so the route's static
+ * shell stays URL-independent and client navigations stay instant
+ * (Next.js instant-navigation validation).
+ */
+async function InviteRoute({
+  params,
+  shareUrlBase,
+}: {
+  params: Promise<{ slug: string }>;
+  shareUrlBase: string;
+}) {
+  const { slug } = await params;
   const data = getInvitationWithTemplate(slug);
   if (!data) notFound();
 
@@ -47,7 +74,15 @@ export default async function InvitePage(props: PageProps<"/invite/[slug]">) {
     <InvitationExperience
       invitation={invitation}
       template={template}
-      shareUrl={`${SITE.url}/invite/${slug}`}
+      shareUrl={`${shareUrlBase}/${slug}`}
     />
+  );
+}
+
+export default function InvitePage(props: PageProps<"/invite/[slug]">) {
+  return (
+    <Suspense fallback={<InvitationLoading />}>
+      <InviteRoute params={props.params} shareUrlBase={`${SITE.url}/invite`} />
+    </Suspense>
   );
 }

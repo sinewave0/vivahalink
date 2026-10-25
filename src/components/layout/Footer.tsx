@@ -61,9 +61,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
+      {/* Bottom Bar — extra bottom clearance on mobile so the sticky
+          WhatsApp bar never covers the copyright row */}
       <div className="border-t border-maroon-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 pb-[4.75rem] md:pb-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-ivory-400/60 text-xs">
             <Copyright />
           </p>

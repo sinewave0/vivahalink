@@ -62,6 +62,7 @@ export default function StorySection({ invitation }: { invitation: InvitationDat
                   width={720}
                   height={540}
                   loading="lazy"
+                  sizes="(min-width: 768px) 33vw, 92vw"
                   className="h-48 md:h-56 w-full rounded-xl object-cover"
                 />
               </motion.figure>

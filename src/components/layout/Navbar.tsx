@@ -12,15 +12,15 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#2d2448]/8 bg-[#fffdf8]/85 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-gold-300/40 bg-ivory-50/85 backdrop-blur-md">
+      <div className="container-width">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-full bg-[#2d2448] flex items-center justify-center">
-              <span className="text-[#ffe181] font-serif text-sm font-bold">V</span>
+            <div className="w-8 h-8 rounded-full bg-maroon-800 flex items-center justify-center shadow-sm">
+              <span className="text-gold-300 font-serif text-sm font-bold">V</span>
             </div>
-            <span className="font-serif text-xl md:text-2xl font-bold text-[#2d2448] group-hover:text-[#c95c82] transition-colors">
+            <span className="font-serif text-xl md:text-2xl font-bold text-maroon-900 group-hover:text-gold-700 transition-colors">
               VivahaLink
             </span>
           </Link>
@@ -33,22 +33,22 @@ export default function Navbar() {
                 href={link.href}
                 className={`text-sm font-medium transition-colors relative ${
                   pathname === link.href
-                    ? "text-[#2d2448]"
-                    : "text-[#625a70] hover:text-[#c95c82]"
+                    ? "text-maroon-900"
+                    : "text-temple-600 hover:text-maroon-800"
                 }`}
               >
                 {link.label}
                 {pathname === link.href && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#c95c82] rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold-500 rounded-full"
                   />
                 )}
               </Link>
             ))}
             <Link
               href="/templates"
-              className="bg-[#2d2448] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#44365f] transition-colors shadow-lg shadow-[#2d2448]/15"
+              className="bg-maroon-800 text-ivory-100 px-5 py-2 rounded-full text-sm font-medium hover:bg-maroon-700 transition-colors shadow-lg shadow-maroon-800/20"
             >
               View Templates
             </Link>
@@ -73,7 +73,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-ivory-50/95 backdrop-blur-md border-b border-gold-200/50 overflow-hidden"
+            className="md:hidden bg-ivory-50/95 backdrop-blur-md border-b border-gold-300/40 overflow-hidden"
           >
             <div className="px-4 py-4 space-y-3">
               {NAV_LINKS.map((link) => (

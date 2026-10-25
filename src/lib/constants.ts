@@ -108,3 +108,10 @@ export const NAV_LINKS = [
   { label: "Templates", href: "/templates" },
   { label: "About", href: "/about" },
 ] as const;
+
+// Intro-gate / hero label per invitation category
+export const GATE_LABELS = {
+  wedding: "The wedding of",
+  anniversary: "Celebrating",
+  housewarming: "Blessings on the new home of",
+} as const;

@@ -26,6 +26,12 @@ export default function InvitationMusic({ invitation }: { invitation: Invitation
     let ctx = ctxRef.current;
     if (!ctx) {
       ctx = ctxRef.current = new AudioContext();
+      // The master gain folds every oscillator into one fadable channel.
+      // It must exist before the first play or the drone stays silent.
+      const master = ctx.createGain();
+      master.gain.value = 0.0001;
+      master.connect(ctx.destination);
+      masterRef.current = master;
     }
     if (ctx.state === "suspended") void ctx.resume();
     return ctx;

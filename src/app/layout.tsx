@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { SITE } from "@/lib/constants";
 
 const playfair = Playfair_Display({
   variable: "--font-serif",
@@ -17,6 +18,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
   title: {
     default: "VivahaLink — Beautiful Digital Invitation Websites for Tamil Weddings",
     template: "%s | VivahaLink",
@@ -31,6 +33,21 @@ export const metadata: Metadata = {
     "online invitation",
     "VivahaLink",
   ],
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "/",
+    siteName: "VivahaLink",
+    title: "VivahaLink — Beautiful Digital Invitation Websites for Tamil Weddings",
+    description:
+      "Choose a template, customise it over WhatsApp, and share one elegant link — schedules, maps, live countdown and RSVP included. No app needed.",
+  },
+  twitter: {
+    card: "summary",
+    title: "VivahaLink — Digital Invitation Websites for Tamil Weddings",
+    description:
+      "Premium invitation microsites with countdown, maps, and WhatsApp RSVP. One link, every guest.",
+  },
 };
 
 export const viewport: Viewport = {

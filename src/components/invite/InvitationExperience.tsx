@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Heart, Share2 } from "lucide-react";
 import type { InvitationData, Template } from "@/lib/types";
+import { GATE_LABELS } from "@/lib/constants";
 import { formatDate } from "@/lib/utils";
 import IntroGate from "./IntroGate";
 import CountdownTimer from "./CountdownTimer";
@@ -14,6 +15,7 @@ import RSVPModal from "./RSVPModal";
 import ShareMenu from "./ShareMenu";
 import InvitationMusic from "./InvitationMusic";
 import Ornament from "./Ornament";
+import RosePetals from "./RosePetals";
 
 interface InvitationExperienceProps {
   invitation: InvitationData;
@@ -21,12 +23,6 @@ interface InvitationExperienceProps {
   /** Absolute URL of this invitation, used for sharing. */
   shareUrl: string;
 }
-
-const gateLabels: Record<Template["category"], string> = {
-  wedding: "The wedding of",
-  anniversary: "Celebrating",
-  housewarming: "Blessings on the new home of",
-};
 
 /**
  * The complete invitation microsite: intro gate → hero with live
@@ -64,6 +60,8 @@ export default function InvitationExperience({
           >
             <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/45" />
             <div className="absolute inset-0 kolam-pattern opacity-20" />
+            {/* floating rose petals */}
+            <RosePetals count={12} />
             {/* soft radial accent glow */}
             <div
               className="absolute inset-0"
@@ -80,7 +78,7 @@ export default function InvitationExperience({
                 className="text-[11px] sm:text-xs uppercase tracking-[0.4em]"
                 style={{ color: `${accent}cc` }}
               >
-                {gateLabels[template.category]}
+                {GATE_LABELS[template.category]}
               </motion.p>
 
               <motion.h1
@@ -89,10 +87,10 @@ export default function InvitationExperience({
                 transition={{ delay: 0.45, duration: 0.7 }}
                 className="mt-6 font-serif text-5xl sm:text-6xl md:text-7xl font-medium leading-[1.05] text-ivory-100"
               >
-                {invitation.coupleName1}
-                <span className="mx-3 italic" style={{ color: accent }}>
+                {invitation.coupleName1}{" "}
+                <span className="mx-3 inline-block italic" style={{ color: accent }}>
                   &amp;
-                </span>
+                </span>{" "}
                 {invitation.coupleName2}
               </motion.h1>
 
@@ -158,6 +156,7 @@ export default function InvitationExperience({
           {/* ── RSVP band ── */}
           <section className="relative overflow-hidden" style={{ backgroundColor: main }}>
             <div className="absolute inset-0 kolam-pattern opacity-10" />
+            <RosePetals count={8} />
             <div className="container-width relative py-16 md:py-20 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

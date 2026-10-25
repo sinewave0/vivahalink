@@ -3,7 +3,7 @@ import Ornament from "@/components/invite/Ornament";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center bg-ivory-50 px-6 text-center">
+    <div className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-ivory-50 px-6 text-center">
       <div className="absolute inset-0 kolam-pattern opacity-40" />
       <p className="font-serif text-7xl font-bold text-maroon-800/90">404</p>
       <Ornament className="my-6" />

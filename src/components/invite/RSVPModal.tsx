@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, MessageCircle, PartyPopper, X } from "lucide-react";
 import type { InvitationData } from "@/lib/types";
@@ -45,11 +45,19 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
   const [step, setStep] = useState(1);
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
+  const errorTimer = useRef<number | null>(null);
 
   const eventNames = useMemo(
     () => invitation.ceremonies.map((c) => c.name),
     [invitation.ceremonies]
   );
+
+  // Clear the pending error reset so nothing fires after unmount
+  useEffect(() => {
+    return () => {
+      if (errorTimer.current !== null) clearTimeout(errorTimer.current);
+    };
+  }, []);
 
   const patch = (partial: Partial<RsvpState>) => setState((s) => ({ ...s, ...partial }));
 
@@ -60,6 +68,17 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
     setSent(false);
     onClose();
   };
+
+  // Close on Escape
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   const canContinue = (): boolean => {
     if (step === 1) {
@@ -85,7 +104,8 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
 
   const next = () => {
     if (!canContinue()) {
-      setTimeout(() => setError(""), 3500);
+      if (errorTimer.current !== null) clearTimeout(errorTimer.current);
+      errorTimer.current = window.setTimeout(() => setError(""), 3500);
       return;
     }
     setError("");
@@ -173,7 +193,7 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
               </div>
             </div>
 
-            <div className="p-6 sm:p-7">
+            <div className="max-h-[82dvh] overflow-y-auto overscroll-contain p-6 sm:p-7">
               {!sent ? (
                 <>
                   {/* Progress dots */}

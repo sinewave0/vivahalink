@@ -3,24 +3,129 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, BadgeCheck, MessageCircle, Smartphone, Sparkles } from "lucide-react";
+import { waLink, waMessages } from "@/lib/constants";
+import RosePetals from "@/components/invite/RosePetals";
+
+const trustChips = [
+  {
+    icon: MessageCircle,
+    label: "Ordered & customised on WhatsApp",
+  },
+  {
+    icon: BadgeCheck,
+    label: "One-time payment · unlimited guests",
+  },
+  {
+    icon: Smartphone,
+    label: "Opens on any phone — no app",
+  },
+] as const;
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-[#fff8e7] pt-8 sm:pt-12">
-      <div className="absolute -left-16 top-20 h-56 w-56 rounded-full bg-[#f8c5d7] blur-3xl opacity-60" />
-      <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-[#f7de7f] blur-3xl opacity-50" />
-      <div className="container-width relative grid min-h-[650px] items-center gap-8 py-16 md:grid-cols-[1.05fr_.95fr] md:py-20 lg:min-h-[730px]">
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }} className="relative z-10 max-w-2xl">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#2d2448]/10 bg-white/70 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-[#5c315f] shadow-sm"><Sparkles size={14} className="text-[#d66d91]" />Invites that feel like you</div>
-          <h1 className="font-serif text-[3.25rem] font-semibold leading-[.93] tracking-[-0.055em] text-[#2d2448] sm:text-6xl md:text-7xl lg:text-[5.6rem]">Big love deserves a <span className="text-[#c95c82]">beautiful</span> hello.</h1>
-          <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#625a70] md:text-xl">Personalised digital invitations for the whole celebration — made with heart, delivered as a link, and completely yours.</p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"><Link href="/templates" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#2d2448] px-7 py-4 text-sm font-bold text-white transition-transform hover:-translate-y-0.5 hover:bg-[#44365f]">Find your invitation <ArrowUpRight size={18} /></Link><span className="px-2 text-sm font-medium text-[#766d7e]">Starting at ₹999 · made for sharing</span></div>
-          <div className="mt-12 flex items-center gap-5 text-sm text-[#625a70]"><div className="flex -space-x-2">{["#f3a4ba", "#7a9f83", "#f2c56f", "#a7a0d9"].map((color) => <span key={color} className="h-8 w-8 rounded-full border-2 border-[#fff8e7]" style={{ backgroundColor: color }} />)}</div><span><b className="text-[#2d2448]">1,200+</b> celebrations brought to life</span></div>
+    <section className="relative overflow-hidden bg-gradient-to-b from-ivory-200 via-ivory-100 to-ivory-50">
+      {/* Ambient colour + kolam texture + drifting petals */}
+      <div className="absolute -left-24 top-24 h-64 w-64 rounded-full bg-gold-300/25 blur-3xl" />
+      <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-maroon-300/20 blur-3xl" />
+      <div className="absolute inset-0 kolam-pattern opacity-40" />
+      <RosePetals count={9} />
+
+      <div className="container-width relative grid min-h-[640px] items-center gap-14 py-16 md:grid-cols-[1.05fr_.95fr] md:py-24 lg:min-h-[720px]">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65 }}
+          className="relative z-10 max-w-2xl"
+        >
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-100/60 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-maroon-800 shadow-sm">
+            <Sparkles size={14} className="text-gold-700" />
+            Invites that feel like you
+          </div>
+
+          <h1 className="text-balance font-serif text-[3.25rem] font-semibold leading-[.95] tracking-[-0.04em] text-maroon-950 sm:text-6xl md:text-7xl lg:text-[5.2rem]">
+            Big love deserves a{" "}
+            <span className="gold-shimmer">beautiful</span> hello.
+          </h1>
+
+          <p className="mt-7 max-w-xl text-lg leading-relaxed text-temple-600 md:text-xl">
+            Personalised digital invitation websites for weddings, anniversaries
+            and housewarmings — your story, schedules, maps, RSVP and music in
+            one elegant link.
+          </p>
+
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Link
+              href="/templates"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-maroon-800 px-7 py-4 text-sm font-bold text-ivory-100 shadow-lg shadow-maroon-800/25 transition-transform hover:-translate-y-0.5 hover:bg-maroon-700"
+            >
+              Find your invitation <ArrowUpRight size={18} />
+            </Link>
+            <a
+              href={waLink(waMessages.inquiry())}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-gold-500/50 bg-white/70 px-7 py-4 text-sm font-semibold text-maroon-800 transition-colors hover:bg-gold-100/70"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4 fill-green-600">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              Order on WhatsApp
+            </a>
+          </div>
+
+          <p className="mt-4 px-1 text-sm font-medium text-temple-500">
+            Starting at ₹899 · one-time payment
+          </p>
+
+          {/* Trust chips — no fabricated stats, honest promises */}
+          <div className="mt-10 flex flex-wrap gap-2.5">
+            {trustChips.map((chip) => (
+              <span
+                key={chip.label}
+                className="inline-flex items-center gap-2 rounded-full border border-gold-300/50 bg-white/80 px-3.5 py-2 text-xs font-medium text-temple-700 shadow-sm"
+              >
+                <chip.icon size={14} className="text-gold-700" />
+                {chip.label}
+              </span>
+            ))}
+          </div>
         </motion.div>
-        <motion.div initial={{ opacity: 0, scale: 0.94, rotate: 2 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 0.8, delay: 0.12 }} className="relative mx-auto w-full max-w-[530px]">
-          <div className="absolute -inset-3 rounded-[2.5rem] bg-white/55 -rotate-3" /><div className="relative aspect-[4/5] overflow-hidden rounded-[2.25rem] border-8 border-white bg-[#f5e0bc] shadow-[0_28px_65px_rgba(84,58,87,.22)]"><Image src="/images/hero/invitation-editorial.png" alt="A styled collection of original digital wedding invitation cards" fill priority sizes="(min-width: 768px) 45vw, 92vw" className="object-cover" /></div>
-          <div className="absolute -bottom-5 -left-5 rounded-2xl bg-[#c95c82] px-5 py-4 text-white shadow-lg sm:-left-10"><p className="text-[11px] font-semibold uppercase tracking-wider text-white/75">Made just for you</p><p className="font-serif text-xl">Your story, in every detail</p></div><div className="absolute -right-4 top-12 rounded-full bg-[#f6db72] px-4 py-2 text-xs font-bold text-[#40364e] shadow-md">100% mobile friendly</div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94, rotate: 2 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 0.8, delay: 0.12 }}
+          className="relative mx-auto w-full max-w-[530px]"
+        >
+          {/* Slow golden halo behind the frame */}
+          <motion.div
+            aria-hidden="true"
+            className="absolute -inset-10 rounded-full border border-dashed border-gold-500/30"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          />
+          <div className="absolute -inset-3 -rotate-3 rounded-[2.5rem] bg-white/60" />
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2.25rem] border-8 border-white bg-ivory-300 shadow-[0_28px_65px_rgba(58,6,23,.25)]">
+            <Image
+              src="/images/hero/invitation-editorial.png"
+              alt="A styled collection of original digital wedding invitation cards"
+              fill
+              loading="eager"
+              fetchPriority="high"
+              sizes="(min-width: 768px) 45vw, 92vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="absolute -bottom-5 -left-5 rounded-2xl bg-maroon-800 px-5 py-4 text-ivory-100 shadow-lg sm:-left-10">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-gold-400/90">
+              Made just for you
+            </p>
+            <p className="font-serif text-xl">Your story, in every detail</p>
+          </div>
+          <div className="absolute -right-4 top-12 rounded-full bg-gold-400 px-4 py-2 text-xs font-bold text-maroon-950 shadow-md">
+            100% mobile friendly
+          </div>
         </motion.div>
       </div>
     </section>
