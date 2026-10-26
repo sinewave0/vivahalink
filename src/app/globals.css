@@ -108,6 +108,7 @@
   --mist: #ece6f6;
   --ivory: #fffaf2;
   --night: #1b1440;
+  --ease-brand: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-rise: cubic-bezier(0.16, 0.8, 0.28, 1);
   color-scheme: light;
 }
@@ -138,6 +139,10 @@ svg {
 
 a {
   color: inherit;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 h1,
@@ -766,6 +771,16 @@ html.go .palwrap {
   background: var(--ivory);
 }
 
+a.arch_media {
+  display: block;
+  transition: transform 0.6s var(--ease-brand), box-shadow 0.6s var(--ease-brand);
+}
+
+a.arch_media:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 24px 50px -18px rgba(110, 70, 110, 0.55);
+}
+
 .arch_static .arch-in {
   padding: calc(var(--aw) * 0.12) 28px 34px;
 }
@@ -837,9 +852,9 @@ html.go .palwrap {
   color: var(--ink);
   background: transparent;
   transition:
-    background 0.3s,
-    color 0.3s,
-    transform 0.3s;
+    background 0.35s var(--ease-brand),
+    color 0.35s var(--ease-brand),
+    transform 0.35s var(--ease-brand);
   cursor: pointer;
 }
 
@@ -860,6 +875,11 @@ html.go .palwrap {
   background: var(--night);
   border-color: var(--night);
   color: var(--ivory);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  transition-duration: 0.08s;
 }
 
 @media (min-width: 880px) {
@@ -1416,6 +1436,10 @@ html.go .palwrap {
   color: #fff;
 }
 
+.rail-extra:active {
+  transform: scale(0.96);
+}
+
 /* =========================================================
    NAV — floating glass pill
    ========================================================= */
@@ -1511,13 +1535,18 @@ html.go .palwrap {
   background: var(--night);
   color: var(--gold-lite);
   border: 1px solid var(--night);
-  transition: background 0.3s, color 0.3s, transform 0.3s;
+  transition: background 0.3s var(--ease-brand), color 0.3s var(--ease-brand), transform 0.3s var(--ease-brand);
 }
 
 .float-nav .cta:hover {
   background: var(--gold);
   color: var(--night);
   transform: translateY(-1px);
+}
+
+.float-nav .cta:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 0.08s;
 }
 
 .nav-burger {
@@ -1536,6 +1565,10 @@ html.go .palwrap {
   border-radius: 999px;
   padding: 9px 14px;
   cursor: pointer;
+}
+
+.nav-burger:active {
+  transform: scale(0.96);
 }
 
 @media (min-width: 780px) {
@@ -1679,6 +1712,11 @@ html.go .palwrap {
 .chip:hover {
   transform: translateY(-1px);
   background: rgba(176, 138, 70, 0.14);
+}
+
+.chip:active {
+  transform: translateY(1px);
+  transition-duration: 0.08s;
 }
 
 .chip.active {

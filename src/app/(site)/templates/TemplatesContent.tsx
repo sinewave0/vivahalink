@@ -92,9 +92,15 @@ export default function TemplatesContent() {
                 }
               >
                 <div className="arch-in" style={{ padding: "clamp(26px,4vw,34px) 22px 26px" }}>
-                  <div className="arch_media">
+                  <Link
+                    href={`/events/${template.demoSlug}`}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label={`Preview the ${template.title} invitation`}
+                    className="arch_media"
+                  >
                     <TemplateArt template={template} />
-                  </div>
+                  </Link>
 
                   <h3 style={{ fontSize: "clamp(1.6rem,4vw,2rem)" }}>{template.title}</h3>
                   <p className="dd">
