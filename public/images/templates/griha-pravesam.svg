@@ -32,7 +32,7 @@
     <path d="M172 278 h44"/><path d="M194 252 v52"/>
     <path d="M384 278 h44"/><path d="M406 252 v52"/>
   </g>
-  <!-- threshold kolam: dot grid diamond -->
+  <!-- threshold motif: dot-grid diamond -->
   <g fill="#a51d47" opacity="0.8">
     <circle cx="258" cy="372" r="4"/><circle cx="286" cy="372" r="4"/><circle cx="314" cy="372" r="4"/><circle cx="342" cy="372" r="4"/>
     <circle cx="272" cy="388" r="4"/><circle cx="300" cy="388" r="4"/><circle cx="328" cy="388" r="4"/>

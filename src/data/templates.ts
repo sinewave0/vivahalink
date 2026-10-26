@@ -9,12 +9,12 @@ export const templates: Template[] = [
     tier: "Premium",
     price: 2499,
     description:
-      "A grand temple-inspired design with intricate kolam borders, deep maroon and gold tones, and a majestic nadaswaram-style reveal animation.",
+      "A grand celebration design with intricate geometric borders, deep maroon and gold tones, and a majestic reveal animation.",
     features: [
-      "Temple gopuram silhouette intro",
-      "Animated kolam border patterns",
+      "Grand archway silhouette intro",
+      "Animated geometric border patterns",
       "Multi-event schedule with map",
-      "Background nadaswaram music",
+      "Background instrumental music",
       "WhatsApp RSVP",
       "Add to Calendar",
       "Photo gallery",
@@ -71,9 +71,9 @@ export const templates: Template[] = [
     tier: "Basic",
     price: 1499,
     description:
-      "A vibrant celebration of Tamil Nadu's banana leaf tradition. Warm greens, cheerful yellows, and a clean, joyful layout.",
+      "A vibrant, botanical celebration in warm greens and cheerful yellows with a clean, joyful layout.",
     features: [
-      "Banana leaf unfurl animation",
+      "Botanical unfurl animation",
       "Event schedule with timings",
       "Venue map integration",
       "WhatsApp RSVP",
@@ -131,9 +131,9 @@ export const templates: Template[] = [
     tier: "Basic",
     price: 1499,
     description:
-      "A warm, welcoming design for housewarming ceremonies. Earthy temple stone tones with auspicious kolam motifs at the threshold.",
+      "A warm, welcoming design for housewarming ceremonies. Earthy stone tones with auspicious geometric motifs at the threshold.",
     features: [
-      "Doorway kolam animation",
+      "Doorway pattern animation",
       "Event details & timings",
       "Venue with Google Maps",
       "WhatsApp RSVP",
@@ -156,10 +156,10 @@ export const templates: Template[] = [
     tier: "Luxury",
     price: 3499,
     description:
-      "Inspired by the luxurious Kanjivaram silk saree. Rich silk textures, intricate zari-gold borders, and an opulent, immersive experience.",
+      "Inspired by heirloom textiles. Rich silk textures, intricate gold borders, and an opulent, immersive experience.",
     features: [
       "Silk drape reveal animation",
-      "Animated zari border patterns",
+      "Animated gold border patterns",
       "Full photo story section",
       "Multi-ceremony schedule",
       "Live countdown",

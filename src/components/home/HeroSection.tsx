@@ -21,7 +21,7 @@ export default function HeroSection() {
         One lovely link that carries your story, schedule, maps &amp; blessings.
       </p>
       <div className="hero-date">
-        TAMIL WEDDINGS · ANNIVERSARIES · HOUSEWARMINGS
+        WEDDINGS · ANNIVERSARIES · HOUSEWARMINGS
       </div>
       <div className="journey-actions">
         <Link href="/templates" className="btn solid">

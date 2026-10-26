@@ -186,9 +186,10 @@ export default function PalaceJourney({ children, cueLabel = "Scroll", id = "top
       palwrap.style.height = `${sh}px`;
       palwrap.style.left = `${(vw - sw) / 2}px`;
       palwrap.style.top = `${topOff}px`;
-      H = Math.max(topOff + sh, vh * 1.5);
+      // Keep the cinematic reveal, but avoid a three-screen-long cover on phones.
+      H = Math.max(topOff + sh * 0.75, vh * 1.25);
       journey.style.height = `${H}px`;
-      layer.style.height = `${H + vh * 0.95}px`;
+      layer.style.height = `${H + vh * 0.55}px`;
       cue.style.top = `${vh - 84}px`;
     };
 

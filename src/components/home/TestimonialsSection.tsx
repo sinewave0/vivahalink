@@ -16,7 +16,6 @@ export default function TestimonialsSection() {
     <section className="paper" style={{ paddingBlock: "clamp(60px,10vh,110px) clamp(40px,8vh,80px)" }} aria-label="Loved by families">
       <div className="wrap head-block">
         <h2 className="rv" style={{ fontSize: "clamp(2.2rem,7vw,4rem)" }}>
-          <span className="tamil">ஆசீர்வாதங்கள்</span>
           Loved By Families
         </h2>
         <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>

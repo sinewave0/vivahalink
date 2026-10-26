@@ -92,7 +92,7 @@ const MATCHERS: Array<[RegExp, IconKey]> = [
   [/haldi|telbaan|oil|nalangu|vritham/i, "oil"],
   [/nichayathartham|engagement|betrothal|ring|varmala/i, "rings"],
   [/lunch|feast|virundhu|bhoj|dinner|annadhanam|banquet|swaruchi/i, "feast"],
-  [/griha|pravesam|kolam|housewarm|threshold|sthapana|vinayak/i, "kalash"],
+  [/griha|pravesam|housewarm|threshold|sthapana|vinayak/i, "kalash"],
   [/janavasam|procession|nikasi|samela|baraat|mahera|carnival|chakbhat|welcome/i, "bunting"],
   [/renewal|vow|anniversary|golden|silver/i, "rings"],
   [/story|memory|photo|gallery/i, "chakra"],

@@ -32,7 +32,7 @@
       <path d="M213 258 L272 300 L214 288 Z"/>
     </g>
   </g>
-  <!-- kolam dots -->
+  <!-- decorative dots -->
   <g fill="#b47928" opacity="0.48">
     <circle cx="430" cy="240" r="4"/><circle cx="458" cy="240" r="4"/><circle cx="486" cy="240" r="4"/>
     <circle cx="444" cy="268" r="4"/><circle cx="472" cy="268" r="4"/>

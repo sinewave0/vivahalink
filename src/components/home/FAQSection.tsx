@@ -16,7 +16,6 @@ export default function FAQSection() {
     <section className="gthread gthread-plain" id="faq" aria-label="Frequently asked questions">
       <div className="wrap head-block">
         <h2 className="rv">
-          <span className="tamil">கேள்விகள்</span>
           Good Questions
         </h2>
         <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>

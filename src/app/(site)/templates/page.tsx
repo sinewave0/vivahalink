@@ -5,7 +5,7 @@ import { Mandala, Garland } from "@/components/ui/decor";
 export const metadata: Metadata = {
   title: "Templates & Pricing",
   description:
-    "Browse VivahaLink's invitation microsite templates for Tamil weddings, anniversaries and housewarmings — one-time pricing, live demos, and ordering over WhatsApp.",
+    "Browse VivahaLink's invitation microsite templates for Indian weddings, anniversaries and housewarmings — one-time pricing, live demos, and ordering over WhatsApp.",
   alternates: { canonical: "/templates" },
 };
 
@@ -20,7 +20,7 @@ export default function TemplatesPage() {
         <Garland side="l" />
         <Garland side="r" />
         <div className="wrap">
-          <Mandala glyph="ஸ்ரீ" />
+          <Mandala glyph="✦" />
           <p className="small rv">One-time pricing · unlimited guests · delivered in 48 hours</p>
           <p className="hostline rv" style={{ "--d": ".06s" } as React.CSSProperties}>
             The VivahaLink collection

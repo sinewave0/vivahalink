@@ -208,13 +208,13 @@ export const demoEvents: InvitationData[] = [
         description: "Auspicious first entry into the new home",
       },
       {
-        name: "Kolam Kattu & Prayer",
+        name: "Welcome Ritual & Prayer",
         date: "2027-01-17",
         time: "9:00 AM",
         venue: "New Family Residence — Courtyard",
         address: "Plot 14, Vinayaga Nagar, Fairlands, Salem 636016",
         mapUrl: "https://maps.google.com/?q=Fairlands+Salem",
-        description: "Kolam drawing, paal kaachal & house blessings",
+        description: "A welcome ritual, blessing ceremony and house prayers",
       },
       {
         name: "Annadhanam (Lunch)",
@@ -235,7 +235,7 @@ export const demoEvents: InvitationData[] = [
     tagline: "Woven together, like silk and gold",
     weddingDate: "2027-08-19T09:00:00+05:30",
     story:
-      "Swetha is a Kanjivaram weaver's daughter from Kanchipuram; Ram is a photographer who came to document the looms and never left. Between silk boundaries and camera shutters, they found a partnership as intricate as a zari border. Their wedding is an ode to the craft town that made them — every detail woven with love.",
+      "Swetha is a textile artist; Ram is a photographer who came to document her work and never left. Between colour, craft and camera shutters, they found a partnership as intricate as a hand-finished border. Their wedding is an ode to the creativity that brought them together — every detail woven with love.",
     photos: [
       "/images/demo/couple-1.svg",
       "/images/demo/couple-2.svg",

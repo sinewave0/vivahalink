@@ -34,6 +34,6 @@
   </g>
   <!-- monogram -->
   <text x="300" y="330" text-anchor="middle" font-family="Georgia, serif" font-size="56" fill="#f5e68f" opacity="0.95">S &amp; R</text>
-  <text x="300" y="360" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="6" fill="#e5c02a" opacity="0.8">KANJIVARAM · AUG 2027</text>
+  <text x="300" y="360" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="6" fill="#e5c02a" opacity="0.8">HEIRLOOM · AUG 2027</text>
   <rect x="10" y="10" width="580" height="380" rx="18" fill="none" stroke="#e5c02a" stroke-width="2" opacity="0.6"/>
 </svg>

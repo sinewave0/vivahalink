@@ -25,7 +25,7 @@ interface InvitationExperienceProps {
 
 /** Category-specific phrasing for the invitation spread. */
 const PHRASING = {
-  wedding: { invite: "invite you to the wedding of", countdown: "Until the Muhurtham" },
+  wedding: { invite: "invite you to the wedding of", countdown: "Until the Celebration" },
   anniversary: { invite: "invite you to the celebration of", countdown: "Until the Toast" },
   housewarming: { invite: "invite you to the housewarming of", countdown: "Until the Pravesam" },
 } as const;
@@ -121,13 +121,13 @@ export default function InvitationExperience({
               textAnchor="middle"
               fontSize={54}
               fill="#a3242f"
-              style={{ fontFamily: "var(--font-tamil)" }}
+              style={{ fontFamily: "var(--font-deva)" }}
             >
-              ஸ்ரீ
+              शुभ
             </text>
           </svg>
 
-          <p className="namo tamil rv">॥ ஸ்ரீ கணேசாய நமஹ ॥</p>
+          <p className="namo deva rv">॥ शुभ विवाह ॥</p>
           {invitation.family1 && (
             <p className="small rv" style={{ "--d": ".04s" } as CSSProperties}>
               {invitation.family1}

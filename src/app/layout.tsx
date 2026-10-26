@@ -4,7 +4,6 @@ import {
   Aboreto,
   Manrope,
   Tiro_Devanagari_Hindi,
-  Tiro_Tamil,
 } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/constants";
@@ -15,7 +14,6 @@ import { SITE } from "@/lib/constants";
  *  - Aboreto             → engraved small-cap labels
  *  - Manrope             → quiet body text
  *  - Tiro Devanagari     → shloka flourishes
- *  - Tiro Tamil          → Tamil flourishes
  */
 const display = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -46,27 +44,19 @@ const deva = Tiro_Devanagari_Hindi({
   display: "swap",
 });
 
-const tamil = Tiro_Tamil({
-  variable: "--font-tiro-tamil",
-  subsets: ["tamil", "latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "VivahaLink — Beautiful Digital Invitation Websites for Tamil Weddings",
+    default: "VivahaLink — Beautiful Digital Invitation Websites for Indian Celebrations",
     template: "%s | VivahaLink",
   },
   description:
-    "Premium, culturally rooted digital invitation microsites for Tamil weddings, anniversaries, and housewarmings. Choose a template, customize via WhatsApp, and share your invitation link.",
+    "Premium, culturally rooted digital invitation microsites for Indian weddings, anniversaries, housewarmings, and milestone celebrations. Choose a template, customize via WhatsApp, and share your invitation link.",
   keywords: [
-    "Tamil wedding invitation",
+    "Indian wedding invitation",
     "digital invitation",
     "wedding website",
-    "Tamil Nadu wedding",
+    "Indian wedding website",
     "online invitation",
     "VivahaLink",
   ],
@@ -75,14 +65,14 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "/",
     siteName: "VivahaLink",
-    title: "VivahaLink — Beautiful Digital Invitation Websites for Tamil Weddings",
+    title: "VivahaLink — Beautiful Digital Invitation Websites for Indian Celebrations",
     description:
       "Choose a template, customise it over WhatsApp, and share one elegant link — schedules, maps, live countdown and RSVP included. No app needed.",
     images: ["/images/hero/invitation-editorial.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "VivahaLink — Digital Invitation Websites for Tamil Weddings",
+    title: "VivahaLink — Digital Invitation Websites for Indian Celebrations",
     description:
       "Premium invitation microsites with countdown, maps, and WhatsApp RSVP. One link, every guest.",
     images: ["/images/hero/invitation-editorial.png"],
@@ -107,7 +97,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${display.variable} ${label.variable} ${body.variable} ${deva.variable} ${tamil.variable} h-full antialiased`}
+      className={`${display.variable} ${label.variable} ${body.variable} ${deva.variable} h-full antialiased`}
     >
       <body className="font-body">{children}</body>
     </html>

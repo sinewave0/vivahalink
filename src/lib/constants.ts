@@ -9,9 +9,9 @@ export const WHATSAPP_DISPLAY = process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? "+91
 
 export const SITE = {
   name: "VivahaLink",
-  tagline: "Beautiful digital invitation websites for Tamil weddings & celebrations",
+  tagline: "Beautiful digital invitation websites for Indian celebrations",
   description:
-    "Premium, culturally rooted digital invitation microsites for Tamil weddings, anniversaries, and housewarmings.",
+    "Premium, culturally rooted digital invitation microsites for Indian weddings, anniversaries, housewarmings, and milestone celebrations.",
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://vivahalink.com").replace(/\/$/, ""),
 } as const;
 

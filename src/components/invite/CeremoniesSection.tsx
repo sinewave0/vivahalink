@@ -57,7 +57,6 @@ export default function CeremoniesSection({ invitation }: { invitation: Invitati
     <section className="gthread" id="events">
       <div className="wrap head-block">
         <h2 className="rv">
-          <span className="tamil">மாங்கலிக நிகழ்ச்சிகள்</span>
           The Celebrations
         </h2>
         <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>

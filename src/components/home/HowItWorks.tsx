@@ -23,7 +23,6 @@ export default function HowItWorks() {
     <section className="gthread gthread-plain" id="how-it-works" aria-label="How it works">
       <div className="wrap head-block">
         <h2 className="rv">
-          <span className="tamil">எப்படி வேலை செய்யும்</span>
           How It Works
         </h2>
         <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>

@@ -32,9 +32,9 @@ function PaperIntro() {
             textAnchor="middle"
             fontSize={54}
             fill="#a3242f"
-            style={{ fontFamily: "var(--font-tamil)" }}
+            style={{ fontFamily: "var(--font-deva)" }}
           >
-            ஸ்ரீ
+            शुभ
           </text>
         </svg>
 
@@ -85,7 +85,6 @@ export default function FeaturedTemplates() {
       <section className="gthread" id="collection" aria-label="Featured templates">
         <div className="wrap head-block">
           <h2 className="rv">
-            <span className="tamil">மங்கல வடிவமைப்பு</span>
             The Collection
           </h2>
           <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>

@@ -1,6 +1,6 @@
 # VivahaLink
 
-**Beautiful digital invitation websites for Tamil weddings & celebrations.**
+**Beautiful digital invitation websites for Indian celebrations.**
 
 VivahaLink sells ready-made invitation microsites. Customers pick a template, customise it over
 WhatsApp, pay via UPI, and receive a shareable link their guests actually enjoy opening.
@@ -31,7 +31,7 @@ guests arriving from shared links should experience the invitation, not the stor
 
 ## The invitation microsite experience
 
-- **Intro gate** — full-screen reveal (couple monogram, kolam ring) that unlocks scrolling
+- **Hero reveal** — full-screen couple monogram and invitation opening that welcomes guests in
 - **Hero** with couple names, tagline, date & a **live countdown**
 - **Story section** with photo gallery
 - **Ceremony timeline** — every event with time, venue, **Google Maps directions** and
@@ -74,7 +74,7 @@ src/
 - **Demo invitations** — `src/data/demo-events.ts` (fictional couples/venues; safest copy source
   when adding new demo content)
 - **Design tokens** — Tailwind theme in `src/app/globals.css` (maroon / gold / ivory / temple
-  stone / green) and shared helpers (`kolam-pattern`, `gold-shimmer`, `container-width`,
+  stone / green) and shared helpers (`gold-shimmer`, `container-width`,
   `section-padding`)
 
 ## Data model (v1, no backend)

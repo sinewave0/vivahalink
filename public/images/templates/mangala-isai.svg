@@ -4,7 +4,7 @@
       <stop offset="0" stop-color="#5c1129"/>
       <stop offset="1" stop-color="#3a0617"/>
     </linearGradient>
-    <pattern id="kolam" width="26" height="26" patternUnits="userSpaceOnUse">
+    <pattern id="motif" width="26" height="26" patternUnits="userSpaceOnUse">
       <circle cx="13" cy="13" r="1.6" fill="#e5c02a" opacity="0.28"/>
     </pattern>
     <radialGradient id="glow" cx="0.5" cy="0.95" r="0.9">
@@ -13,9 +13,9 @@
     </radialGradient>
   </defs>
   <rect width="600" height="400" fill="url(#bg)"/>
-  <rect width="600" height="400" fill="url(#kolam)"/>
+  <rect width="600" height="400" fill="url(#motif)"/>
   <rect width="600" height="400" fill="url(#glow)"/>
-  <!-- temple gopuram silhouette -->
+  <!-- layered archway silhouette -->
   <g fill="#2a0410">
     <path d="M300 148l38 0-6 26h-64z"/>
     <path d="M256 174h88v34h-88z"/>

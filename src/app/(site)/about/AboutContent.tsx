@@ -10,7 +10,7 @@ const values = [
   {
     icon: ScrollText,
     title: "Rooted in tradition",
-    text: "Kolams, jasmine, temple silhouettes, kanjivaram textures — our designs begin with South Indian craft, never a generic template.",
+    text: "From bold colour stories to quiet, classic elegance, our designs begin with your celebration — never a generic template.",
   },
   {
     icon: Sparkles,
@@ -43,15 +43,15 @@ export default function AboutPage() {
       >
         <div className="wrap">
           <Mandala glyph="ॐ" />
-          <p className="namo tamil rv">॥ விவாக இணைப்பு ॥</p>
+          <p className="namo deva rv">॥ शुभ अवसर ॥</p>
           <p className="small rv" style={{ "--d": ".05s" } as React.CSSProperties}>
             The invitation is the first experience of the wedding — not just a card
           </p>
           <div className="person rv" style={{ "--d": ".1s" } as React.CSSProperties}>
             <h2 style={{ fontSize: "clamp(2.6rem,9vw,5rem)" }}>About VivahaLink</h2>
             <p className="rel">
-              Beautiful digital invitation websites for Tamil celebrations and
-              the families who gather for them.
+              Beautiful digital invitation websites for celebrations across India
+              and the families who gather for them.
             </p>
           </div>
         </div>
@@ -65,9 +65,9 @@ export default function AboutPage() {
         <div className="wrap" style={{ maxWidth: 720 }}>
           <Divider className="rv" style={{ display: "block", width: 160, margin: "0 auto 30px" }} />
           {[
-            "VivahaLink began with a simple frustration. Weddings in Tamil Nadu deserve invitations that carry the warmth of the occasion — yet most digital options were lifeless PDFs or print-shop scans with a thousand-watt gold filter.",
+            "VivahaLink began with a simple frustration. Indian celebrations deserve invitations that carry the warmth of the occasion — yet most digital options were lifeless PDFs or print-shop scans with a thousand-watt gold filter.",
             "We thought: what if the invitation itself felt like an event? A link your family opens eagerly. A soft reveal, the couple's story, a countdown your grandmother actually taps, an RSVP that lands directly in your WhatsApp.",
-            "That's VivahaLink. Every microsite is designed by hand with South Indian craft — kolam patterns, kanjivaram palettes, banana-leaf greens — and delivered as a single beautiful link within 24–48 hours of receiving your details.",
+            "That's VivahaLink. Every microsite is designed by hand with a sense of place, colour and celebration — then delivered as a single beautiful link within 24–48 hours of receiving your details.",
           ].map((para, i) => (
             <p
               key={i}
@@ -98,7 +98,6 @@ export default function AboutPage() {
       <section className="gthread gthread-plain" aria-label="What we care about">
         <div className="wrap head-block">
           <h2 className="rv">
-            <span className="tamil">நமது நம்பிக்கைகள்</span>
             What We Care About
           </h2>
           <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
@@ -149,7 +148,6 @@ export default function AboutPage() {
       <section className="gthread" aria-label="Contact">
         <div className="wrap head-block">
           <h2 className="rv">
-            <span className="tamil">தொடர்பு</span>
             Talk To Us
           </h2>
           <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
@@ -198,7 +196,7 @@ export default function AboutPage() {
                 </span>
                 <span style={{ display: "flex", alignItems: "center", gap: 9 }}>
                   <MapPin size={15} style={{ color: "var(--gold)", flexShrink: 0 }} />
-                  Tamil Nadu &amp; the global Tamil diaspora
+                  India &amp; families celebrating around the world
                 </span>
               </div>
 
