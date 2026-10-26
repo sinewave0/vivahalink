@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #5a2a3d;
+  --color-ink-soft: #80566a;
+  --color-gold: #b08a46;
+  --color-gold-lite: #e0c385;
+  --color-paper: #e8d3c6;
+  --color-blush: #f6e4dc;
+  --color-ivory: #fffaf2;
+  --color-night: #1b1440;
+  --color-mist: #ece6f6;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --radius-pill: 999px;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-blush);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) { cursor: pointer; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 500; text-wrap: balance; }
+  :focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+}
+
+.label {
+  font-family: var(--font-display);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--color-gold);
+}
+
+.journey {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #1b1440;
+  color: var(--color-ivory);
+}
+.journey img.sky {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.journey .veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(27,20,64,.25) 0%, rgba(90,42,61,.08) 40%, rgba(232,211,198,.15) 78%, var(--color-paper) 100%);
+}
+.lantern {
+  position: absolute;
+  width: 28px;
+  height: 42px;
+  border-radius: 14px 14px 10px 10px;
+  background: radial-gradient(circle at 50% 40%, #ffe7b0, #c9893a 55%, #7a4a22);
+  box-shadow: 0 0 22px rgba(224,195,133,.7);
+  animation: sway 6s ease-in-out infinite;
+}
+.lantern::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -48px;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(var(--color-gold-lite), transparent);
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lantern { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+.paper {
+  background-color: var(--color-paper);
+  background-image: radial-gradient(rgba(90,42,61,.04) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.arch {
+  border: 1px solid var(--color-gold-lite);
+  border-radius: 180px 180px 24px 24px;
+  background: rgba(255,250,242,.72);
+  overflow: hidden;
+}
+
+.thread {
+  position: relative;
+}
+.thread::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(transparent, var(--color-gold), transparent);
+}
