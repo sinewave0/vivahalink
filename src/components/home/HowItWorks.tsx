@@ -27,7 +27,7 @@ export default function HowItWorks() {
           How It Works
         </h2>
         <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
-          From "we're getting married" to a link your whole family loves — in a day or two.
+          From &ldquo;we&apos;re getting married&rdquo; to a link your whole family loves — in a day or two.
         </p>
       </div>
 

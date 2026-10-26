@@ -213,10 +213,18 @@ export function Monogram({ letter, sub }: { letter: string; sub?: string }) {
 /* Divider — a small gold flourish                                     */
 /* ------------------------------------------------------------------ */
 
-export function Divider({ tone = "var(--gold)", className }: { tone?: string; className?: string }) {
+export function Divider({
+  tone = "var(--gold)",
+  className,
+  style,
+}: {
+  tone?: string;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
   const leaves = [-1, 0, 1];
   return (
-    <svg className={className} viewBox="0 0 160 26" aria-hidden="true" style={{ color: tone }}>
+    <svg className={className} viewBox="0 0 160 26" aria-hidden="true" style={{ color: tone, ...style }}>
       <line x1={0} y1={13} x2={56} y2={13} stroke="currentColor" strokeWidth={1} opacity={0.7} />
       <line x1={104} y1={13} x2={160} y2={13} stroke="currentColor" strokeWidth={1} opacity={0.7} />
       {leaves.map((s) => (

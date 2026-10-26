@@ -16,14 +16,12 @@ import type { InvitationData } from "@/lib/types";
  */
 export default function InvitationMusic({
   invitation,
-  accent = "#e5c02a",
-  main = "#7a1636",
-  surface = "#fdfaf4",
+  accent = "#b08a46",
+  main = "#5a2a3d",
 }: {
   invitation: InvitationData;
   accent?: string;
   main?: string;
-  surface?: string;
 }) {
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -115,30 +113,26 @@ export default function InvitationMusic({
   return (
     <motion.button
       onClick={toggle}
-      whileTap={{ scale: 0.9 }}
-      aria-label={playing ? "Turn music off" : "Turn music on"}
-      title={playing ? "Sound off" : "Sound on — soft tanpura"}
-      className="flex h-12 w-12 items-center justify-center rounded-full border shadow-lg transition-opacity backdrop-blur"
-      style={
-        playing
-          ? { borderColor: accent, backgroundColor: main, color: accent }
-          : { borderColor: `${accent}80`, backgroundColor: `${surface}e6`, color: main }
-      }
+      whileTap={{ scale: 0.96 }}
+      aria-pressed={playing}
+      aria-label={playing ? "Pause background music" : "Play background music"}
+      title={playing ? "Music on" : "Play music — soft tanpura"}
+      className={`music-pill${playing ? " on" : " hint"}`}
+      style={{ borderColor: accent, color: main }}
     >
+      <span className="bars" aria-hidden="true">
+        <i />
+        <i />
+        <i />
+        <i />
+      </span>
       {playing ? (
-        <span className="flex items-end gap-[3px]" aria-hidden="true">
-          {[0, 1, 2].map((i) => (
-            <motion.span
-              key={i}
-              className="w-[3px] rounded-full bg-current"
-              animate={{ height: ["30%", "100%", "45%", "80%", "30%"] }}
-              transition={{ duration: 1.1, repeat: Infinity, delay: i * 0.18, ease: "easeInOut" }}
-              style={{ height: "60%" }}
-            />
-          ))}
-        </span>
+        "Music on"
       ) : (
-        <Volume2 size={18} />
+        <span className="inline-flex items-center gap-2">
+          <Volume2 size={13} />
+          Play music
+        </span>
       )}
       {invitation.musicUrl && <audio ref={audioRef} src={invitation.musicUrl} loop preload="none" />}
     </motion.button>

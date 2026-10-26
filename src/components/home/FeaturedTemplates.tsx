@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import TemplateArt from "@/components/ui/TemplateArt";
 import { templates } from "@/data/templates";
-import { getInvitationTheme } from "@/lib/invitation-theme";
 import { formatPrice } from "@/lib/utils";
 import { waLink, waMessages } from "@/lib/constants";
 import { useReveal } from "@/components/ui/ScrollFX";
@@ -97,7 +96,6 @@ export default function FeaturedTemplates() {
         <div className="wrap" style={{ position: "relative", zIndex: 2 }}>
           <div className="day" style={{ paddingBottom: "clamp(30px,6vh,60px)" }}>
             {featured.map((template, i) => {
-              const theme = getInvitationTheme(template);
               return (
                 <article
                   key={template.id}
@@ -115,13 +113,7 @@ export default function FeaturedTemplates() {
                         className="arch_media"
                         style={{ display: "block" }}
                       >
-                        <Image
-                          src={template.thumbnail}
-                          alt={`${template.title} invitation artwork`}
-                          fill
-                          sizes="(min-width: 880px) 400px, 88vw"
-                          className="object-cover"
-                        />
+                        <TemplateArt template={template} />
                       </Link>
                       <h3>{template.title}</h3>
                       <p className="dd">

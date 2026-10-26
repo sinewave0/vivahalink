@@ -1,30 +1,30 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, MessageCircle, Filter } from "lucide-react";
 import { templates } from "@/data/templates";
 import { getInvitationTheme } from "@/lib/invitation-theme";
 import { formatPrice } from "@/lib/utils";
 import { waLink, waMessages } from "@/lib/constants";
+import TemplateArt from "@/components/ui/TemplateArt";
+import { useReveal } from "@/components/ui/ScrollFX";
 
 const categories = [
-  { value: "all", label: "All" },
-  { value: "wedding", label: "Wedding" },
-  { value: "anniversary", label: "Anniversary" },
-  { value: "housewarming", label: "Housewarming" },
+  { value: "all", label: "All designs" },
+  { value: "wedding", label: "Weddings" },
+  { value: "anniversary", label: "Anniversaries" },
+  { value: "housewarming", label: "Housewarmings" },
 ];
 
-const tierColors: Record<string, string> = {
-  Basic: "bg-temple-100 text-temple-700 border-temple-200",
-  Premium: "bg-gold-100 text-gold-800 border-gold-200",
-  Luxury: "bg-maroon-100 text-maroon-800 border-maroon-200",
-};
+const TINTS = ["#f7dce4", "#fbe3cf", "#dfe8d6", "#e3dbf3", "#d9d3f1", "#f7d9de"];
 
+/**
+ * The collection — every design as an arch panel with its own palette,
+ * hung in a grid. Filtering re-runs the reveal observer for new cards.
+ */
 export default function TemplatesContent() {
   const [activeCategory, setActiveCategory] = useState("all");
+  useReveal([activeCategory]);
 
   const filtered =
     activeCategory === "all"
@@ -32,167 +32,129 @@ export default function TemplatesContent() {
       : templates.filter((t) => t.category === activeCategory);
 
   return (
-    <section className="section-padding bg-ivory-50">
-      <div className="container-width">
-        {/* Filter tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
-          className="flex items-center justify-center gap-2 mb-12 flex-wrap"
+    <section className="gthread" style={{ paddingTop: "clamp(10px,2vh,24px)" }}>
+      <div className="wrap head-block">
+        <h2 className="rv" style={{ fontSize: "clamp(2rem,5.5vw,3.4rem)" }}>
+          Pick the feeling
+        </h2>
+        <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
+          Each design is a complete little world — preview it live, then we make it yours.
+        </p>
+
+        <div
+          className="rv"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: 8,
+            marginTop: 22,
+          }}
         >
-          <Filter size={16} className="text-temple-500 mr-1" aria-hidden="true" />
           {categories.map((cat) => (
             <button
               key={cat.value}
+              type="button"
               onClick={() => setActiveCategory(cat.value)}
               aria-pressed={activeCategory === cat.value}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-700 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 ${
-                activeCategory === cat.value
-                  ? "bg-maroon-800 text-ivory-100 shadow-lg shadow-maroon-800/20"
-                  : "bg-white text-temple-700 border border-gold-200/50 hover:bg-ivory-100"
-              }`}
+              className={`chip${activeCategory === cat.value ? " active" : ""}`}
             >
               {cat.label}
             </button>
           ))}
-        </motion.div>
+        </div>
+      </div>
 
-        {/* Template Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((template, i) => (
-              (() => {
-                const theme = getInvitationTheme(template);
+      <div
+        className="wrap"
+        style={{ position: "relative", zIndex: 2, paddingBottom: "clamp(50px,9vh,90px)" }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gap: "clamp(18px,3vw,30px)",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 260px), 1fr))",
+            alignItems: "start",
+          }}
+        >
+          {filtered.map((template, i) => {
+            const theme = getInvitationTheme(template);
+            return (
+              <article
+                key={template.id}
+                className="arch"
+                style={
+                  {
+                    "--tint": TINTS[i % TINTS.length],
+                    "--aw": "100%",
+                    "--d": `${(i % 3) * 0.06}s`,
+                  } as React.CSSProperties
+                }
+              >
+                <div className="arch-in" style={{ padding: "clamp(26px,4vw,34px) 22px 26px" }}>
+                  <div className="arch_media">
+                    <TemplateArt template={template} />
+                  </div>
 
-                return (
-                  <motion.div
-                    key={template.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.96 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1], delay: i * 0.05 }}
-                    className="group"
+                  <h3 style={{ fontSize: "clamp(1.6rem,4vw,2rem)" }}>{template.title}</h3>
+                  <p className="dd">
+                    {template.category} · {template.tier}
+                  </p>
+                  <p className="tm">{formatPrice(template.price)}</p>
+
+                  <p
+                    className="vn"
+                    style={{ marginTop: 10, marginBottom: 18, minHeight: "5.2em" }}
                   >
-                    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-maroon-800/5 transition-all duration-500 ease-brand h-full flex flex-col">
-                      {/* Keep the artwork unobstructed; its own colour story does the selling. */}
-                      <div className="relative h-52 md:h-60 overflow-hidden">
-                        <Image
-                          src={template.thumbnail}
-                          alt={`${template.title} invitation template preview`}
-                          fill
-                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                          loading={i === 0 ? "eager" : undefined}
-                          className="object-cover transition-transform duration-700 ease-brand group-hover:scale-105"
-                        />
+                    {template.description}
+                  </p>
 
-                        {/* Tier badge */}
-                        <span
-                          className={`absolute top-3 right-3 text-xs font-semibold px-3 py-1 rounded-md border ${
-                            tierColors[template.tier]
-                          }`}
-                          style={
-                            template.theme
-                              ? {
-                                  backgroundColor: `${theme.accent}e8`,
-                                  borderColor: `${theme.accent}cc`,
-                                  color: theme.ink,
-                                }
-                              : undefined
-                          }
-                        >
-                          {template.tier}
-                        </span>
+                  <div className="pdots" style={{ justifyContent: "center", marginBottom: 16 }}>
+                    {template.palette.map((c) => (
+                      <span
+                        key={c.hex}
+                        title={c.name}
+                        style={{ backgroundColor: c.hex, borderColor: theme.surface }}
+                      />
+                    ))}
+                  </div>
 
-                        {/* Category badge */}
-                        <span className="absolute top-3 left-3 text-xs font-medium px-3 py-1 rounded-md bg-white/85 text-temple-700 backdrop-blur-sm">
-                          {template.category.charAt(0).toUpperCase() +
-                            template.category.slice(1)}
-                        </span>
-                      </div>
-
-                      {/* Content */}
-                      <div className="p-5 md:p-6 flex flex-col flex-1">
-                        <div className="flex items-start justify-between gap-2 mb-2">
-                          <h3 className="font-serif text-xl font-bold" style={{ color: theme.ink }}>
-                            {template.title}
-                          </h3>
-                          <span className="text-xl font-bold whitespace-nowrap" style={{ color: theme.accent }}>
-                            {formatPrice(template.price)}
-                          </span>
-                        </div>
-                        <p className="text-sm leading-relaxed mb-4" style={{ color: theme.muted }}>
-                          {template.description}
-                        </p>
-
-                        {/* Features */}
-                        <div className="flex flex-wrap gap-1.5 mb-5">
-                          {template.features.slice(0, 4).map((f) => (
-                            <span
-                              key={f}
-                              className="text-xs bg-ivory-200/70 text-temple-700 px-2.5 py-1 rounded-full"
-                            >
-                              {f}
-                            </span>
-                          ))}
-                          {template.features.length > 4 && (
-                            <span className="text-xs text-temple-500 px-2 py-1">
-                              +{template.features.length - 4} more
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Color palette */}
-                        <div className="flex items-center gap-2 mb-5">
-                          {template.palette.map((color) => (
-                            <div
-                              key={color.hex}
-                              className="w-5 h-5 rounded-full border-2 border-white shadow-sm"
-                              style={{ backgroundColor: color.hex }}
-                              title={color.name}
-                            />
-                          ))}
-                        </div>
-
-                        {/* Actions — pushed to bottom */}
-                        <div className="flex gap-3 mt-auto">
-                          <Link
-                            href={`/events/${template.demoSlug}`}
-                            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-300 ease-brand hover:opacity-90 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-temple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-                            style={{ backgroundColor: theme.main, color: theme.surface }}
-                          >
-                            <ExternalLink size={14} />
-                            Live Demo
-                          </Link>
-                          <a
-                            href={waLink(waMessages.order(template.title))}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-xl text-sm font-medium transition-colors duration-300 ease-brand hover:bg-green-500 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-temple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-                          >
-                            <MessageCircle size={14} />
-                            Order
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })()
-            ))}
-          </AnimatePresence>
-        </motion.div>
+                  <div className="btns">
+                    <Link
+                      href={`/events/${template.demoSlug}`}
+                      target="_blank"
+                      rel="noopener"
+                      className="btn solid"
+                    >
+                      Live preview
+                    </Link>
+                    <a
+                      href={waLink(waMessages.order(template.title))}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn"
+                    >
+                      Order
+                    </a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
 
         {filtered.length === 0 && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center text-temple-500 py-12"
-          >
-            No templates found in this category. More designs coming soon.
-          </motion.p>
+          <p className="small" style={{ textAlign: "center", paddingBlock: 40 }}>
+            Nothing here yet — more designs are on the loom. Ask us for a custom one.
+          </p>
         )}
+
+        <p
+          className="small"
+          style={{ textAlign: "center", marginTop: "clamp(30px,5vh,50px)", color: "var(--ink-soft)" }}
+        >
+          Every design includes countdown, maps, calendar &amp; WhatsApp RSVP.
+        </p>
       </div>
     </section>
   );

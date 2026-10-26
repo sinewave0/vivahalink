@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, MessageCircle, PartyPopper, X } from "lucide-react";
+import { MessageCircle, X } from "lucide-react";
 import type { InvitationData } from "@/lib/types";
 import { waLink } from "@/lib/constants";
 
@@ -35,10 +35,32 @@ const stepMotion = {
   transition: { duration: 0.3 },
 };
 
+const fieldLabel: React.CSSProperties = {
+  display: "block",
+  fontFamily: "var(--font-label)",
+  fontSize: "0.6rem",
+  letterSpacing: "0.22em",
+  textTransform: "uppercase",
+  color: "var(--gold)",
+  marginBottom: 8,
+};
+
+const field: React.CSSProperties = {
+  width: "100%",
+  borderRadius: 14,
+  border: "1px solid rgba(176,138,70,.45)",
+  background: "var(--ivory)",
+  padding: "13px 15px",
+  fontSize: "0.95rem",
+  color: "var(--ink)",
+  outline: "none",
+  fontFamily: "var(--font-body)",
+};
+
 /**
- * Three-step RSVP that composes a pre-filled WhatsApp message
- * and opens wa.me — RSVPs are handled personally by the hosts,
- * consistent with VivahaLink's no-backend v1 model.
+ * Three-step RSVP composed as a card-paper note. Responses are turned
+ * into a pre-filled WhatsApp message and opened in wa.me — RSVPs are
+ * handled personally by the hosts, consistent with the no-backend model.
  */
 export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps) {
   const [state, setState] = useState<RsvpState>(initial);
@@ -144,6 +166,17 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
     setSent(true);
   };
 
+  const choice = (selected: boolean): React.CSSProperties => ({
+    width: "100%",
+    textAlign: "left",
+    borderRadius: 18,
+    border: selected ? "1.5px solid var(--gold)" : "1px solid rgba(176,138,70,.35)",
+    background: selected ? "rgba(224,195,133,.22)" : "var(--ivory)",
+    padding: "15px 17px",
+    cursor: "pointer",
+    transition: "background .25s, border-color .25s",
+  });
+
   return (
     <AnimatePresence>
       {open && (
@@ -154,9 +187,9 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-maroon-950/70 backdrop-blur-sm"
+            className="absolute inset-0"
+            style={{ background: "rgba(27,20,64,.62)", backdropFilter: "blur(4px)" }}
             onClick={close}
             aria-hidden="true"
           />
@@ -169,41 +202,83 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 32, scale: 0.97 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-md overflow-hidden rounded-3xl border border-gold-200/70 bg-ivory-50 shadow-2xl"
+            className="relative w-full max-w-md overflow-hidden"
+            style={{
+              borderRadius: 26,
+              border: "1px solid var(--gold)",
+              background: "var(--paper)",
+              boxShadow: "0 40px 80px -30px rgba(27,20,64,.55)",
+            }}
           >
-            {/* Header */}
-            <div className="relative bg-maroon-800 px-6 py-5" style={{ backgroundColor: "#7a1636" }}>
-              <div className="absolute inset-0 kolam-pattern opacity-10" />
-              <div className="relative flex items-center justify-between">
+            {/* Header band */}
+            <div
+              style={{
+                position: "relative",
+                padding: "22px 24px 20px",
+                background: "linear-gradient(180deg, #f7dce4 0, var(--ink) 190%)",
+                borderBottom: "1px solid rgba(176,138,70,.45)",
+              }}
+            >
+              <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-gold-400/90">
+                  <p
+                    style={{
+                      fontFamily: "var(--font-label)",
+                      fontSize: "0.58rem",
+                      letterSpacing: "0.26em",
+                      textTransform: "uppercase",
+                      color: "var(--gold)",
+                      margin: 0,
+                    }}
+                  >
                     {invitation.coupleName1} &amp; {invitation.coupleName2}
                   </p>
-                  <h3 className="mt-0.5 font-serif text-xl font-semibold text-ivory-100">
-                    {sent ? "Almost done!" : "Will you join us?"}
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "1.6rem",
+                      color: "var(--ink)",
+                      margin: "4px 0 0",
+                    }}
+                  >
+                    {sent ? "Almost done" : "Will you join us?"}
                   </h3>
                 </div>
                 <button
                   onClick={close}
                   aria-label="Close RSVP"
-                  className="rounded-full p-2 text-ivory-300/80 transition-colors hover:bg-white/10 hover:text-ivory-100"
+                  style={{
+                    borderRadius: 999,
+                    padding: 8,
+                    border: "1px solid rgba(176,138,70,.45)",
+                    background: "rgba(255,250,242,.7)",
+                    color: "var(--ink)",
+                    cursor: "pointer",
+                  }}
                 >
-                  <X size={18} />
+                  <X size={16} />
                 </button>
               </div>
             </div>
 
-            <div className="max-h-[82dvh] overflow-y-auto overscroll-contain p-6 sm:p-7">
+            <div
+              style={{ background: "var(--paper)", backgroundImage: "var(--noise)" }}
+              className="max-h-[78dvh] overflow-y-auto overscroll-contain p-6 sm:p-7"
+            >
               {!sent ? (
                 <>
-                  {/* Progress dots */}
+                  {/* Progress */}
                   <div className="mb-6 flex items-center justify-center gap-2">
                     {[1, 2, 3].map((s) => (
                       <span
                         key={s}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${
-                          s === step ? "w-7 bg-gold-500" : "w-3 bg-temple-200"
-                        }`}
+                        style={{
+                          height: 4,
+                          borderRadius: 999,
+                          width: s === step ? 28 : 12,
+                          background: s === step ? "var(--gold)" : "rgba(176,138,70,.28)",
+                          transition: "all .3s",
+                        }}
                       />
                     ))}
                   </div>
@@ -211,39 +286,57 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
                   <AnimatePresence mode="wait">
                     {step === 1 && (
                       <motion.div key="step1" {...stepMotion} className="space-y-3">
-                        <p className="text-sm text-temple-600 text-center mb-4">
+                        <p
+                          style={{
+                            fontFamily: "var(--font-display)",
+                            fontStyle: "italic",
+                            color: "var(--ink-soft)",
+                            textAlign: "center",
+                            marginBottom: 16,
+                          }}
+                        >
                           How should we tell the couple?
                         </p>
+
                         <button
                           onClick={() => {
                             patch({ attending: true });
                             if (state.events.length === 0) patch({ events: eventNames });
                           }}
-                          className={`w-full rounded-2xl border-2 px-4 py-4 text-left transition-all ${
-                            state.attending === true
-                              ? "border-gold-500 bg-gold-100/70 shadow-md"
-                              : "border-gold-200/50 bg-white hover:border-gold-400"
-                          }`}
+                          style={choice(state.attending === true)}
                         >
-                          <span className="text-lg">🥁</span>
-                          <p className="font-serif text-base font-semibold text-maroon-800">
+                          <span style={{ fontSize: "1.1rem" }}>🪔</span>
+                          <p
+                            style={{
+                              fontFamily: "var(--font-display)",
+                              fontSize: "1.15rem",
+                              color: "var(--ink)",
+                              margin: "6px 0 0",
+                            }}
+                          >
                             Joyfully attending
                           </p>
-                          <p className="text-xs text-temple-500">We wouldn&apos;t miss it!</p>
+                          <p style={{ fontSize: "0.78rem", color: "var(--ink-soft)", margin: 0 }}>
+                            We wouldn&apos;t miss it.
+                          </p>
                         </button>
+
                         <button
                           onClick={() => patch({ attending: false })}
-                          className={`w-full rounded-2xl border-2 px-4 py-4 text-left transition-all ${
-                            state.attending === false
-                              ? "border-temple-400 bg-ivory-200 shadow-md"
-                              : "border-gold-200/50 bg-white hover:border-temple-300"
-                          }`}
+                          style={choice(state.attending === false)}
                         >
-                          <span className="text-lg">🪔</span>
-                          <p className="font-serif text-base font-semibold text-maroon-800">
+                          <span style={{ fontSize: "1.1rem" }}>🌙</span>
+                          <p
+                            style={{
+                              fontFamily: "var(--font-display)",
+                              fontSize: "1.15rem",
+                              color: "var(--ink)",
+                              margin: "6px 0 0",
+                            }}
+                          >
                             With you in spirit
                           </p>
-                          <p className="text-xs text-temple-500">
+                          <p style={{ fontSize: "0.78rem", color: "var(--ink-soft)", margin: 0 }}>
                             Sending love, can&apos;t make it.
                           </p>
                         </button>
@@ -253,7 +346,7 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
                     {step === 2 && (
                       <motion.div key="step2" {...stepMotion} className="space-y-4">
                         <div>
-                          <label htmlFor="rsvp-name" className="text-xs font-semibold uppercase tracking-wider text-temple-600">
+                          <label htmlFor="rsvp-name" style={fieldLabel}>
                             Your name
                           </label>
                           <input
@@ -261,7 +354,7 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
                             value={state.name}
                             onChange={(e) => patch({ name: e.target.value.slice(0, 60) })}
                             placeholder="e.g. The Kumar family"
-                            className="mt-1.5 w-full rounded-xl border border-gold-200/60 bg-white px-4 py-3 text-sm text-temple-800 outline-none transition-colors placeholder:text-temple-400 focus:border-gold-500"
+                            style={field}
                             autoFocus
                           />
                         </div>
@@ -269,39 +362,65 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
                         {state.attending && (
                           <>
                             <div>
-                              <span className="text-xs font-semibold uppercase tracking-wider text-temple-600">
-                                Total guests (including you)
-                              </span>
-                              <div className="mt-1.5 flex items-center gap-3">
-                                <div className="flex w-full rounded-xl border border-gold-200/60 bg-white">
-                                  <button
-                                    type="button"
-                                    onClick={() => patch({ guests: Math.max(1, state.guests - 1) })}
-                                    className="px-4 py-3 text-lg text-maroon-700 hover:bg-ivory-100 rounded-l-xl transition-colors"
-                                    aria-label="Fewer guests"
-                                  >
-                                    −
-                                  </button>
-                                  <span className="flex-1 py-3 text-center text-sm font-semibold tabular-nums text-maroon-800 select-none">
-                                    {state.guests}
-                                  </span>
-                                  <button
-                                    type="button"
-                                    onClick={() => patch({ guests: Math.min(10, state.guests + 1) })}
-                                    className="px-4 py-3 text-lg text-maroon-700 hover:bg-ivory-100 rounded-r-xl transition-colors"
-                                    aria-label="More guests"
-                                  >
-                                    +
-                                  </button>
-                                </div>
+                              <span style={fieldLabel}>Total guests (including you)</span>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  borderRadius: 14,
+                                  border: "1px solid rgba(176,138,70,.45)",
+                                  background: "var(--ivory)",
+                                  overflow: "hidden",
+                                }}
+                              >
+                                <button
+                                  type="button"
+                                  onClick={() => patch({ guests: Math.max(1, state.guests - 1) })}
+                                  aria-label="Fewer guests"
+                                  style={{
+                                    padding: "11px 18px",
+                                    fontSize: "1.1rem",
+                                    color: "var(--ink)",
+                                    background: "transparent",
+                                    border: 0,
+                                    cursor: "pointer",
+                                  }}
+                                >
+                                  −
+                                </button>
+                                <span
+                                  style={{
+                                    flex: 1,
+                                    textAlign: "center",
+                                    fontFamily: "var(--font-display)",
+                                    fontSize: "1.15rem",
+                                    fontVariantNumeric: "tabular-nums",
+                                    color: "var(--ink)",
+                                  }}
+                                >
+                                  {state.guests}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => patch({ guests: Math.min(10, state.guests + 1) })}
+                                  aria-label="More guests"
+                                  style={{
+                                    padding: "11px 18px",
+                                    fontSize: "1.1rem",
+                                    color: "var(--ink)",
+                                    background: "transparent",
+                                    border: 0,
+                                    cursor: "pointer",
+                                  }}
+                                >
+                                  +
+                                </button>
                               </div>
                             </div>
 
                             <div>
-                              <span className="text-xs font-semibold uppercase tracking-wider text-temple-600">
-                                Which celebrations?
-                              </span>
-                              <div className="mt-1.5 flex flex-wrap gap-2">
+                              <span style={fieldLabel}>Which celebrations?</span>
+                              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                                 {eventNames.map((event) => {
                                   const active = state.events.includes(event);
                                   return (
@@ -315,11 +434,8 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
                                             : [...state.events, event],
                                         })
                                       }
-                                      className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-all ${
-                                        active
-                                          ? "border-maroon-700 bg-maroon-800 text-ivory-100"
-                                          : "border-gold-200/70 bg-white text-temple-600 hover:border-gold-400"
-                                      }`}
+                                      className={`chip${active ? " active" : ""}`}
+                                      style={{ padding: "8px 14px", fontSize: "0.6rem" }}
                                     >
                                       {event}
                                     </button>
@@ -332,7 +448,7 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
 
                         {!state.attending && (
                           <div>
-                            <label htmlFor="rsvp-msg" className="text-xs font-semibold uppercase tracking-wider text-temple-600">
+                            <label htmlFor="rsvp-msg" style={fieldLabel}>
                               A note for the couple (optional)
                             </label>
                             <textarea
@@ -341,7 +457,7 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
                               onChange={(e) => patch({ message: e.target.value.slice(0, 250) })}
                               placeholder="Wishing you a lifetime of happiness…"
                               rows={3}
-                              className="mt-1.5 w-full resize-none rounded-xl border border-gold-200/60 bg-white px-4 py-3 text-sm text-temple-800 outline-none transition-colors placeholder:text-temple-400 focus:border-gold-500"
+                              style={{ ...field, resize: "none" }}
                             />
                           </div>
                         )}
@@ -350,30 +466,37 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
 
                     {step === 3 && (
                       <motion.div key="step3" {...stepMotion} className="space-y-4">
-                        <div className="rounded-2xl border border-gold-200/60 bg-white p-4 text-sm">
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-gold-700">
-                            Review your RSVP
-                          </p>
-                          <dl className="mt-3 space-y-2 text-temple-700">
+                        <div
+                          style={{
+                            borderRadius: 18,
+                            border: "1px solid rgba(176,138,70,.4)",
+                            background: "var(--ivory)",
+                            padding: 18,
+                          }}
+                        >
+                          <p style={{ ...fieldLabel, marginBottom: 12 }}>Review your RSVP</p>
+                          <dl style={{ display: "grid", gap: 10, margin: 0, fontSize: "0.88rem" }}>
                             <div className="flex justify-between gap-4">
-                              <dt className="text-temple-500">Name</dt>
-                              <dd className="font-medium text-maroon-800 text-right">{state.name}</dd>
+                              <dt style={{ color: "var(--ink-soft)" }}>Name</dt>
+                              <dd style={{ margin: 0, color: "var(--ink)", textAlign: "right" }}>
+                                {state.name}
+                              </dd>
                             </div>
                             <div className="flex justify-between gap-4">
-                              <dt className="text-temple-500">Attending</dt>
-                              <dd className="font-medium text-maroon-800">
-                                {state.attending ? "Yes, joyfully 🥁" : "With you in spirit 🪔"}
+                              <dt style={{ color: "var(--ink-soft)" }}>Attending</dt>
+                              <dd style={{ margin: 0, color: "var(--ink)" }}>
+                                {state.attending ? "Yes, joyfully 🪔" : "With you in spirit 🌙"}
                               </dd>
                             </div>
                             {state.attending && (
                               <>
                                 <div className="flex justify-between gap-4">
-                                  <dt className="text-temple-500">Guests</dt>
-                                  <dd className="font-medium text-maroon-800">{state.guests}</dd>
+                                  <dt style={{ color: "var(--ink-soft)" }}>Guests</dt>
+                                  <dd style={{ margin: 0, color: "var(--ink)" }}>{state.guests}</dd>
                                 </div>
                                 <div className="flex justify-between gap-4">
-                                  <dt className="shrink-0 text-temple-500">Events</dt>
-                                  <dd className="text-right font-medium text-maroon-800">
+                                  <dt style={{ color: "var(--ink-soft)", flexShrink: 0 }}>Events</dt>
+                                  <dd style={{ margin: 0, color: "var(--ink)", textAlign: "right" }}>
                                     {state.events.length === eventNames.length
                                       ? "All celebrations"
                                       : state.events.join(", ")}
@@ -383,26 +506,44 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
                             )}
                             {state.message.trim() && (
                               <div className="flex justify-between gap-4">
-                                <dt className="text-temple-500">Note</dt>
-                                <dd className="text-right font-medium text-maroon-800 italic">
+                                <dt style={{ color: "var(--ink-soft)" }}>Note</dt>
+                                <dd
+                                  style={{
+                                    margin: 0,
+                                    color: "var(--ink)",
+                                    textAlign: "right",
+                                    fontStyle: "italic",
+                                  }}
+                                >
                                   {state.message}
                                 </dd>
                               </div>
                             )}
                           </dl>
-                          <p className="mt-4 text-[11px] leading-relaxed text-temple-500">
+                          <p
+                            style={{
+                              marginTop: 16,
+                              fontSize: "0.72rem",
+                              lineHeight: 1.6,
+                              color: "var(--ink-soft)",
+                            }}
+                          >
                             Tapping send opens WhatsApp with your RSVP pre-filled. The hosts
                             receive it directly — no accounts, no forms.
                           </p>
                         </div>
+
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.97 }}
                           onClick={submit}
-                          className="w-full inline-flex items-center justify-center gap-2.5 rounded-2xl bg-green-600 px-4 py-4 text-sm font-semibold text-white shadow-lg shadow-green-600/25 transition-colors hover:bg-green-500"
+                          className="btn solid w-full"
+                          style={{ padding: "14px 20px", fontSize: "0.68rem" }}
                         >
-                          <MessageCircle size={18} />
-                          Send RSVP on WhatsApp
+                          <span className="inline-flex items-center justify-center gap-2">
+                            <MessageCircle size={16} />
+                            Send RSVP on WhatsApp
+                          </span>
                         </motion.button>
                       </motion.div>
                     )}
@@ -412,24 +553,39 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
                     <motion.p
                       initial={{ opacity: 0, y: 4 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="mt-3 text-center text-xs font-medium text-red-600"
+                      style={{
+                        marginTop: 12,
+                        textAlign: "center",
+                        fontSize: "0.76rem",
+                        color: "#a51d47",
+                      }}
                     >
                       {error}
                     </motion.p>
                   )}
 
-                  {/* Nav buttons */}
                   <div className="mt-6 flex items-center justify-between">
                     <button
-                      onClick={() => (step === 1 ? onClose() : setStep((s) => s - 1))}
-                      className="px-2 py-2 text-xs font-medium text-temple-500 hover:text-maroon-700 transition-colors"
+                      onClick={() => (step === 1 ? close() : setStep((s) => s - 1))}
+                      style={{
+                        background: "transparent",
+                        border: 0,
+                        cursor: "pointer",
+                        fontFamily: "var(--font-label)",
+                        fontSize: "0.6rem",
+                        letterSpacing: "0.18em",
+                        textTransform: "uppercase",
+                        color: "var(--ink-soft)",
+                        padding: "8px 4px",
+                      }}
                     >
                       ← {step === 1 ? "Cancel" : "Back"}
                     </button>
                     {step < 3 && (
                       <button
                         onClick={next}
-                        className="rounded-xl bg-maroon-800 px-6 py-2.5 text-xs font-semibold text-ivory-100 transition-colors hover:bg-maroon-700"
+                        className="btn"
+                        style={{ padding: "10px 20px", fontSize: "0.62rem" }}
                       >
                         Continue →
                       </button>
@@ -437,29 +593,51 @@ export default function RSVPModal({ open, onClose, invitation }: RSVPModalProps)
                   </div>
                 </>
               ) : (
-                /* ── Sent state ── */
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="py-6 text-center"
+                  style={{ paddingBlock: 16, textAlign: "center" }}
                 >
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gold-100 border border-gold-300">
-                    {state.attending ? (
-                      <PartyPopper size={26} className="text-gold-700" />
-                    ) : (
-                      <Check size={26} className="text-gold-700" />
-                    )}
+                  <div
+                    style={{
+                      margin: "0 auto",
+                      width: 64,
+                      height: 64,
+                      borderRadius: 999,
+                      display: "grid",
+                      placeItems: "center",
+                      border: "1px solid var(--gold)",
+                      background: "rgba(224,195,133,.25)",
+                      fontSize: "1.6rem",
+                    }}
+                  >
+                    {state.attending ? "🪔" : "🌙"}
                   </div>
-                  <h4 className="mt-4 font-serif text-2xl text-maroon-800">
-                    {state.attending ? "See you there!" : "Your note is on its way"}
+                  <h4
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "1.75rem",
+                      color: "var(--ink)",
+                      margin: "16px 0 6px",
+                    }}
+                  >
+                    {state.attending ? "See you there" : "Your note is on its way"}
                   </h4>
-                  <p className="mx-auto mt-2 max-w-[16rem] text-sm text-temple-600">
-                    Just hit <span className="font-medium">send</span> in the WhatsApp window
-                    that opened — the couple will get it personally.
+                  <p
+                    style={{
+                      maxWidth: "22rem",
+                      margin: "0 auto",
+                      fontSize: "0.88rem",
+                      color: "var(--ink-soft)",
+                    }}
+                  >
+                    Just hit <strong>send</strong> in the WhatsApp window that opened — the
+                    couple will get it personally.
                   </p>
                   <button
-                    onClick={onClose}
-                    className="mt-6 rounded-xl border border-gold-300/70 px-8 py-2.5 text-xs font-semibold text-maroon-800 transition-colors hover:bg-gold-50"
+                    onClick={close}
+                    className="btn"
+                    style={{ marginTop: 24, padding: "11px 22px", fontSize: "0.62rem" }}
                   >
                     Back to invitation
                   </button>

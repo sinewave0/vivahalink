@@ -1,32 +1,37 @@
 import Link from "next/link";
-import Ornament from "@/components/invite/Ornament";
+import { Mandala, Divider } from "@/components/ui/decor";
 
 export default function NotFound() {
   return (
-    <div className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-ivory-50 px-6 text-center">
-      <div className="absolute inset-0 kolam-pattern opacity-40" />
-      <p className="font-serif text-7xl font-bold text-maroon-800/90">404</p>
-      <Ornament className="my-6" />
-      <h1 className="font-serif text-2xl md:text-3xl text-temple-900">
-        This page seems to have wandered off with the procession
-      </h1>
-      <p className="mt-3 max-w-sm text-sm text-temple-600">
-        The link may be mistyped or the invitation may no longer exist. Let&apos;s get you back
-        on the mandapam path.
-      </p>
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <Link
-          href="/"
-          className="rounded-full bg-maroon-800 px-6 py-3 text-sm font-medium text-ivory-100 hover:bg-maroon-700 transition-colors"
+    <div className="paper" style={{ minHeight: "100dvh", display: "grid", placeItems: "center", padding: "48px 16px" }}>
+      <div className="wrap" style={{ textAlign: "center", maxWidth: 620 }}>
+        <Mandala glyph="ॐ" />
+        <p className="label" style={{ marginBottom: 8 }}>
+          404 · the thread leads nowhere
+        </p>
+        <h1
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "clamp(2.2rem,7vw,3.6rem)",
+            color: "var(--ink)",
+            lineHeight: 1.08,
+          }}
         >
-          Back Home
-        </Link>
-        <Link
-          href="/templates"
-          className="rounded-full border border-gold-300/70 bg-white px-6 py-3 text-sm font-medium text-maroon-800 hover:bg-gold-50 transition-colors"
-        >
-          Browse Templates
-        </Link>
+          This page wandered off with the procession
+        </h1>
+        <Divider style={{ display: "block", width: 160, margin: "26px auto" }} />
+        <p className="small" style={{ maxWidth: "36ch", marginInline: "auto" }}>
+          The link may be mistyped, or the invitation has been taken down.
+          Let&apos;s walk you back to the mandap.
+        </p>
+        <div className="btns" style={{ marginTop: 32 }}>
+          <Link href="/" className="btn solid">
+            Back home
+          </Link>
+          <Link href="/templates" className="btn">
+            Browse designs
+          </Link>
+        </div>
       </div>
     </div>
   );
