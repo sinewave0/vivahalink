@@ -105,6 +105,8 @@ export interface CandlelitFinaleProps {
   /** small credit line pinned near the bottom (e.g. "Crafted on VivahaLink") */
   credit?: ReactNode;
   id?: string;
+  /** compact mode (reduced vertical distance by 25%) */
+  compact?: boolean;
 }
 
 export default function CandlelitFinale({
@@ -114,6 +116,7 @@ export default function CandlelitFinale({
   actions,
   credit,
   id,
+  compact = false,
 }: CandlelitFinaleProps) {
   const sceneRef = useRef<SVGSVGElement | null>(null);
 
@@ -133,7 +136,7 @@ export default function CandlelitFinale({
   }, []);
 
   return (
-    <footer className="finale" id={id}>
+    <footer className={`finale ${compact ? "finale-compact" : ""}`} id={id}>
       <svg className="scene" ref={sceneRef} viewBox="0 0 1200 1120" aria-hidden="true">
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">

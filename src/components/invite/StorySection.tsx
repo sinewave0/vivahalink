@@ -38,8 +38,8 @@ export default function StorySection({ invitation }: { invitation: InvitationDat
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "center",
-              gap: "clamp(12px,2vw,20px)",
-              marginTop: "clamp(30px,6vh,54px)",
+              gap: "clamp(10px,1.8vw,16px)",
+              marginTop: "clamp(20px,4.5vh,38px)",
             }}
           >
             {photos.map((src, i) => (
@@ -50,7 +50,7 @@ export default function StorySection({ invitation }: { invitation: InvitationDat
                   {
                     "--d": `${0.12 + i * 0.08}s`,
                     position: "relative",
-                    width: "clamp(150px, 26vw, 210px)",
+                    width: "clamp(120px, 20vw, 165px)",
                     margin: 0,
                   } as React.CSSProperties
                 }
@@ -78,7 +78,7 @@ export default function StorySection({ invitation }: { invitation: InvitationDat
           </div>
         )}
 
-        <p className="small rv" style={{ "--d": ".16s", marginTop: "clamp(30px,6vh,54px)" } as React.CSSProperties}>
+        <p className="small rv" style={{ "--d": ".16s", marginTop: "clamp(20px,4.5vh,38px)" } as React.CSSProperties}>
           Your presence and blessings are our greatest gift.
         </p>
       </div>

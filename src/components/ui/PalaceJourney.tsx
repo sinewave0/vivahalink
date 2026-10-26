@@ -123,11 +123,18 @@ export interface PalaceJourneyProps {
   cueLabel?: string;
   /** section id (default top) */
   id?: string;
+  /** compact mode: reduces journey scroll distance by ~25% */
+  compact?: boolean;
 }
 
 type LanternMeta = { el: HTMLDivElement; k: number };
 
-export default function PalaceJourney({ children, cueLabel = "Scroll", id = "top" }: PalaceJourneyProps) {
+export default function PalaceJourney({
+  children,
+  cueLabel = "Scroll",
+  id = "top",
+  compact = false,
+}: PalaceJourneyProps) {
   const journeyRef = useRef<HTMLElement | null>(null);
   const palwrapRef = useRef<HTMLDivElement | null>(null);
   const layerRef = useRef<HTMLDivElement | null>(null);
@@ -186,10 +193,16 @@ export default function PalaceJourney({ children, cueLabel = "Scroll", id = "top
       palwrap.style.height = `${sh}px`;
       palwrap.style.left = `${(vw - sw) / 2}px`;
       palwrap.style.top = `${topOff}px`;
-      // Keep the cinematic reveal, but avoid a three-screen-long cover on phones.
-      H = Math.max(topOff + sh * 0.75, vh * 1.25);
-      journey.style.height = `${H}px`;
-      layer.style.height = `${H + vh * 0.55}px`;
+      // Keep the cinematic reveal, but avoid an overly stretched cover.
+      if (compact) {
+        H = Math.max(Math.round(topOff + sh * 0.56), Math.round(vh * 1.15));
+        journey.style.height = `${H}px`;
+        layer.style.height = `${H + vh * 0.4}px`;
+      } else {
+        H = Math.max(topOff + sh * 0.75, vh * 1.25);
+        journey.style.height = `${H}px`;
+        layer.style.height = `${H + vh * 0.55}px`;
+      }
       cue.style.top = `${vh - 84}px`;
     };
 
@@ -198,9 +211,9 @@ export default function PalaceJourney({ children, cueLabel = "Scroll", id = "top
       const vw = window.innerWidth;
       const vh = window.innerHeight;
       const rng = makeRng(11);
-      const total = H + vh * 0.95;
+      const total = H + vh * (compact ? 0.7 : 0.95);
       const base = clamp(vw * 0.13, 84, 200);
-      const n = Math.round((total / vh) * (vw < 700 ? 10 : 17));
+      const n = Math.round((total / vh) * (vw < 700 ? 8 : (compact ? 13 : 17)));
       lanternsRef.current = [];
       for (let i = 0; i < n; i++) {
         const d = Math.pow(rng(), 1.3);
@@ -236,13 +249,17 @@ export default function PalaceJourney({ children, cueLabel = "Scroll", id = "top
       const y = window.scrollY || 0;
       const vh = window.innerHeight;
       if (!reduce) {
-        if (gFar) gFar.style.transform = `translateY(${((y * 0.36) / S).toFixed(1)}px)`;
-        if (gMid) gMid.style.transform = `translateY(${((y * 0.08) / S).toFixed(1)}px)`;
+        const farRate = compact ? 0.46 : 0.36;
+        const midRate = compact ? 0.10 : 0.08;
+        if (gFar) gFar.style.transform = `translateY(${((y * farRate) / S).toFixed(1)}px)`;
+        if (gMid) gMid.style.transform = `translateY(${((y * midRate) / S).toFixed(1)}px)`;
         for (const lan of lanternsRef.current) {
           lan.el.style.transform = `translate3d(0,${(y * lan.k).toFixed(1)}px,0)`;
         }
       }
-      const f = clamp((y - (H - 1.25 * vh)) / (vh * 1.4), 0, 1);
+      const fadeStart = compact ? H - vh * 0.95 : H - 1.25 * vh;
+      const fadeSpan = compact ? vh * 1.0 : vh * 1.4;
+      const f = clamp((y - fadeStart) / fadeSpan, 0, 1);
       layer.style.opacity = (1 - f * f).toFixed(3);
       layer.style.visibility = f >= 1 ? "hidden" : "visible";
       cue.style.opacity = `${(1 - clamp(y / (vh * 0.35), 0, 1)) * 0.8}`;
@@ -273,10 +290,10 @@ export default function PalaceJourney({ children, cueLabel = "Scroll", id = "top
       window.removeEventListener("scroll", onScrollTick);
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [compact]);
 
   return (
-    <header className="journey" id={id} ref={journeyRef}>
+    <header className={`journey ${compact ? "journey-compact" : ""}`} id={id} ref={journeyRef}>
       <div className="palwrap" ref={palwrapRef}>
         <svg id="palace" viewBox="0 0 1440 3500" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
           <defs>

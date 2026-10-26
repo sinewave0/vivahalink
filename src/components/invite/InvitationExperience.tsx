@@ -83,9 +83,9 @@ export default function InvitationExperience({
   const firstMap = invitation.ceremonies[0]?.mapUrl;
 
   return (
-    <div style={paletteVars}>
+    <div className="invitation-microsite" style={paletteVars}>
       {/* ── Cover journey: names over the parallax palace ── */}
-      <PalaceJourney cueLabel="Scroll">
+      <PalaceJourney cueLabel="Scroll" compact>
         <p className="label" style={{ color: "var(--ink-soft)" }}>
           {template.category === "wedding" ? "The wedding of" : template.title}
         </p>
@@ -181,6 +181,7 @@ export default function InvitationExperience({
 
       {/* ── Candle-lit finale ── */}
       <CandlelitFinale
+        compact
         overline="With love and blessings"
         title={coupleNames}
         subtitle={
