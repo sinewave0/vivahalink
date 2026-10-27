@@ -1,31 +1,31 @@
 "use client";
 
 import Link from "next/link";
-import PalaceJourney from "@/components/ui/PalaceJourney";
+import DuskCover from "@/components/ui/DuskCover";
 import { waLink, waMessages } from "@/lib/constants";
 
 /**
- * Storefront cover — the same dusk-palace journey as the invitations,
- * carrying the brand instead of a couple's names.
+ * Storefront cover — the dusk courtyard photograph carrying the brand
+ * instead of a couple's names: engraved display caps, a quiet italic
+ * promise, and the two moves that matter — see a sample, order on
+ * WhatsApp.
  */
 export default function HeroSection() {
   return (
-    <PalaceJourney cueLabel="Scroll">
-      <p className="label" style={{ color: "var(--ink-soft)" }}>
-        Wedding invitations, reimagined
-      </p>
-      <h1 className="journey-title" style={{ marginTop: 12 }}>
-        Vivaha<span className="weds">Link</span>Weddings
+    <DuskCover align="bottom" cueLabel="Scroll">
+      <p className="label">Indian weddings &amp; celebrations</p>
+      <h1 className="dusk-title" style={{ marginTop: 12 }}>
+        Vivaha<span className="dusk-brand">Link</span>
       </h1>
-      <p className="journey-sub">
-        One lovely link that carries your story, schedule, maps &amp; blessings.
+      <p className="dusk-sub">
+        A shareable invitation your guests actually want to open.
       </p>
       <div className="hero-date">
         WEDDINGS · ANNIVERSARIES · HOUSEWARMINGS
       </div>
-      <div className="journey-actions">
-        <Link href="/templates" className="btn solid">
-          Explore the collection
+      <div className="dusk-actions">
+        <Link href="/events/mangala-isai-demo" className="btn solid">
+          Open a sample
         </Link>
         <a
           href={waLink(waMessages.inquiry())}
@@ -33,9 +33,9 @@ export default function HeroSection() {
           rel="noopener noreferrer"
           className="btn"
         >
-          Create yours
+          Order on WhatsApp
         </a>
       </div>
-    </PalaceJourney>
+    </DuskCover>
   );
 }

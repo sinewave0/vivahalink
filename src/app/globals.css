@@ -205,85 +205,83 @@ h3 {
   transform: none;
 }
 
-/* entrance animations wait for html.go so the viewer sees them from the start */
-.rise,
-.lr,
-.palwrap {
+/* (entrance gating now lives inside .dusk-content) */
+
+/* =========================================================
+   DUSK COVER — a temple courtyard photograph, a veil that melts
+   into the paper below, and hand-hung swaying lanterns
+   ========================================================= */
+.dusk {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 100svh;
+  background: var(--night);
+}
+
+.dusk.dusk-bottom {
+  align-items: flex-end;
+}
+
+.dusk img.sky {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.dusk .veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(27, 20, 64, 0.25) 0%, rgba(90, 42, 61, 0.08) 40%, rgba(232, 211, 198, 0.15) 78%, var(--paper) 100%);
+}
+
+/* deeper dusk scrim so ivory type holds over image-led covers */
+.dusk.tone-light .veil {
+  background:
+    linear-gradient(180deg, rgba(27, 20, 64, 0.6) 0%, rgba(27, 20, 64, 0.32) 42%, rgba(90, 42, 61, 0.2) 72%, rgba(232, 211, 198, 0.18) 90%, var(--paper) 100%);
+}
+
+.dusk-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+  padding: 96px 16px 96px;
+  animation: duskfade 1.6s var(--ease-rise) 0.2s both;
+  /* hold the entrance until html.go — added on visibility, or when a
+     seal gate lifts */
   animation-play-state: paused;
 }
 
-html.go .rise,
-html.go .lr,
-html.go .palwrap {
+html.go .dusk-content {
   animation-play-state: running;
 }
 
-/* =========================================================
-   COVER JOURNEY — layered palace that parallaxes with scroll
-   ========================================================= */
-.journey {
-  position: relative;
-  overflow: hidden;
-  min-height: 225vh;
-  background: linear-gradient(180deg,
-    #c6bae8 0,
-    #d9c4e6 9%,
-    #eecad8 20%,
-    #f8d3c3 32%,
-    #fbdcc6 44%,
-    #f7e3d0 60%,
-    #f3dcc4 100%);
-}
-
-.palwrap {
-  position: absolute;
-  z-index: 0;
-  animation: palrise 3.6s var(--ease-rise) 0.15s both;
-}
-
-@keyframes palrise {
+@keyframes duskfade {
   from {
-    transform: translateY(46vh);
     opacity: 0;
+    transform: translateY(26px);
   }
 
   to {
-    transform: none;
     opacity: 1;
-  }
-}
-
-.palwrap svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.hero-names {
-  position: absolute;
-  z-index: 3;
-  left: 0;
-  right: 0;
-  top: max(10vh, 84px);
-  text-align: center;
-  padding-inline: max(16px, env(safe-area-inset-left, 0px));
-  animation: namerise 3.2s var(--ease-rise) 0.45s both;
-}
-
-@keyframes namerise {
-  from {
-    transform: translateY(88vh);
-    opacity: 0;
-  }
-
-  to {
     transform: none;
-    opacity: 1;
   }
 }
 
-.journey-title {
+.dusk.dusk-bottom .dusk-content {
+  padding: 120px 16px clamp(64px, 9vh, 96px);
+}
+
+.dusk-title {
   font-family: var(--font-display);
   font-size: clamp(3rem, 10.6vw, 8.4rem);
   line-height: 0.92;
@@ -292,6 +290,13 @@ html.go .palwrap {
   text-transform: uppercase;
   font-weight: 500;
   text-shadow: 0 2px 26px rgba(255, 255, 255, 0.6);
+}
+
+/* the brand word sits alone beneath the first name, in lantern gold */
+.dusk-brand {
+  display: block;
+  color: var(--gold);
+  text-shadow: none;
 }
 
 .weds {
@@ -312,7 +317,7 @@ html.go .palwrap {
   color: var(--ink-soft);
 }
 
-.journey-actions {
+.dusk-actions {
   margin-top: clamp(18px, 3.4vh, 30px);
   display: flex;
   flex-wrap: wrap;
@@ -320,13 +325,40 @@ html.go .palwrap {
   gap: 10px;
 }
 
-.journey-sub {
+.dusk-sub {
   font-family: var(--font-display);
   font-style: italic;
   font-size: clamp(1.05rem, 2.6vw, 1.35rem);
   color: var(--ink-soft);
   margin: clamp(10px, 2vh, 18px) 0 0;
   text-shadow: 0 1px 14px rgba(255, 255, 255, 0.45);
+}
+
+/* label + type flip to ivory over darker covers */
+.dusk .label {
+  color: var(--gold);
+}
+
+.dusk.tone-light .dusk-title {
+  color: var(--ivory);
+  text-shadow: 0 2px 26px rgba(12, 7, 32, 0.55);
+}
+
+.dusk.tone-light .dusk-brand {
+  color: var(--gold-lite);
+}
+
+.dusk.tone-light .dusk-sub {
+  color: rgba(255, 244, 228, 0.86);
+  text-shadow: 0 1px 14px rgba(12, 7, 32, 0.5);
+}
+
+.dusk.tone-light .hero-date {
+  color: rgba(255, 244, 228, 0.72);
+}
+
+.dusk.tone-light .label {
+  color: var(--gold-lite);
 }
 
 .scrollcue {
@@ -390,106 +422,95 @@ html.go .palwrap {
   }
 }
 
-.journey::after {
+/* the dusk cue hangs from the bottom edge of the cover */
+.dusk .scrollcue {
+  top: auto;
+  bottom: max(18px, 3.4vh);
+}
+
+.dusk.tone-light .scrollcue {
+  color: var(--gold-lite);
+}
+
+/* =========================================================
+   SEAL GATE — the invitation waits behind a night cover with
+   the couple's monogram; tapping it lifts the reveal
+   ========================================================= */
+.seal-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border: 0;
+  background: var(--noise), var(--night);
+  color: var(--ivory);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.seal-gate .seal-label {
+  color: var(--gold-lite);
+}
+
+.seal-ring {
+  margin-top: clamp(24px, 5vh, 44px);
+  width: clamp(96px, 24vw, 128px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--gold-lite);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  color: var(--gold-lite);
+  box-shadow:
+    0 0 44px rgba(224, 195, 133, 0.25),
+    inset 0 0 30px rgba(224, 195, 133, 0.08);
+}
+
+.seal-hint {
+  margin-top: clamp(18px, 4vh, 30px);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: rgba(255, 250, 242, 0.75);
+}
+
+/* ---------- hand-hung lanterns over the photograph ---------- */
+.lantern {
+  position: absolute;
+  z-index: 2;
+  width: 28px;
+  height: 42px;
+  border-radius: 14px 14px 10px 10px;
+  background: radial-gradient(circle at 50% 40%, #ffe7b0, #c9893a 55%, #7a4a22);
+  box-shadow: 0 0 22px rgba(224, 195, 133, 0.7);
+  animation: lantern-sway 6s ease-in-out infinite;
+}
+
+.lantern::before {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 26vh;
-  background: linear-gradient(rgba(226, 202, 189, 0), rgba(226, 202, 189, 0.55) 50%, var(--paper));
-  z-index: 1;
-  pointer-events: none;
+  left: 50%;
+  top: -48px;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(var(--gold-lite), transparent);
 }
 
-/* ---------- lanterns sit between the palace and the text ---------- */
-#lanterns,
-.lantern-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.lp {
-  position: absolute;
-  will-change: transform;
-}
-
-.lr {
-  animation: lrise 3.8s cubic-bezier(0.16, 0.8, 0.3, 1) var(--delay, 0s) both;
-}
-
-@keyframes lrise {
-  from {
-    transform: translateY(130vh);
-    opacity: 0;
-  }
-
-  to {
-    transform: none;
-    opacity: 1;
-  }
-}
-
-.ls {
-  animation: lsway var(--dur, 7s) ease-in-out infinite;
-  animation-delay: var(--sd, 0s);
-  transform: rotate(var(--r, 0deg));
-}
-
-@keyframes lsway {
-  0%,
-  100% {
-    transform: translateY(0) rotate(var(--r, 0deg));
-  }
-
-  50% {
-    transform: translateY(-16px) rotate(calc(var(--r, 0deg) + 3.5deg));
-  }
-}
-
-.ls svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-.jet {
-  animation: jet 2.6s ease-in-out infinite;
-  animation-delay: var(--jd, 0s);
-}
-
-@keyframes jet {
+@keyframes lantern-sway {
 
   0%,
   100% {
-    opacity: 0.35;
+    transform: rotate(-3deg);
   }
 
   50% {
-    opacity: 0.85;
-  }
-}
-
-.shim {
-  animation: shim 5s ease-in-out infinite;
-  animation-delay: var(--sd, 0s);
-}
-
-@keyframes shim {
-
-  0%,
-  100% {
-    opacity: 0.15;
-  }
-
-  50% {
-    opacity: 0.5;
+    transform: rotate(3deg);
   }
 }
 
@@ -550,6 +571,27 @@ html.go .palwrap {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* the invocation opens on a real kolam, ringed in gold */
+.kolam {
+  width: clamp(104px, 18vw, 148px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 0 auto 10px;
+  border: 1px solid var(--gold);
+  box-shadow:
+    0 0 0 6px rgba(176, 138, 70, 0.14),
+    0 14px 30px -14px rgba(110, 70, 110, 0.45);
+  background: var(--ivory);
+}
+
+.kolam img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .namo {
@@ -1050,6 +1092,113 @@ a.arch_media:hover {
   text-transform: uppercase;
   font-size: 0.64rem;
   color: var(--gold);
+}
+
+/* =========================================================
+   PHOTOGRAPHIC INTERLUDES — full-bleed dusk photography
+   ========================================================= */
+
+/* pair of stills inside an invitation (jasmine + mandap) */
+.dusk-duo {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.dusk-duo img {
+  width: 100%;
+  height: clamp(240px, 40svh, 380px);
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .dusk-duo {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dusk-duo img {
+    height: clamp(280px, 52svh, 440px);
+  }
+}
+
+/* storefront: jasmine still beside the three steps on ivory */
+.howit-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  background: var(--frost);
+}
+
+.howit-photo {
+  position: relative;
+  min-height: clamp(280px, 48svh, 420px);
+}
+
+.howit-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.howit-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(48px, 9vh, 84px) clamp(24px, 5vw, 56px);
+}
+
+.howit-steps {
+  list-style: none;
+  margin: clamp(22px, 4vh, 34px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(18px, 3.4vh, 26px);
+}
+
+.howit-steps li {
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  max-width: 52ch;
+}
+
+.howit-num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.4vw, 2.8rem);
+  line-height: 1;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  min-width: 1.2ch;
+}
+
+.howit-steps h3 {
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.howit-steps p {
+  margin: 6px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.howit-note {
+  margin: clamp(22px, 4vh, 34px) 0 0;
+  max-width: 44ch;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+@media (min-width: 768px) {
+  .howit-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .howit-photo {
+    min-height: 100%;
+  }
 }
 
 /* =========================================================
@@ -1746,19 +1895,11 @@ a.arch_media:hover {
 }
 
 @media (max-width: 640px) {
-  .journey {
-    min-height: 225svh;
-  }
-
-  .hero-names {
-    top: max(82px, 9vh);
-  }
-
-  .journey-title {
+  .dusk-title {
     font-size: clamp(2.6rem, 14vw, 4.5rem);
   }
 
-  .journey-actions .btn {
+  .dusk-actions .btn {
     min-height: 44px;
   }
 
@@ -1788,12 +1929,6 @@ a.arch_media:hover {
    Reduces total scrolling distance by 25% across all templates
    while maintaining regal proportions and visual elegance.
    ========================================================= */
-
-/* 1. Cover Journey */
-.journey.journey-compact,
-.invitation-microsite .journey {
-  min-height: 168vh;
-}
 
 /* 2. Invocation Paper */
 .invitation-microsite .invocation {
@@ -1961,11 +2096,6 @@ a.arch_media:hover {
 }
 
 @media (max-width: 640px) {
-  .journey.journey-compact,
-  .invitation-microsite .journey {
-    min-height: 168svh;
-  }
-
   .invitation-microsite .panel {
     min-height: 0;
     padding-block: 22px;

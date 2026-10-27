@@ -1,57 +1,51 @@
 "use client";
 
-import { Layout, MessageCircle, Share2 } from "lucide-react";
+import Image from "next/image";
 import { howItWorks } from "@/data/content";
 import { useReveal } from "@/components/ui/ScrollFX";
 
-const iconMap: Record<string, React.ReactNode> = {
-  Layout: <Layout size={26} strokeWidth={1.4} />,
-  MessageCircle: <MessageCircle size={26} strokeWidth={1.4} />,
-  Share2: <Share2 size={26} strokeWidth={1.4} />,
-};
-
-const TINTS = ["#f7dce4", "#fbe3cf", "#e3dbf3"];
-
 /**
- * Three steps, told as arch panels along the gold thread — the same
- * shape language as the invitation's ceremony cards.
+ * How it works, told as a photographic split from the dusk pass:
+ * a still of jasmine and gold jewellery beside the three steps,
+ * numbered in engraved serif on ivory.
  */
 export default function HowItWorks() {
   useReveal();
 
   return (
-    <section className="gthread gthread-plain" id="how-it-works" aria-label="How it works">
-      <div className="wrap head-block">
-        <h2 className="rv">
-          How It Works
-        </h2>
-        <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
-          From &ldquo;we&apos;re getting married&rdquo; to a link your whole family loves — in a day or two.
-        </p>
+    <section className="howit-split" id="how-it-works" aria-label="How it works">
+      <div className="howit-photo">
+        <Image
+          src="/images/atelier/jasmine.jpg"
+          alt="Jasmine flowers and gold jewellery resting on silk"
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+        />
       </div>
 
-      <div className="wrap" style={{ position: "relative", zIndex: 2, paddingBottom: "clamp(30px,6vh,60px)" }}>
-        <div className="day">
+      <div className="howit-panel">
+        <p className="label rv">How it works</p>
+        <ol className="howit-steps">
           {howItWorks.map((step, i) => (
-            <article
+            <li
               key={step.number}
-              className="panel"
-              style={{ minHeight: 0, paddingBlock: "clamp(26px,5vh,48px)" }}
+              className="rv"
+              style={{ "--d": `${0.06 + i * 0.08}s` } as React.CSSProperties}
             >
-              <div
-                className="arch"
-                style={{ "--tint": TINTS[i % TINTS.length] } as React.CSSProperties}
-              >
-                <div className="arch-in">
-                  <div className="ic">{iconMap[step.icon]}</div>
-                  <h3>{step.title}</h3>
-                  <p className="dd">Step {String(step.number).padStart(2, "0")}</p>
-                  <p className="vn" style={{ marginTop: 14 }}>{step.description}</p>
-                </div>
+              <span className="howit-num" aria-hidden="true">
+                {step.number}
+              </span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
               </div>
-            </article>
+            </li>
           ))}
-        </div>
+        </ol>
+        <p className="howit-note rv" style={{ "--d": ".3s" } as React.CSSProperties}>
+          Guests get a dusk cover, a live countdown, maps, calendar, and an RSVP
+          that lands in your chat. No app to install.
+        </p>
       </div>
     </section>
   );

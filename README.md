@@ -19,7 +19,7 @@ WhatsApp, pay via UPI, and receive a shareable link their guests actually enjoy 
 
 | Route              | What it is                                                                                  |
 | ------------------ | ------------------------------------------------------------------------------------------- |
-| `/`                | Marketing home — hero, featured templates, how-it-works, testimonials, FAQ                    |
+| `/`                | Marketing home — dusk cover hero, featured templates, how-it-works, testimonials, FAQ         |
 | `/templates`       | Filterable gallery (All / Wedding / Anniversary / Housewarming) with order & demo actions     |
 | `/about`           | About & contact (WhatsApp concierge)                                                         |
 | `/events/[slug]`   | **Invitation microsites** – full reveal-gate experience for each template's demo wedding       |
@@ -31,7 +31,10 @@ guests arriving from shared links should experience the invitation, not the stor
 
 ## The invitation microsite experience
 
-- **Hero reveal** — full-screen couple monogram and invitation opening that welcomes guests in
+- **Seal reveal** — a full-screen monogram seal gate (`InvitationGate`); guests tap the seal
+  and the cover lifts to open the invitation
+- **Dusk cover** — a photographic cover (`DuskCover`) with drifting lanterns, a veil
+  fade-in and a scroll cue; templates carry their own cover photo & text tone
 - **Hero** with couple names, tagline, date & a **live countdown**
 - **Story section** with photo gallery
 - **Ceremony timeline** — every event with time, venue, **Google Maps directions** and
@@ -41,6 +44,16 @@ guests arriving from shared links should experience the invitation, not the stor
 - **Background music** — a tanpura-style drone synthesised with the Web Audio API (zero audio
   files needed, autoplay-policy friendly); set `musicUrl` on an invitation to use a real track
 - **Share menu** — native share, copy link, forward on WhatsApp
+
+## Dusk aesthetic (from the `redesign/` snapshot)
+
+The storefront hero and every invitation cover are full-bleed dusk photographs
+(`DuskCover`) — a misty temple courtyard, jasmine on silk, a wedding mandap at sunset —
+veiled in a rose-gold gradient with swaying CSS lanterns and a scroll cue. Guests enter an
+invitation through a tap-the-seal gate, and photographic interludes (a kolam figure, a
+jasmine/mandap duo, a how-it-works split) run through both storefront and microsite.
+
+The original snapshot lives in `redesign/` (TanStack Start preview) as visual reference.
 
 ## Project structure
 
@@ -54,16 +67,18 @@ src/
 │   └── not-found.tsx      # branded 404
 ├── components/
 │   ├── home/              # marketing sections
-│   ├── invite/            # the microsite experience (gate, countdown, RSVP, music, share…)
+│   ├── invite/            # the microsite experience (seal gate, dusk cover, countdown, RSVP, music, share…)
 │   ├── layout/            # Navbar, Footer, sticky WhatsApp bar
-│   └── ui/                # shared primitives (SectionHeading, AnimatedCard)
+│   └── ui/                # shared primitives (SectionHeading, AnimatedCard, DuskCover, TemplateArt)
 ├── data/
-│   ├── templates.ts       # the 8 launch templates (categories, tiers, pricing, palettes)
+│   ├── templates.ts       # the 8 launch templates (categories, tiers, pricing, palettes, cover photos)
 │   └── demo-events.ts     # one fictional demo invitation per template
 └── lib/
     ├── constants.ts       # brand, WhatsApp number & message builders, colour tokens
     ├── types.ts           # Template / InvitationData / EventCeremony …
     └── utils.ts           # INR price, dates, countdown, Google-Calendar link builder
+public/
+└── images/atelier/        # dusk cover photography (temple courtyard, jasmine, kolam, mandap)
 ```
 
 ## Customisation points
@@ -73,9 +88,11 @@ src/
 - **Templates & pricing** — `src/data/templates.ts`
 - **Demo invitations** — `src/data/demo-events.ts` (fictional couples/venues; safest copy source
   when adding new demo content)
-- **Design tokens** — Tailwind theme in `src/app/globals.css` (maroon / gold / ivory / temple
-  stone / green) and shared helpers (`gold-shimmer`, `container-width`,
-  `section-padding`)
+- **Design tokens** — Tailwind theme in `src/app/globals.css`: the maroon / gold / ivory /
+  temple stone / green scales plus the dusk accents (ink / brass / paper / blush / mist /
+  frost / dusk) and shared helpers (`gold-shimmer`, `container-width`, `section-padding`)
+- **Cover photography** — `public/images/atelier/` (drives `DuskCover` hero & invitation
+  covers via each template's `heroImage` / `heroTextTone`)
 
 ## Data model (v1, no backend)
 
@@ -116,4 +133,5 @@ Do not put secrets in `NEXT_PUBLIC_*` variables.
 - Customer dashboard for hosts to edit invitation details / photos
 - `musicUrl` delivery: licensed tracks per template tier
 - OG social preview images per invitation
-- Real photography direction for template thumbnails (current ones are hand-drawn SVGs)
+- Real photography direction for the template grid thumbnails (grid cards are still
+  hand-drawn SVG art — the hero & invitation covers now use the atelier photography)

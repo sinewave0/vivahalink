@@ -10,12 +10,31 @@ const pad = (n: number) => String(n).padStart(2, "0");
  * in the shape of the reference invitation's countdown.
  */
 export default function CountdownTimer({ targetDate }: { targetDate: string }) {
-  const [countdown, setCountdown] = useState(() => getCountdown(targetDate));
+  /* The clock runs only on the client. Rendering live seconds into the
+     prerendered HTML (Cache Components serves that HTML for a week)
+     guarantees a hydration mismatch — React aborts hydration and every
+     client behaviour on the invitation (seal gate, RSVP, share, music)
+     dies with it. Start empty, fill in after mount. */
+  const [countdown, setCountdown] = useState<ReturnType<typeof getCountdown> | null>(null);
 
   useEffect(() => {
+    setCountdown(getCountdown(targetDate));
     const timer = setInterval(() => setCountdown(getCountdown(targetDate)), 1000);
     return () => clearInterval(timer);
   }, [targetDate]);
+
+  if (!countdown) {
+    return (
+      <div className="clock rv" role="timer" aria-live="off" aria-label="Countdown to the wedding">
+        {["Days", "Hours", "Minutes", "Seconds"].map((label) => (
+          <div key={label}>
+            <b>—</b>
+            <span>{label}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   if (countdown.isOver) {
     return (

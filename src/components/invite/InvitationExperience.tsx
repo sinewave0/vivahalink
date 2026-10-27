@@ -1,14 +1,17 @@
 "use client";
 
 import { useState, type CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Share2 } from "lucide-react";
 import type { InvitationData, Template } from "@/lib/types";
 import { getInvitationTheme } from "@/lib/invitation-theme";
+import { GATE_LABELS } from "@/lib/constants";
 import { formatDate } from "@/lib/utils";
-import PalaceJourney from "@/components/ui/PalaceJourney";
+import DuskCover from "@/components/ui/DuskCover";
 import CandlelitFinale from "@/components/ui/CandlelitFinale";
 import ScrollFX from "@/components/ui/ScrollFX";
+import InvitationGate from "./InvitationGate";
 import CountdownTimer from "./CountdownTimer";
 import StorySection from "./StorySection";
 import CeremoniesSection from "./CeremoniesSection";
@@ -51,10 +54,11 @@ function heroDate(iso: string): string {
 }
 
 /**
- * The complete invitation microsite in the rose-court language:
- * a dusk-palace journey, a card-paper invitation, ceremonies hung on
- * a gold thread, a blessing spread, the lantern clock, and a
- * candle-lit mandap finale — with floating music / share / RSVP pills.
+ * The complete invitation microsite in the dusk language: a wax-seal
+ * gate, a photographic dusk cover, a card-paper invitation spread,
+ * ceremonies hung on a gold thread, a blessing spread, the lantern
+ * clock, a photographic interlude, and a candle-lit mandap finale —
+ * with floating music / share / RSVP pills.
  */
 export default function InvitationExperience({
   invitation,
@@ -66,8 +70,10 @@ export default function InvitationExperience({
 
   const theme = getInvitationTheme(template);
   const coupleNames = `${invitation.coupleName1} & ${invitation.coupleName2}`;
+  const initials = `${invitation.coupleName1[0]}&${invitation.coupleName2[0]}`;
   const city = cityFrom(invitation.ceremonies[0]?.address);
   const phrasing = PHRASING[template.category];
+  const tone = template.heroTextTone ?? "dark";
 
   /* Each template tints the shared artwork with its own palette. */
   const paletteVars = {
@@ -84,48 +90,41 @@ export default function InvitationExperience({
 
   return (
     <div className="invitation-microsite" style={paletteVars}>
-      {/* ── Cover journey: names over the parallax palace ── */}
-      <PalaceJourney cueLabel="Scroll" compact>
-        <p className="label" style={{ color: "var(--ink-soft)" }}>
-          {template.category === "wedding" ? "The wedding of" : template.title}
-        </p>
-        <h1 className="journey-title" style={{ marginTop: 12 }}>
+      {/* ── Wax seal: the invitation waits behind the couple's monogram ── */}
+      <InvitationGate initials={initials} />
+
+      {/* ── Dusk cover: names over the temple courtyard photograph ── */}
+      <DuskCover
+        align="center"
+        waitForGate
+        tone={tone}
+        src={template.heroImage ?? "/images/atelier/dusk.jpg"}
+      >
+        <p className="label">{GATE_LABELS[template.category]}</p>
+        <h1 className="dusk-title" style={{ marginTop: 12 }}>
           {invitation.coupleName1}
           <span className="weds">{template.category === "wedding" ? "Weds" : "And"}</span>
           {invitation.coupleName2}
         </h1>
-        <p className="journey-sub">{invitation.tagline}</p>
+        <p className="dusk-sub">{invitation.tagline}</p>
         <div className="hero-date">
           {heroDate(invitation.weddingDate)}
           {city ? ` · ${city}` : ""}
         </div>
-      </PalaceJourney>
+      </DuskCover>
 
       {/* ── Card-paper invitation ── */}
       <section className="paper invocation" id="invite">
         <div className="wrap">
-          <svg className="mandala rv" viewBox="0 0 200 200" aria-hidden="true">
-            <g className="spin" fill="none" stroke="currentColor" strokeWidth={1.1}>
-              {Array.from({ length: 16 }, (_, i) => i * 22.5).map((a) => (
-                <g key={a} transform={`rotate(${a} 100 100)`}>
-                  <ellipse cx={100} cy={34} rx={7} ry={20} />
-                  <circle cx={100} cy={10} r={2.2} fill="currentColor" stroke="none" />
-                </g>
-              ))}
-            </g>
-            <circle cx={100} cy={100} r={46} fill="none" stroke="currentColor" strokeWidth={1.2} />
-            <circle cx={100} cy={100} r={40} fill="none" stroke="currentColor" strokeWidth={0.6} />
-            <text
-              x={100}
-              y={120}
-              textAnchor="middle"
-              fontSize={54}
-              fill="#a3242f"
-              style={{ fontFamily: "var(--font-deva)" }}
-            >
-              शुभ
-            </text>
-          </svg>
+          <figure className="kolam rv" aria-hidden="true">
+            <Image
+              src="/images/atelier/kolam.jpg"
+              alt=""
+              width={220}
+              height={220}
+              sizes="(min-width: 640px) 148px, 40vw"
+            />
+          </figure>
 
           <p className="namo deva rv">॥ शुभ विवाह ॥</p>
           {invitation.family1 && (
@@ -163,6 +162,26 @@ export default function InvitationExperience({
 
       {/* ── Blessing: story, photos & peacock procession ── */}
       <StorySection invitation={invitation} />
+
+      {/* ── Photographic interlude: jasmine & the lamp-lit mandap ── */}
+      <section className="dusk-duo" aria-hidden="true">
+        <Image
+          src="/images/atelier/jasmine.jpg"
+          alt=""
+          width={1200}
+          height={800}
+          sizes="(min-width: 640px) 50vw, 100vw"
+          loading="lazy"
+        />
+        <Image
+          src="/images/atelier/mandap.jpg"
+          alt=""
+          width={1200}
+          height={800}
+          sizes="(min-width: 640px) 50vw, 100vw"
+          loading="lazy"
+        />
+      </section>
 
       {/* ── Lantern clock ── */}
       <section className="count" id="countdown">
