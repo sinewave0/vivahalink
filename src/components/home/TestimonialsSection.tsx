@@ -1,43 +1,65 @@
 "use client";
 
+import SectionIntro from "@/components/ui/SectionIntro";
 import { testimonials } from "@/data/content";
 import { useReveal } from "@/components/ui/ScrollFX";
 
-const TINTS = ["#f7dce4", "#e3dbf3", "#fbe3cf"];
+const [main, ...rest] = testimonials;
 
 /**
- * Guest words in soft arches — floating over card paper like the
- * blessing spread of an invitation.
+ * Guest voices — one large quotation carrying the section, two smaller
+ * notes beneath it, and a single measured fact instead of a wall of
+ * five-star badges.
  */
 export default function TestimonialsSection() {
   useReveal();
 
   return (
-    <section className="paper" style={{ paddingBlock: "clamp(60px,10vh,110px) clamp(40px,8vh,80px)" }} aria-label="Loved by families">
-      <div className="wrap head-block">
-        <h2 className="rv" style={{ fontSize: "clamp(2.2rem,7vw,4rem)" }}>
-          Loved By Families
-        </h2>
-        <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
-          The nicest things couples &amp; parents have said after the big day.
-        </p>
-      </div>
+    <section className="voices" id="voices" aria-label="Words from families">
+      <div className="wrap voices-grid">
+        <div>
+          <SectionIntro
+            label="In their words"
+            title={
+              <>
+                What the <em>family</em> remembers.
+              </>
+            }
+            lead="The couple sees the design. The parents see the countdown, the map and the RSVP. These are the notes that come back afterwards."
+          />
+          <div className="voices-stat rv">
+            <b>48h</b>
+            <span>From your details to a link you can send.</span>
+          </div>
+        </div>
 
-      <div className="quote-arches">
-        {testimonials.map((t, i) => (
-          <figure
-            key={t.name}
-            className="arch rv"
-            style={{ "--tint": TINTS[i % TINTS.length], "--d": `${i * 0.08}s` } as React.CSSProperties}
-          >
-            <div style={{ padding: "clamp(30px,4vw,40px) 24px 30px", position: "relative" }}>
-              <p>&ldquo;{t.quote}&rdquo;</p>
-              <figcaption className="who">
+        <div className="voices-list">
+          <figure className="voice voice-main rv">
+            <blockquote>&ldquo;{main.quote}&rdquo;</blockquote>
+            <figcaption>
+              <span className="voice-badge" aria-hidden="true">
+                {main.name.charAt(0)}
+              </span>
+              {main.name} · {main.location}
+            </figcaption>
+          </figure>
+
+          {rest.map((t, i) => (
+            <figure
+              key={t.name}
+              className="voice rv"
+              style={{ "--d": `${0.06 + i * 0.07}s` } as React.CSSProperties}
+            >
+              <blockquote>&ldquo;{t.quote}&rdquo;</blockquote>
+              <figcaption>
+                <span className="voice-badge" aria-hidden="true">
+                  {t.name.charAt(0)}
+                </span>
                 {t.name} · {t.location}
               </figcaption>
-            </div>
-          </figure>
-        ))}
+            </figure>
+          ))}
+        </div>
       </div>
     </section>
   );

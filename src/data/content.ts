@@ -3,23 +3,23 @@ import { FAQItem, Step } from "@/lib/types";
 export const howItWorks: Step[] = [
   {
     number: 1,
-    title: "Choose your template",
+    title: "Choose a design",
     description:
-      "Browse our collection of beautifully crafted invitation templates. Each one is designed with cultural warmth and modern elegance.",
+      "Begin with a design from the collection — or tell us the feeling you are after and we will draw something new around it.",
     icon: "Layout",
   },
   {
     number: 2,
-    title: "Customize via WhatsApp",
+    title: "Send the details",
     description:
-      "Send us your details — couple names, photos, event schedule, venue — over WhatsApp. We handle the rest. No apps to install, no forms to fill.",
+      "One WhatsApp conversation. Names, dates, venues and photographs. No dashboards, no forms, no logins to remember.",
     icon: "MessageCircle",
   },
   {
     number: 3,
-    title: "Share your invitation",
+    title: "Share one link",
     description:
-      "Receive your live invitation link within 24–48 hours. Share it with family and friends via WhatsApp, SMS, or any platform. It's that simple.",
+      "Your invitation goes live within 24–48 hours, ready for every phone and every guest — in Chennai or across the world.",
     icon: "Share2",
   },
 ];

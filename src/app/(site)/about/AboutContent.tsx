@@ -1,223 +1,191 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { Clock, MapPin, MessageCircle, ScrollText, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import SectionIntro from "@/components/ui/SectionIntro";
 import { waLink, waMessages, WHATSAPP_DISPLAY } from "@/lib/constants";
-import { Mandala, PeacockStrip, Divider } from "@/components/ui/decor";
 import { useReveal } from "@/components/ui/ScrollFX";
 
 const values = [
   {
-    icon: ScrollText,
     title: "Rooted in tradition",
-    text: "From bold colour stories to quiet, classic elegance, our designs begin with your celebration — never a generic template.",
+    text: "From bold colour stories to quiet, classic elegance, every design begins with your celebration — never a generic template.",
   },
   {
-    icon: Sparkles,
     title: "Crafted like couture",
-    text: "Hand-tuned animation, engraved typography and a calm, premium feel. Your invitation should be the first gift of the wedding.",
+    text: "Hand-tuned motion, engraved typography and a calm, premium feel. Your invitation should be the first gift of the wedding.",
   },
   {
-    icon: MessageCircle,
     title: "Ordering without friction",
     text: "No accounts, no uploads, no design tools. Choose a design, send your details on WhatsApp, receive a link.",
   },
   {
-    icon: MapPin,
     title: "Made for the diaspora",
     text: "A link works everywhere — Chennai, Singapore, London, Toronto. Directions, RSVP and calendars travel with it.",
   },
 ];
-
-const TINTS = ["#f7dce4", "#fbe3cf", "#dfe8d6", "#e3dbf3"];
 
 export default function AboutPage() {
   useReveal();
 
   return (
     <>
-      {/* Card-paper introduction */}
-      <section
-        className="paper invocation"
-        style={{ paddingTop: "clamp(110px,16vh,170px)", paddingBottom: "clamp(50px,9vh,90px)" }}
-      >
+      <section className="page-hero">
         <div className="wrap">
-          <Mandala glyph="ॐ" />
-          <p className="namo deva rv">॥ शुभ अवसर ॥</p>
-          <p className="small rv" style={{ "--d": ".05s" } as React.CSSProperties}>
-            The invitation is the first experience of the wedding — not just a card
+          <p className="label">The studio · Chennai</p>
+          <h1>
+            Invitations made the <em>slow way</em>.
+          </h1>
+          <p className="lead">
+            A small design studio for Indian celebrations — making one link
+            that carries the first feeling of the wedding to every guest,
+            wherever they are.
           </p>
-          <div className="person rv" style={{ "--d": ".1s" } as React.CSSProperties}>
-            <h2 style={{ fontSize: "clamp(2.6rem,9vw,5rem)" }}>About VivahaLink</h2>
-            <p className="rel">
-              Beautiful digital invitation websites for celebrations across India
-              and the families who gather for them.
+          <div className="page-hero-meta">
+            <span>Founded on a frustration</span>
+            <span>Set by hand</span>
+            <span>Sent across the world</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="about-story" aria-label="Our story">
+        <div className="wrap about-story-grid">
+          <figure className="about-photo rv">
+            <Image
+              src="/images/atelier/jasmine.jpg"
+              alt="Jasmine flowers and gold jewellery resting on silk"
+              fill
+              sizes="(min-width: 1024px) 42vw, 90vw"
+            />
+            <figcaption>The quiet hour · jasmine, gold, and a borrowed veil</figcaption>
+          </figure>
+
+          <div className="about-copy">
+            <SectionIntro
+              label="How we began"
+              title={
+                <>
+                  A card is a promise. A link can <em>keep</em> it.
+                </>
+              }
+            />
+            <p style={{ marginTop: 24 }}>
+              VivahaLink began with a simple frustration. Indian celebrations
+              deserve invitations that carry the warmth of the occasion — yet
+              most digital options were lifeless PDFs or print-shop scans with a
+              thousand-watt gold filter.
+            </p>
+            <p>
+              We thought: what if the invitation itself felt like an event? A
+              link your family opens eagerly. A soft reveal, the couple&apos;s
+              story, a countdown your grandmother actually taps, an RSVP that
+              lands directly in your WhatsApp.
+            </p>
+            <blockquote className="about-quote">
+              &ldquo;An invitation is the first gift of a wedding. It should
+              feel like one.&rdquo;
+            </blockquote>
+            <p>
+              That is VivahaLink. Every microsite is set by hand with a sense of
+              place, colour and celebration — then delivered as a single
+              beautiful link within 24–48 hours of receiving your details.
+            </p>
+            <p style={{ marginTop: 26 }}>
+              <Link href="/templates" className="text-link">
+                See what we make <ArrowUpRight size={13} aria-hidden="true" />
+              </Link>
             </p>
           </div>
         </div>
       </section>
 
-      {/* Story */}
-      <section
-        className="paper"
-        style={{ paddingBottom: "clamp(40px,7vh,70px)", paddingTop: "clamp(10px,2vh,20px)" }}
-      >
-        <div className="wrap" style={{ maxWidth: 720 }}>
-          <Divider className="rv" style={{ display: "block", width: 160, margin: "0 auto 30px" }} />
-          {[
-            "VivahaLink began with a simple frustration. Indian celebrations deserve invitations that carry the warmth of the occasion — yet most digital options were lifeless PDFs or print-shop scans with a thousand-watt gold filter.",
-            "We thought: what if the invitation itself felt like an event? A link your family opens eagerly. A soft reveal, the couple's story, a countdown your grandmother actually taps, an RSVP that lands directly in your WhatsApp.",
-            "That's VivahaLink. Every microsite is designed by hand with a sense of place, colour and celebration — then delivered as a single beautiful link within 24–48 hours of receiving your details.",
-          ].map((para, i) => (
-            <p
-              key={i}
-              className="rv"
-              style={
-                {
-                  "--d": `${i * 0.06}s`,
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(1.12rem,2.4vw,1.35rem)",
-                  lineHeight: 1.6,
-                  color: i === 1 ? "var(--ink)" : "var(--ink-soft)",
-                  marginTop: i === 0 ? 0 : "1.1em",
-                  textAlign: "center",
-                } as React.CSSProperties
-              }
-            >
-              {i === 1 ? (
-                <em style={{ fontStyle: "italic" }}>{para}</em>
-              ) : (
-                para
-              )}
-            </p>
-          ))}
-        </div>
-      </section>
+      <section className="principles" aria-label="What we care about">
+        <div className="wrap">
+          <SectionIntro
+            label="What we hold to"
+            title={
+              <>
+                Four quiet <em>promises</em>.
+              </>
+            }
+            lead="The things that do not change from one celebration to the next."
+          />
 
-      {/* Values as arches */}
-      <section className="gthread gthread-plain" aria-label="What we care about">
-        <div className="wrap head-block">
-          <h2 className="rv">
-            What We Care About
-          </h2>
-          <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
-            Four promises behind every invitation we craft.
-          </p>
-        </div>
-
-        <div
-          className="wrap"
-          style={{
-            position: "relative",
-            zIndex: 2,
-            display: "grid",
-            gap: "clamp(16px,3vw,26px)",
-            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 230px), 1fr))",
-            paddingBottom: "clamp(40px,7vh,70px)",
-            alignItems: "start",
-          }}
-        >
-          {values.map((v, i) => {
-            const Icon = v.icon;
-            return (
+          <div className="principles-grid">
+            {values.map((v, i) => (
               <article
                 key={v.title}
-                className="arch"
-                style={
-                  {
-                    "--tint": TINTS[i % TINTS.length],
-                    "--aw": "100%",
-                    "--d": `${i * 0.06}s`,
-                  } as React.CSSProperties
-                }
+                className="principle rv"
+                style={{ "--d": `${i * 0.05}s` } as React.CSSProperties}
               >
-                <div className="arch-in" style={{ padding: "clamp(30px,4vw,38px) 22px 30px" }}>
-                  <div className="ic">
-                    <Icon size={34} strokeWidth={1.3} />
-                  </div>
-                  <h3 style={{ fontSize: "clamp(1.5rem,3.4vw,1.85rem)" }}>{v.title}</h3>
-                  <p className="vn" style={{ marginTop: 12 }}>{v.text}</p>
+                <span className="n" aria-hidden="true">
+                  0{i + 1}
+                </span>
+                <div>
+                  <h3>{v.title}</h3>
+                  <p>{v.text}</p>
                 </div>
               </article>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Contact arch */}
-      <section className="gthread" aria-label="Contact">
-        <div className="wrap head-block">
-          <h2 className="rv">
-            Talk To Us
-          </h2>
-          <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
-            One WhatsApp message is all it takes.
-          </p>
-        </div>
-
-        <div
-          className="wrap"
-          style={{ position: "relative", zIndex: 2, paddingBottom: "clamp(50px,9vh,90px)" }}
-        >
-          <article
-            className="arch"
-            style={
-              {
-                "--tint": "#e3dbf3",
-                "--aw": "min(92vw, 460px)",
-                margin: "0 auto",
-              } as React.CSSProperties
-            }
-          >
-            <div className="arch-in" style={{ padding: "clamp(60px,10vw,84px) 30px 34px" }}>
-              <div className="ic">
-                <MessageCircle size={34} strokeWidth={1.3} />
-              </div>
-              <h3 style={{ fontSize: "clamp(1.7rem,5vw,2.2rem)" }}>VivahaLink Concierge</h3>
-              <p className="dd">Order · customize · just ask</p>
-
-              <div
-                className="vn"
-                style={{
-                  display: "grid",
-                  gap: 10,
-                  textAlign: "left",
-                  marginTop: 18,
-                  fontSize: "0.86rem",
-                }}
+      <section className="contact-band" aria-label="Contact the studio">
+        <div className="wrap contact-grid">
+          <div>
+            <p className="label">The concierge</p>
+            <h2>
+              Tell us the date. We&apos;ll bring the <em>paper</em>.
+            </h2>
+            <p className="foot-note" style={{ color: "rgba(251,247,240,0.58)", maxWidth: "38ch", marginTop: 20, lineHeight: 1.7 }}>
+              One WhatsApp message is all it takes. We answer as people, not a
+              ticketing system.
+            </p>
+            <div className="contact-actions">
+              <a
+                href={waLink(waMessages.inquiry())}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn on-gold"
               >
-                <span style={{ display: "flex", alignItems: "center", gap: 9 }}>
-                  <Clock size={15} style={{ color: "var(--gold)", flexShrink: 0 }} />
-                  Mon–Sun, 9 AM – 9 PM IST
-                </span>
-                <span style={{ display: "flex", alignItems: "center", gap: 9 }}>
-                  <MessageCircle size={15} style={{ color: "var(--gold)", flexShrink: 0 }} />
-                  {WHATSAPP_DISPLAY}
-                </span>
-                <span style={{ display: "flex", alignItems: "center", gap: 9 }}>
-                  <MapPin size={15} style={{ color: "var(--gold)", flexShrink: 0 }} />
-                  India &amp; families celebrating around the world
-                </span>
-              </div>
+                Chat on WhatsApp
+              </a>
+              <Link href="/templates" className="text-link light">
+                See the collection <ArrowUpRight size={13} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
 
-              <div className="btns" style={{ marginTop: 24 }}>
+          <dl className="contact-details">
+            <div className="contact-detail">
+              <dt>WhatsApp</dt>
+              <dd>
                 <a
                   href={waLink(waMessages.inquiry())}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn solid"
                 >
-                  Chat on WhatsApp
+                  {WHATSAPP_DISPLAY}
                 </a>
-                <Link href="/templates" className="btn">
-                  See the collection
-                </Link>
-              </div>
+              </dd>
             </div>
-          </article>
+            <div className="contact-detail">
+              <dt>Hours</dt>
+              <dd>Monday–Sunday, 9am–9pm IST</dd>
+            </div>
+            <div className="contact-detail">
+              <dt>Where</dt>
+              <dd>Chennai, India — and families celebrating around the world</dd>
+            </div>
+            <div className="contact-detail">
+              <dt>Reply</dt>
+              <dd>Usually within the hour</dd>
+            </div>
+          </dl>
         </div>
-
-        <PeacockStrip />
       </section>
     </>
   );

@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { templates } from "@/data/templates";
-import { getInvitationTheme } from "@/lib/invitation-theme";
-import { formatPrice } from "@/lib/utils";
 import { waLink, waMessages } from "@/lib/constants";
-import TemplateArt from "@/components/ui/TemplateArt";
+import TemplateCard from "@/components/ui/TemplateCard";
 import { useReveal } from "@/components/ui/ScrollFX";
 
 const categories = [
@@ -14,16 +13,15 @@ const categories = [
   { value: "wedding", label: "Weddings" },
   { value: "anniversary", label: "Anniversaries" },
   { value: "housewarming", label: "Housewarmings" },
-];
-
-const TINTS = ["#f7dce4", "#fbe3cf", "#dfe8d6", "#e3dbf3", "#d9d3f1", "#f7d9de"];
+] as const;
 
 /**
- * The collection — every design as an arch panel with its own palette,
- * hung in a grid. Filtering re-runs the reveal observer for new cards.
+ * The gallery — a sticky brass filter rail above a staggered grid of
+ * editorial cards. Filtering re-runs the reveal observer for the new
+ * cards so nothing arrives already faded.
  */
 export default function TemplatesContent() {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState<string>("all");
   useReveal([activeCategory]);
 
   const filtered =
@@ -32,136 +30,69 @@ export default function TemplatesContent() {
       : templates.filter((t) => t.category === activeCategory);
 
   return (
-    <section className="gthread" style={{ paddingTop: "clamp(10px,2vh,24px)" }}>
-      <div className="wrap head-block">
-        <h2 className="rv" style={{ fontSize: "clamp(2rem,5.5vw,3.4rem)" }}>
-          Pick the feeling
-        </h2>
-        <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
-          Each design is a complete little world — preview it live, then we make it yours.
-        </p>
-
-        <div
-          className="rv"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: 8,
-            marginTop: 22,
-          }}
-        >
-          {categories.map((cat) => (
-            <button
-              key={cat.value}
-              type="button"
-              onClick={() => setActiveCategory(cat.value)}
-              aria-pressed={activeCategory === cat.value}
-              className={`chip${activeCategory === cat.value ? " active" : ""}`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div
-        className="wrap"
-        style={{ position: "relative", zIndex: 2, paddingBottom: "clamp(50px,9vh,90px)" }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gap: "clamp(18px,3vw,30px)",
-            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 260px), 1fr))",
-            alignItems: "start",
-          }}
-        >
-          {filtered.map((template, i) => {
-            const theme = getInvitationTheme(template);
+    <>
+      <div className="filter-bar">
+        <div className="wrap filter-inner" role="group" aria-label="Filter designs by celebration">
+          {categories.map((cat) => {
+            const count =
+              cat.value === "all"
+                ? templates.length
+                : templates.filter((t) => t.category === cat.value).length;
             return (
-              <article
-                key={template.id}
-                className="arch"
-                style={
-                  {
-                    "--tint": TINTS[i % TINTS.length],
-                    "--aw": "100%",
-                    "--d": `${(i % 3) * 0.06}s`,
-                  } as React.CSSProperties
-                }
+              <button
+                key={cat.value}
+                type="button"
+                onClick={() => setActiveCategory(cat.value)}
+                aria-pressed={activeCategory === cat.value}
+                className="filter-btn"
               >
-                <div className="arch-in" style={{ padding: "clamp(26px,4vw,34px) 22px 26px" }}>
-                  <Link
-                    href={`/events/${template.demoSlug}`}
-                    target="_blank"
-                    rel="noopener"
-                    aria-label={`Preview the ${template.title} invitation`}
-                    className="arch_media"
-                  >
-                    <TemplateArt template={template} />
-                  </Link>
-
-                  <h3 style={{ fontSize: "clamp(1.6rem,4vw,2rem)" }}>{template.title}</h3>
-                  <p className="dd">
-                    {template.category} · {template.tier}
-                  </p>
-                  <p className="tm">{formatPrice(template.price)}</p>
-
-                  <p
-                    className="vn"
-                    style={{ marginTop: 10, marginBottom: 18, minHeight: "5.2em" }}
-                  >
-                    {template.description}
-                  </p>
-
-                  <div className="pdots" style={{ justifyContent: "center", marginBottom: 16 }}>
-                    {template.palette.map((c) => (
-                      <span
-                        key={c.hex}
-                        title={c.name}
-                        style={{ backgroundColor: c.hex, borderColor: theme.surface }}
-                      />
-                    ))}
-                  </div>
-
-                  <div className="btns">
-                    <Link
-                      href={`/events/${template.demoSlug}`}
-                      target="_blank"
-                      rel="noopener"
-                      className="btn solid"
-                    >
-                      Live preview
-                    </Link>
-                    <a
-                      href={waLink(waMessages.order(template.title))}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn"
-                    >
-                      Order
-                    </a>
-                  </div>
-                </div>
-              </article>
+                {cat.label}
+                <span className="tally">{String(count).padStart(2, "0")}</span>
+              </button>
             );
           })}
         </div>
-
-        {filtered.length === 0 && (
-          <p className="small" style={{ textAlign: "center", paddingBlock: 40 }}>
-            Nothing here yet — more designs are on the loom. Ask us for a custom one.
-          </p>
-        )}
-
-        <p
-          className="small"
-          style={{ textAlign: "center", marginTop: "clamp(30px,5vh,50px)", color: "var(--ink-soft)" }}
-        >
-          Every design includes countdown, maps, calendar &amp; WhatsApp RSVP.
-        </p>
       </div>
-    </section>
+
+      <section className="gallery" aria-label="Invitation designs">
+        <div className="wrap">
+          <div className="gallery-grid">
+            {filtered.map((template, i) => (
+              <TemplateCard key={template.id} template={template} index={i} />
+            ))}
+          </div>
+
+          {filtered.length === 0 && (
+            <p className="gallery-empty">
+              Nothing here yet — more designs are on the loom. Ask us for a
+              custom one and we&apos;ll draw it around your celebration.
+            </p>
+          )}
+
+          <div className="gallery-note">
+            <span>
+              Showing {String(filtered.length).padStart(2, "0")} of{" "}
+              {String(templates.length).padStart(2, "0")} · every design includes the
+              countdown, maps, calendar and WhatsApp RSVP
+            </span>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 22 }}>
+              <a
+                href={waLink(waMessages.inquiry())}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-link"
+              >
+                <MessageCircle size={13} aria-hidden="true" />
+                Ask a question
+              </a>
+              <Link href="/#how-it-works" className="text-link">
+                How ordering works
+                <ArrowUpRight size={13} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

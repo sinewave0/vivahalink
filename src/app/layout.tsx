@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import {
-  Cormorant_Garamond,
+  Bodoni_Moda,
   Aboreto,
   Manrope,
   Tiro_Devanagari_Hindi,
@@ -10,13 +10,13 @@ import { SITE } from "@/lib/constants";
 
 /**
  * The type stack mirrors a hand-set wedding card:
- *  - Cormorant Garamond  → display serif (names, headlines)
+ *  - Bodoni Moda         → high-contrast display serif (names, headlines)
  *  - Aboreto             → engraved small-cap labels
  *  - Manrope             → quiet body text
  *  - Tiro Devanagari     → shloka flourishes
  */
-const display = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const display = Bodoni_Moda({
+  variable: "--font-bodoni",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   style: ["normal", "italic"],
@@ -47,40 +47,55 @@ const deva = Tiro_Devanagari_Hindi({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "VivahaLink — Beautiful Digital Invitation Websites for Indian Celebrations",
+    default: "VivahaLink — Digital Invitations for Indian Weddings & Celebrations",
     template: "%s | VivahaLink",
   },
   description:
-    "Premium, culturally rooted digital invitation microsites for Indian weddings, anniversaries, housewarmings, and milestone celebrations. Choose a template, customize via WhatsApp, and share your invitation link.",
+    "A considered digital invitation for Indian weddings, anniversaries and housewarmings. Choose a design, send the details over WhatsApp, and share one link carrying the countdown, ceremonies, maps and RSVP.",
   keywords: [
     "Indian wedding invitation",
     "digital invitation",
     "wedding website",
     "Indian wedding website",
     "online invitation",
+    "WhatsApp RSVP",
     "VivahaLink",
   ],
+  applicationName: "VivahaLink",
+  authors: [{ name: "VivahaLink" }],
+  creator: "VivahaLink",
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: "/",
     siteName: "VivahaLink",
-    title: "VivahaLink — Beautiful Digital Invitation Websites for Indian Celebrations",
+    title: "VivahaLink — The invitation is the first experience.",
     description:
-      "Choose a template, customise it over WhatsApp, and share one elegant link — schedules, maps, live countdown and RSVP included. No app needed.",
-    images: ["/images/hero/invitation-editorial.png"],
+      "One link for the countdown, every ceremony, the route to each venue, and an RSVP that lands in the family chat. Designed in Chennai, delivered in 24–48 hours.",
+    images: [
+      {
+        url: "/images/atelier/dusk.jpg",
+        width: 1200,
+        height: 800,
+        alt: "A temple courtyard at dusk",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "VivahaLink — Digital Invitation Websites for Indian Celebrations",
+    title: "VivahaLink — Digital invitations for Indian celebrations",
     description:
-      "Premium invitation microsites with countdown, maps, and WhatsApp RSVP. One link, every guest.",
-    images: ["/images/hero/invitation-editorial.png"],
+      "One link for the countdown, ceremonies, maps and WhatsApp RSVP. From ₹1,499.",
+    images: ["/images/atelier/dusk.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f6e4dc",
+  themeColor: "#16101e",
   viewportFit: "cover",
 };
 

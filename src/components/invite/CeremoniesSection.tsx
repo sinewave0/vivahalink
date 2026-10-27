@@ -66,9 +66,7 @@ export default function CeremoniesSection({ invitation }: { invitation: Invitati
 
       {days.map((day) => (
         <div className="day" key={day.key}>
-          <div className="day-banner">
-            {day.weekday} <b>·</b> {day.label}
-          </div>
+          <div className="day-banner">{day.label}</div>
 
           {day.items.map((c) => {
             const tint = ARCH_TINTS[tintIndex++ % ARCH_TINTS.length];
@@ -89,9 +87,7 @@ export default function CeremoniesSection({ invitation }: { invitation: Invitati
                     {big}
                     {meridiem && <em>{meridiem}</em>}
                   </div>
-                  <div className="sm">
-                    {day.weekday} · {day.label.replace(/ \d{4}$/, "")}
-                  </div>
+                  <div className="sm">{day.label.replace(/ \d{4}$/, "")}</div>
                   {c.description && <p className="note">{c.description}</p>}
                 </div>
 
@@ -99,9 +95,7 @@ export default function CeremoniesSection({ invitation }: { invitation: Invitati
                   <div className="arch-in">
                     <div className="ic">{ceremonyIcon(c.name)}</div>
                     <h3>{c.name}</h3>
-                    <p className="dd">
-                      {day.weekday} · {day.label.replace(/ \d{4}$/, "")}
-                    </p>
+                    <p className="dd">{day.label.replace(/ \d{4}$/, "")}</p>
                     <p className="tm">{c.time}</p>
                     <p className="vn">{c.venue}</p>
                     <div className="btns">

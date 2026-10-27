@@ -134,28 +134,28 @@ function Feather({ x, flip, scale }: { x: number; flip: boolean; scale: number }
   const bars = [0, 1, 2, 3, 4];
   return (
     <g transform={`translate(${x} 60) scale(${flip ? -scale : scale} ${scale})`}>
-      <path d="M0 46C26 34 38 12 42 -18" fill="none" stroke="#80566a" strokeWidth={1.1} opacity={0.6} />
+      <path d="M0 46C26 34 38 12 42 -18" fill="none" stroke="#a97a47" strokeWidth={1.1} opacity={0.55} />
       {bars.map((i) => (
         <path
           key={i}
           d={`M${2 + i * 9} ${34 - i * 12}q9 -8 6 -18`}
           fill="none"
-          stroke="#93ab7d"
+          stroke="#8d9472"
           strokeWidth={2.4}
           strokeLinecap="round"
-          opacity={0.75}
+          opacity={0.7}
         />
       ))}
       {/* the eye */}
-      <ellipse cx={44} cy={-24} rx={13} ry={17} fill="#2b6f6b" transform="rotate(-18 44 -24)" />
-      <ellipse cx={44} cy={-24} rx={9} ry={12.5} fill="#d8a24a" transform="rotate(-18 44 -24)" />
-      <ellipse cx={44} cy={-24} rx={5} ry={7.5} fill="#1b1440" transform="rotate(-18 44 -24)" />
+      <ellipse cx={44} cy={-24} rx={13} ry={17} fill="#3f5a4a" transform="rotate(-18 44 -24)" />
+      <ellipse cx={44} cy={-24} rx={9} ry={12.5} fill="#c9a066" transform="rotate(-18 44 -24)" />
+      <ellipse cx={44} cy={-24} rx={5} ry={7.5} fill="#2a1922" transform="rotate(-18 44 -24)" />
       <circle cx={44} cy={-27} r={1.8} fill="#fffaf2" />
     </g>
   );
 }
 
-export function PeacockStrip({ className = "strip" }: { className?: string }) {
+export function PeacockStrip({ className = "peacock-strip" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 1440 130" aria-hidden="true">
       {FEATHERS.map((i) => (
@@ -177,17 +177,17 @@ export function PeacockStrip({ className = "strip" }: { className?: string }) {
 export function Monogram({ letter, sub }: { letter: string; sub?: string }) {
   return (
     <svg className="mono rv" viewBox="0 0 220 220" aria-hidden="true">
-      <circle cx={110} cy={110} r={104} fill="none" stroke="#b08a46" strokeWidth={1.6} />
-      <circle cx={110} cy={110} r={95} fill="none" stroke="#e0c385" strokeWidth={0.8} />
+      <circle cx={110} cy={110} r={104} fill="none" stroke="var(--gold)" strokeWidth={1.6} />
+      <circle cx={110} cy={110} r={95} fill="none" stroke="var(--gold-lite)" strokeWidth={0.8} />
       {Array.from({ length: 24 }, (_, i) => i * 15).map((a) => (
-        <circle key={a} cx={110} cy={12} r={1.5} fill="#b08a46" transform={`rotate(${a} 110 110)`} />
+        <circle key={a} cx={110} cy={12} r={1.5} fill="var(--gold)" transform={`rotate(${a} 110 110)`} />
       ))}
       <text
         x={110}
         y={132}
         textAnchor="middle"
         fontSize={84}
-        fill="#5a2a3d"
+        fill="var(--ink)"
         style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
       >
         {letter}
@@ -199,7 +199,7 @@ export function Monogram({ letter, sub }: { letter: string; sub?: string }) {
           textAnchor="middle"
           fontSize={12}
           letterSpacing={6}
-          fill="#b08a46"
+          fill="var(--gold)"
           style={{ fontFamily: "var(--font-label)" }}
         >
           {sub}

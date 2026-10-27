@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { waLink, waMessages } from "@/lib/constants";
 
 /**
- * A single lantern-glass pill, floating bottom-left, always within
- * thumb's reach — the storefront's quiet "talk to us" affordance.
+ * A single ink-and-brass pill, floating bottom-right within thumb's
+ * reach — the storefront's quiet "talk to us" affordance.
  */
 export default function StickyWhatsAppBar() {
   return (
@@ -16,12 +16,7 @@ export default function StickyWhatsAppBar() {
       href={waLink(waMessages.inquiry())}
       target="_blank"
       rel="noopener noreferrer"
-      className="music-pill hint"
-      style={{
-        right: "auto",
-        left: "max(14px, env(safe-area-inset-left, 0px))",
-        textDecoration: "none",
-      }}
+      className="wa-float"
       aria-label="Chat with VivahaLink on WhatsApp"
     >
       <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">

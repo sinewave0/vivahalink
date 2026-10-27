@@ -106,4 +106,4 @@ export function ceremonyIcon(name: string): ReactNode {
 }
 
 /** Rotating arch tints so a long schedule never feels repetitive. */
-export const ARCH_TINTS = ["#f7dce4", "#fbe3cf", "#dfe8d6", "#e3dbf3", "#d9d3f1", "#f7d9de"];
+export const ARCH_TINTS = ["#f2ddd2", "#f5e6ce", "#e4e7d5", "#efe0d6", "#eadcc9", "#f4e0d6"];

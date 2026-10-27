@@ -1,59 +1,77 @@
 "use client";
 
 import { useState } from "react";
-import { Plus } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import SectionIntro from "@/components/ui/SectionIntro";
 import { faqs } from "@/data/content";
+import { waLink, waMessages } from "@/lib/constants";
 import { useReveal } from "@/components/ui/ScrollFX";
 
 /**
- * Questions answered on card paper — one engraved accordion, no clutter.
+ * Good questions, answered beside a sticky note to us. The plus is drawn
+ * in hairlines; the answer opens with a CSS grid transition, so it never
+ * jumps or clips mid-way.
  */
 export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(0);
   useReveal([open]);
 
   return (
-    <section className="gthread gthread-plain" id="faq" aria-label="Frequently asked questions">
-      <div className="wrap head-block">
-        <h2 className="rv">
-          Good Questions
-        </h2>
-        <p className="small rv" style={{ "--d": ".06s" } as React.CSSProperties}>
-          Everything couples usually ask before they order.
-        </p>
-      </div>
+    <section className="faq-section" id="faq" aria-label="Frequently asked questions">
+      <div className="wrap faq-grid">
+        <div className="faq-aside">
+          <SectionIntro
+            label="Good questions"
+            title={
+              <>
+                Before you <em>begin</em>.
+              </>
+            }
+            lead="If yours is not here, one message gets a real answer from a person — usually within the hour."
+          />
+          <a
+            href={waLink(waMessages.inquiry())}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link"
+          >
+            Ask us on WhatsApp
+            <ArrowUpRight size={13} aria-hidden="true" />
+          </a>
+        </div>
 
-      <div
-        className="wrap"
-        style={{
-          position: "relative",
-          zIndex: 2,
-          maxWidth: 760,
-          display: "grid",
-          gap: 12,
-          paddingBottom: "clamp(50px,9vh,90px)",
-        }}
-      >
-        {faqs.map((f, i) => {
-          const isOpen = open === i;
-          return (
-            <div key={f.question} className={`faq-item rv${isOpen ? " open" : ""}`} style={{ "--d": `${i * 0.03}s` } as React.CSSProperties}>
-              <button
-                onClick={() => setOpen(isOpen ? null : i)}
-                aria-expanded={isOpen}
-                aria-controls={`faq-answer-${i}`}
+        <div className="faq-list">
+          {faqs.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <div
+                key={f.question}
+                className={`faq-row rv${isOpen ? " is-open" : ""}`}
+                style={{ "--d": `${i * 0.025}s` } as React.CSSProperties}
               >
-                <span>{f.question}</span>
-                <Plus size={18} className="kob" aria-hidden="true" />
-              </button>
-              {isOpen && (
-                <p className="ans" id={`faq-answer-${i}`}>
-                  {f.answer}
-                </p>
-              )}
-            </div>
-          );
-        })}
+                <h3>
+                  <button
+                    type="button"
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${i}`}
+                  >
+                    <span className="idx" aria-hidden="true">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="q">{f.question}</span>
+                    <span className="faq-sign" aria-hidden="true" />
+                  </button>
+                </h3>
+                <div className="faq-panel" id={`faq-answer-${i}`} role="region">
+                  <div>
+                    <p>{f.answer}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@
 
 /**
  * CandlelitFinale — the closing scene: a night mandap lit by a hundred
- * candles, drifting motes, and a purple sky. Text + actions float above
+ * candles, drifting motes, and a terracotta sky. Text + actions float above
  * the scene so callers can end any page with "with love and blessings"
  * plus their call to action.
  *
@@ -140,14 +140,14 @@ export default function CandlelitFinale({
       <svg className="scene" ref={sceneRef} viewBox="0 0 1200 1120" aria-hidden="true">
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#150f38" />
-            <stop offset="0.5" stopColor="#2c2060" />
-            <stop offset="0.78" stopColor="#5a3a78" />
-            <stop offset="1" stopColor="#7d4c74" />
+            <stop offset="0" stopColor="#100b18" />
+            <stop offset="0.5" stopColor="#241528" />
+            <stop offset="0.78" stopColor="#4a2a35" />
+            <stop offset="1" stopColor="#7a463a" />
           </linearGradient>
           <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#3b2548" />
-            <stop offset="1" stopColor="#150d26" />
+            <stop offset="0" stopColor="#2a1a26" />
+            <stop offset="1" stopColor="#120b18" />
           </linearGradient>
           <linearGradient id="pillar" x1="0" x2="1">
             <stop offset="0" stopColor="#8d6a33" />
@@ -155,18 +155,18 @@ export default function CandlelitFinale({
             <stop offset="1" stopColor="#8d6a33" />
           </linearGradient>
           <linearGradient id="roof" x1="0" x2="1">
-            <stop offset="0" stopColor="#d9a9b0" />
-            <stop offset="0.5" stopColor="#fbe8dc" />
-            <stop offset="1" stopColor="#d9a9b0" />
+            <stop offset="0" stopColor="#b87d52" />
+            <stop offset="0.5" stopColor="#f0d3ab" />
+            <stop offset="1" stopColor="#b87d52" />
           </linearGradient>
           <linearGradient id="valance" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#fdeee2" />
-            <stop offset="1" stopColor="#eab9c0" />
+            <stop offset="0" stopColor="#f4dcc0" />
+            <stop offset="1" stopColor="#c98d63" />
           </linearGradient>
           <linearGradient id="drape" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="#f5dfe6" stopOpacity="0.1" />
-            <stop offset="0.5" stopColor="#f5dfe6" stopOpacity="0.5" />
-            <stop offset="1" stopColor="#f5dfe6" stopOpacity="0.12" />
+            <stop offset="0" stopColor="#f2d3b4" stopOpacity="0.1" />
+            <stop offset="0.5" stopColor="#f2d3b4" stopOpacity="0.5" />
+            <stop offset="1" stopColor="#f2d3b4" stopOpacity="0.12" />
           </linearGradient>
           <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
             <stop offset="0" stopColor="#ffb868" stopOpacity="0.62" />
@@ -184,12 +184,12 @@ export default function CandlelitFinale({
             <stop offset="1" stopColor="#ff7a2e" />
           </radialGradient>
           <linearGradient id="carpet" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#a24a6a" />
-            <stop offset="1" stopColor="#6a2a50" />
+            <stop offset="0" stopColor="#8a4a35" />
+            <stop offset="1" stopColor="#4a231c" />
           </linearGradient>
           <radialGradient id="vig" cx="0.5" cy="0.5" r="0.75">
             <stop offset="0.6" stopColor="#0c0720" stopOpacity="0" />
-            <stop offset="1" stopColor="#0c0720" stopOpacity="0.7" />
+            <stop offset="1" stopColor="#0a0610" stopOpacity="0.7" />
           </radialGradient>
         </defs>
 
@@ -211,7 +211,7 @@ export default function CandlelitFinale({
         </g>
 
         {/* distant fort wall + town */}
-        <g fill="#241a4e" opacity={0.92}>
+        <g fill="#241526" opacity={0.92}>
           <rect x="-1200" y="690" width="3600" height="90" />
           <path id="twr" d="M0 690V600h64v90zM-4 600h72a36 36 0 0 0-72 0zM32 560v-16" />
           <use href="#twr" x="-420" />
@@ -222,7 +222,7 @@ export default function CandlelitFinale({
           <use href="#twr" x="1520" />
           <path
             d="M170 690V640a22 22 0 0 1 44 0v50zM240 690V622a26 26 0 0 1 52 0v68zM330 690V650h50v40zM820 690V650h50v40zM908 690V622a26 26 0 0 1 52 0v68zM986 690V640a22 22 0 0 1 44 0v50z"
-            fill="#2c2160"
+            fill="#33202c"
           />
         </g>
         <g fill="#ffcf7a" opacity={0.8}>
@@ -239,11 +239,11 @@ export default function CandlelitFinale({
 
         {/* the mandap */}
         <g transform="translate(0 290)">
-          <path d="M270 690h660l30 54H240z" fill="#33203f" />
+          <path d="M270 690h660l30 54H240z" fill="#2b1a22" />
           <path d="M270 690h660" stroke="#e0c385" strokeWidth={2} />
-          <path d="M320 640h560l34 50H286z" fill="#44294f" />
+          <path d="M320 640h560l34 50H286z" fill="#3a2228" />
           <path d="M320 640h560" stroke="#e0c385" strokeWidth={2} />
-          <rect x="320" y="590" width="560" height="52" fill="#51315b" />
+          <rect x="320" y="590" width="560" height="52" fill="#472a2e" />
           <path d="M320 590h560" stroke="#e0c385" strokeWidth={2.5} />
           <path d="M548 744h104l110 316H438z" fill="url(#carpet)" />
           <path d="M560 744l-100 316M640 744l100 316" stroke="#e0c385" strokeWidth={2} fill="none" opacity={0.8} />
@@ -251,9 +251,9 @@ export default function CandlelitFinale({
             <rect x="472" y="262" width="14" height="330" />
             <rect x="714" y="262" width="14" height="330" />
           </g>
-          <rect x="452" y="248" width="296" height="10" fill="#e8b9c0" opacity={0.85} />
+          <rect x="452" y="248" width="296" height="10" fill="#d9b47c" opacity={0.85} />
           <path d="M392 258C410 184 510 128 600 80c90 48 190 104 208 178z" fill="url(#roof)" />
-          <g fill="none" stroke="#c99a8e" strokeWidth={1.6} opacity={0.75}>
+          <g fill="none" stroke="#c09268" strokeWidth={1.6} opacity={0.75}>
             <path d="M600 80C560 140 540 200 534 258" />
             <path d="M600 80C640 140 660 200 666 258" />
             <path d="M600 80C520 130 470 200 452 258" />
@@ -326,10 +326,10 @@ export default function CandlelitFinale({
             />
           </g>
           <g>
-            <rect x="470" y="556" width="56" height="36" rx={8} fill="#a24a6a" />
-            <rect x="474" y="530" width="48" height="34" rx={14} fill="#c8607f" />
-            <rect x="674" y="556" width="56" height="36" rx={8} fill="#a24a6a" />
-            <rect x="678" y="530" width="48" height="34" rx={14} fill="#c8607f" />
+            <rect x="470" y="556" width="56" height="36" rx={8} fill="#8a4530" />
+            <rect x="474" y="530" width="48" height="34" rx={14} fill="#b86a45" />
+            <rect x="674" y="556" width="56" height="36" rx={8} fill="#8a4530" />
+            <rect x="678" y="530" width="48" height="34" rx={14} fill="#b86a45" />
             <path d="M470 556h56M674 556h56" stroke="#e0c385" strokeWidth={2} />
           </g>
 

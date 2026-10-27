@@ -73,7 +73,9 @@ export default function InvitationExperience({
   const initials = `${invitation.coupleName1[0]}&${invitation.coupleName2[0]}`;
   const city = cityFrom(invitation.ceremonies[0]?.address);
   const phrasing = PHRASING[template.category];
-  const tone = template.heroTextTone ?? "dark";
+  /* The shared dusk courtyard is a dark photograph: ivory type unless a
+     template ships its own artwork and explicitly asks for ink. */
+  const tone = template.heroTextTone ?? (template.heroImage ? "dark" : "light");
 
   /* Each template tints the shared artwork with its own palette. */
   const paletteVars = {
@@ -91,7 +93,15 @@ export default function InvitationExperience({
   return (
     <div className="invitation-microsite" style={paletteVars}>
       {/* ── Wax seal: the invitation waits behind the couple's monogram ── */}
-      <InvitationGate initials={initials} />
+      <InvitationGate
+        initials={initials}
+        eyebrow={GATE_LABELS[template.category]}
+        name1={invitation.coupleName1}
+        name2={invitation.coupleName2}
+        date={heroDate(invitation.weddingDate)}
+        city={city ? city.charAt(0) + city.slice(1).toLowerCase() : undefined}
+        cover={template.heroImage ?? "/images/atelier/dusk.jpg"}
+      />
 
       {/* ── Dusk cover: names over the temple courtyard photograph ── */}
       <DuskCover

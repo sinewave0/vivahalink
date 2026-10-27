@@ -18,9 +18,16 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
   const [countdown, setCountdown] = useState<ReturnType<typeof getCountdown> | null>(null);
 
   useEffect(() => {
-    setCountdown(getCountdown(targetDate));
-    const timer = setInterval(() => setCountdown(getCountdown(targetDate)), 1000);
-    return () => clearInterval(timer);
+    /* Kick off on the next task instead of synchronously inside the effect:
+       the first paint stays empty (hydration-safe) and the clock takes over
+       immediately after mount. */
+    const tick = () => setCountdown(getCountdown(targetDate));
+    const kickoff = window.setTimeout(tick, 0);
+    const timer = window.setInterval(tick, 1000);
+    return () => {
+      window.clearTimeout(kickoff);
+      window.clearInterval(timer);
+    };
   }, [targetDate]);
 
   if (!countdown) {

@@ -1,35 +1,34 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Mandala, Divider } from "@/components/ui/decor";
+import BrandMark from "@/components/ui/BrandMark";
 
 export default function NotFound() {
   return (
-    <div className="paper" style={{ minHeight: "100dvh", display: "grid", placeItems: "center", padding: "48px 16px" }}>
-      <div className="wrap" style={{ textAlign: "center", maxWidth: 620 }}>
-        <Mandala glyph="ॐ" />
-        <p className="label" style={{ marginBottom: 8 }}>
-          404 · the thread leads nowhere
-        </p>
-        <h1
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(2.2rem,7vw,3.6rem)",
-            color: "var(--ink)",
-            lineHeight: 1.08,
-          }}
-        >
-          This page wandered off with the procession
-        </h1>
-        <Divider style={{ display: "block", width: 160, margin: "26px auto" }} />
-        <p className="small" style={{ maxWidth: "36ch", marginInline: "auto" }}>
+    <div className="notfound">
+      <Image
+        className="notfound-bg"
+        src="/images/atelier/dusk.jpg"
+        alt=""
+        fill
+        sizes="100vw"
+        priority
+      />
+      <div className="notfound-inner">
+        <BrandMark className="brandmark" />
+        <span className="code" aria-hidden="true">
+          404
+        </span>
+        <h1>This page left with the procession.</h1>
+        <p>
           The link may be mistyped, or the invitation has been taken down.
-          Let&apos;s walk you back to the mandap.
+          Let&apos;s walk you back to the courtyard.
         </p>
-        <div className="btns" style={{ marginTop: 32 }}>
-          <Link href="/" className="btn solid">
+        <div className="notfound-actions">
+          <Link href="/" className="btn on-gold">
             Back home
           </Link>
-          <Link href="/templates" className="btn">
-            Browse designs
+          <Link href="/templates" className="btn ghost-light">
+            Browse the collection
           </Link>
         </div>
       </div>
