@@ -25,7 +25,7 @@ export default function FeaturedTemplates() {
 
   return (
     <>
-      <section className="manifesto" aria-label="The VivahaLink studio">
+      <section className="manifesto" id="atelier" aria-label="The VivahaLink studio">
         <div className="wrap manifesto-grid">
           <div className="manifesto-copy">
             <span className="deva">॥ शुभ विवाह ॥</span>

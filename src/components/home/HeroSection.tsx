@@ -11,124 +11,99 @@ import { waLink, waMessages } from "@/lib/constants";
 
 const featured = templates.find((t) => t.slug === "rosewater-palace") ?? templates[0];
 
-const STRIP = [
-  "One link for the whole celebration",
-  "A live countdown",
-  "Every ceremony, mapped",
-  "RSVP straight to WhatsApp",
-  "Delivered in 24–48 hours",
+const LEDGER = [
+  { n: "01", text: "One link for the whole celebration" },
+  { n: "02", text: "Every ceremony, mapped" },
+  { n: "03", text: "RSVP straight to WhatsApp" },
+  { n: "04", text: "Live in 24–48 hours" },
 ];
 
 /**
- * The cover — a dusk courtyard, a magazine opening, two hanging lamps
- * and one promise. A featured design floats at the right on wide
- * screens; the running strip below turns the page.
+ * The night court — not a photograph with type laid on top of it.
+ * The left leaf is ink and type, set like a printed cover. The right
+ * leaf is the dusk plate, framed, with one hanging lamp and the
+ * featured design pinned to it like a calling card.
  */
 export default function HeroSection() {
   return (
-    <>
-      <section className="hero" id="top" aria-label="VivahaLink — digital invitations">
+    <section className="court" id="top" aria-label="VivahaLink — digital invitations">
+      <div className="court-ink">
+        <p className="court-kicker">
+          <span>VivahaLink</span>
+          <span>Chennai</span>
+        </p>
+        <p className="court-deva">॥ शुभ विवाह ॥</p>
+        <h1>
+          The first <em>heirloom</em>
+          <br />
+          of the wedding.
+        </h1>
+        <p className="court-lede">
+          A living invitation for Indian weddings, anniversaries and
+          housewarmings. The countdown, every ceremony, the route to each
+          venue, and an RSVP that lands in the family chat.
+        </p>
+
+        <div className="court-actions">
+          <Link href="/events/rosewater-palace-demo" className="btn light" target="_blank" rel="noopener">
+            Open a sample
+            <ArrowUpRight size={14} aria-hidden="true" />
+          </Link>
+          <a
+            href={waLink(waMessages.inquiry())}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link light"
+          >
+            Order on WhatsApp
+          </a>
+        </div>
+
+        <ol className="court-ledger">
+          {LEDGER.map((item) => (
+            <li key={item.n}>
+              <span>{item.n}</span>
+              {item.text}
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div className="court-plate">
         <Image
-          className="hero-img"
           src="/images/atelier/dusk.jpg"
           alt="A temple courtyard at dusk, lit by lanterns"
           fill
           priority
-          sizes="100vw"
+          sizes="(min-width: 960px) 46vw, 100vw"
         />
-        <div className="hero-veil" aria-hidden="true" />
+        <div className="court-plate-veil" aria-hidden="true" />
+        <BrassLamp className="lamp court-lamp" />
+        <p className="court-caption">
+          <span>Plate 01</span>
+          Temple courtyard, dusk
+        </p>
 
-        <BrassLamp
-          className="lamp"
-          style={{ top: 0, left: "7%", width: 54, animationDelay: "-1.4s" }}
-        />
-        <BrassLamp
-          className="lamp"
-          style={{ top: 0, left: "13%", width: 26, animationDelay: "0.8s", opacity: 0.6 }}
-        />
-        <BrassLamp
-          className="lamp"
-          style={{ top: 0, right: "4%", width: 34, animationDelay: "-3s", opacity: 0.75 }}
-        />
-
-        <div className="wrap hero-inner">
-          <div className="hero-copy">
-            <p className="hero-eyebrow">VivahaLink · Digital invitations</p>
-            <h1>
-              The first <em>heirloom</em> of the wedding.
-            </h1>
-            <p className="hero-lede">
-              A living invitation for Indian weddings, anniversaries and
-              housewarmings — the countdown, every ceremony, the route to each
-              venue, and an RSVP that lands in the family chat. One link, set by
-              hand.
-            </p>
-
-            <div className="hero-actions">
-              <Link href="/events/rosewater-palace-demo" className="btn light" target="_blank" rel="noopener">
-                Open a sample
-                <ArrowUpRight size={14} aria-hidden="true" />
-              </Link>
-              <a
-                href={waLink(waMessages.inquiry())}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-link light"
-              >
-                Order on WhatsApp
-              </a>
-            </div>
-
-            <ul className="hero-meta">
-              <li>Designed in Chennai</li>
-              <li>Live in 24–48 hours</li>
-              <li>From ₹1,499</li>
-            </ul>
-          </div>
-
-          <Link
-            href={`/events/${featured.demoSlug}`}
-            target="_blank"
-            rel="noopener"
-            className="hero-feature"
-            aria-label={`Preview ${featured.title}`}
-          >
-            <span className="hero-feature-top">
-              <span className="hero-feature-art">
-                <TemplateArt template={featured} />
-              </span>
-              <span className="hero-feature-text">
-                <span className="hero-feature-kicker">New in the collection</span>
-                <span className="hero-feature-name">{featured.title}</span>
-                <span className="hero-feature-price">
-                  {featured.category} · {formatPrice(featured.price)}
-                </span>
-              </span>
+        <Link
+          href={`/events/${featured.demoSlug}`}
+          target="_blank"
+          rel="noopener"
+          className="court-card"
+          aria-label={`Preview ${featured.title}`}
+        >
+          <span className="court-card-art">
+            <TemplateArt template={featured} />
+          </span>
+          <span className="court-card-copy">
+            <span className="court-card-kicker">In the collection</span>
+            <span className="court-card-name">{featured.title}</span>
+            <span className="court-card-meta">
+              {featured.category} · {formatPrice(featured.price)}
             </span>
-            <span className="hero-feature-link">
-              Preview the invitation <ArrowUpRight size={13} aria-hidden="true" />
-            </span>
-          </Link>
-        </div>
-
-        <span className="hero-rail" aria-hidden="true">
-          One link · every blessing
-        </span>
-      </section>
-
-      <div className="strip" aria-hidden="true">
-        <div className="strip-track">
-          {[0, 1].map((group) => (
-            <div className="strip-group" key={group}>
-              {STRIP.map((item) => (
-                <span className="strip-item" key={`${group}-${item}`}>
-                  {item}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
+          </span>
+          <ArrowUpRight size={14} aria-hidden="true" />
+        </Link>
       </div>
-    </>
+    </section>
   );
 }

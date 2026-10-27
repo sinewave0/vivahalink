@@ -47,11 +47,7 @@ guests arriving from shared links should experience the invitation, not the stor
 
 ## Dusk aesthetic (from the `redesign/` snapshot)
 
-The storefront hero and every invitation cover are full-bleed dusk photographs
-(`DuskCover`) — a misty temple courtyard, jasmine on silk, a wedding mandap at sunset —
-veiled in a rose-gold gradient with swaying CSS lanterns and a scroll cue. Guests enter an
-invitation through a tap-the-seal gate, and photographic interludes (a kolam figure, a
-jasmine/mandap duo, a how-it-works split) run through both storefront and microsite.
+The storefront opens as a night-court folio: an ink cover on the left, a framed dusk plate on the right, a numbered ledger in place of a marquee, and a chapter spine on wide screens. Invitation covers remain full-bleed dusk photographs (`DuskCover`) — a misty temple courtyard, jasmine on silk, a wedding mandap at sunset — and guests enter through a tap-the-seal gate.
 
 The original snapshot lives in `redesign/` (TanStack Start preview) as visual reference.
 

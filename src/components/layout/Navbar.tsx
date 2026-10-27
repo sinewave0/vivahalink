@@ -22,11 +22,22 @@ export default function Navbar() {
   const overHero = pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled((window.scrollY || 0) > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const hero = pathname === "/" ? document.getElementById("top") : null;
+    if (!hero) {
+      const onScroll = () => setScrolled((window.scrollY || 0) > 24);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    }
+
+    /* Stay in the dusk treatment for as long as the night court is on screen. */
+    const io = new IntersectionObserver(
+      ([entry]) => setScrolled(!entry.isIntersecting),
+      { threshold: 0.18 },
+    );
+    io.observe(hero);
+    return () => io.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
     /* Close the overlay after the route settles; deferring keeps this

@@ -1,3 +1,4 @@
+import FolioSpine from "@/components/home/FolioSpine";
 import HeroSection from "@/components/home/HeroSection";
 import FeaturedTemplates from "@/components/home/FeaturedTemplates";
 import InsideInvitation from "@/components/home/InsideInvitation";
@@ -50,6 +51,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <FolioSpine />
       <HeroSection />
       <FeaturedTemplates />
       <InsideInvitation />
